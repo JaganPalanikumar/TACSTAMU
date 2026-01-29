@@ -3,7 +3,7 @@ import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { FaDiscord, FaInstagram, FaLinkedin } from "react-icons/fa";
-import JoinPageImage from "../../public/join_page_image.png";
+import JoinPageImage from "../../public/join_page_image.jpg";
 
 const JoinPage: React.FC = () => {
     return (

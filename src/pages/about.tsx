@@ -169,7 +169,7 @@ const AboutPage: React.FC = () => {
                     <h2 className="text-4xl font-bold">Officers</h2>
                 </div>
                 <div className="flex flex-col items-center">
-                    <div className="flex flex-col md:flex-row md:flex-wrap gap-12">
+                    <div className="flex flex-wrap justify-center gap-12 w-full">
                         {Officers.map((officer, index) => (
                             <OfficerCard key={index} officer={officer} />
                         ))}

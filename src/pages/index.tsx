@@ -61,7 +61,7 @@ const Home: React.FC = () => {
             ].map((item, index) => (
               <div
                 key={index}
-                className="w-full sm:w-64 h-full border-2 border-primary-light border-r-4 border-b-4 rounded-2xl p-6 text-center flex flex-col justify-between"
+                className="w-full sm:w-64 min-h-64 border-2 border-primary-light border-r-4 border-b-4 rounded-2xl p-6 text-center flex flex-col justify-between"
               >
                 <div>
                   <div className="relative w-20 h-20 mx-auto mb-4">
