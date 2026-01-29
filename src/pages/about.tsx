@@ -21,6 +21,7 @@ import alysa_zhao_headshot from "../../public/alysa_zhao_headshot.png";
 import mann_bellani_headshot from "../../public/mann_bellani_headshot.png";
 import lauren_vu_headshot from "../../public/lauren_vu_headshot.png";
 import jagan_palanikumar_headshot from "../../public/jagan_palanikumar_headshot.png";
+import blank from "../../public/GrayAvatar.jpg";
 
 const Officers = [
     {
@@ -80,6 +81,13 @@ const Officers = [
         photo: sumit_nalavade_headshot,
     },
     {
+        name: "Phoebe Han",
+        title: "Creative Officer",
+        linkedinLink: "https://www.linkedin.com/in/phoebee-han/",
+        email: "phoebeehan@tamu.edu",
+        photo: blank,
+    },
+    {
         name: "Alysa Zhao",
         title: "Creative Officer",
         linkedinLink: "https://www.linkedin.com/in/alysaz/",
@@ -87,6 +95,13 @@ const Officers = [
         photo: alysa_zhao_headshot,
     },
     {
+        name: "Ethan Nguyen",
+        title: "Outreach + Logistics Officer",
+        linkedinLink: "https://www.linkedin.com/in/ethan-v-nguyen/",
+        email: "ethann03@tamu.edu",
+        photo: blank,
+    },
+    { 
         name: "Lauren Vu",
         title: "Outreach + Logistics Officer",
         linkedinLink: "https://www.linkedin.com/in/lauren-k-vu",
