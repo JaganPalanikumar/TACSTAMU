@@ -46,7 +46,7 @@ const Auth = () => {
 
         if (user?.id) {
           const { data: profile, error } = await supabase
-            .from("Profile")
+            .from("profile")
             .insert({
               diet_restrictions: [
                 ...dietaryRestrictions.filter((d) => d !== "Other"),
@@ -76,7 +76,7 @@ const Auth = () => {
 
         if (user?.id) {
           const { data: profile, error } = await supabase
-            .from("Profile")
+            .from("profile")
             .select()
             .eq("id", user.id)
             .maybeSingle();

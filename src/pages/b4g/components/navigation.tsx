@@ -27,7 +27,7 @@ export function Navigation() {
           Dashboard
         </Link>
         {profile?.team_name ? (
-          <Link className="p-2 hover:scale-110" href="/b4g/Team">
+          <Link className="p-2 hover:scale-110" href="/b4g/TeamDashboard">
             {profile.team_name}
           </Link>
         ) : (

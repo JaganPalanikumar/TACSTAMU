@@ -15,7 +15,7 @@ const TeamsTable = ({ teams }: { teams: TeamType[] }) => {
       </thead>
       <tbody className="text-xl">
         {teams.map((team) => (
-          <Team key={team.teamID} team={team} />
+          <Team key={team.team_name} team={team} />
         ))}
       </tbody>
     </table>

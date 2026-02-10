@@ -1,17 +1,15 @@
 export interface TeamMember {
-  userID: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  gradYear: number;
+  id: string;
+  first_name: string;
+  last_name: string;
+  grad_year: number;
 }
 
 export interface TeamType {
-  teamID: number;
-  teamName: string;
-  leaderID: number;
-  leaderFirstName: string;
-  leaderLastName: string;
-  memberCount: number;
-  members: Array<TeamMember>;
+ team_name: any;
+    team_leader: any;
+    leader_first_name: any;
+    leader_last_name: any;
+    member_count: any;
+    members: any[]
 }

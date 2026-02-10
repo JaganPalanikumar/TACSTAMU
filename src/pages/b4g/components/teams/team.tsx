@@ -8,19 +8,22 @@ type TeamProps = {
 export function Team({ team }: TeamProps) {
   const router = useRouter();
 
-  function onJoin(teamID: number, teamName: string) {
-    router.push("/updateTeam");
+  function onJoin(teamName: string) {
+    router.push({
+      pathname: "/b4g/UpdateUserTeam",
+      query: { joining: "true", teamName: teamName },
+    });
   }
 
   return (
     <tr>
-      <td className="p-3 border-b border-gray-300">{team.teamName}</td>
+      <td className="p-3 border-b border-gray-300">{team.team_name}</td>
       <td className="p-3 border-b border-gray-300">
-        {team.leaderFirstName} {team.leaderLastName}
+        {team.leader_first_name} {team.leader_last_name}
       </td>
-      <td className="p-3 border-b border-gray-300">{team.memberCount}</td>
+      <td className="p-3 border-b border-gray-300">{team.member_count}</td>
       <td className="p-3 border-b border-gray-300">
-        {team.memberCount > 0 ? (
+        {team.member_count > 0 ? (
           <ul className="flex flex-col">
             {team.members.map((member) => (
               <li key={member.userID}>
@@ -34,7 +37,7 @@ export function Team({ team }: TeamProps) {
       </td>
       <td className="p-3 border-b border-gray-300">
         <button
-          onClick={() => onJoin(team.teamID, team.teamName)}
+          onClick={() => onJoin(team.team_name)}
           className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 hover:scale-105"
         >
           Join Team

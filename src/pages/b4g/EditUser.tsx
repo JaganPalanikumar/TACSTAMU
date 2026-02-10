@@ -92,7 +92,7 @@ export default function EditUser() {
         : diet_restrictions.filter((d) => d !== "Other");
 
       const { error: profileError } = await supabase
-        .from("Profile")
+        .from("profile")
         .update({
           first_name,
           last_name,

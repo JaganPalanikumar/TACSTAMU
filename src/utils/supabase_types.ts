@@ -39,7 +39,7 @@ export type Database = {
   }
   public: {
     Tables: {
-      Profile: {
+      profile: {
         Row: {
           created_at: string
           diet_restrictions: Json | null
@@ -78,19 +78,26 @@ export type Database = {
             foreignKeyName: "Profile_team_name_fkey"
             columns: ["team_name"]
             isOneToOne: false
-            referencedRelation: "Team"
+            referencedRelation: "team"
+            referencedColumns: ["team_name"]
+          },
+          {
+            foreignKeyName: "Profile_team_name_fkey"
+            columns: ["team_name"]
+            isOneToOne: false
+            referencedRelation: "team_summary"
             referencedColumns: ["team_name"]
           },
         ]
       }
-      Team: {
+      team: {
         Row: {
           max_members: number
           team_leader: string
           team_name: string
         }
         Insert: {
-          max_members: number
+          max_members?: number
           team_leader: string
           team_name: string
         }
@@ -103,7 +110,16 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      team_summary: {
+        Row: {
+          leader_first_name: string | null
+          leader_last_name: string | null
+          member_count: number | null
+          team_leader: string | null
+          team_name: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never

@@ -43,12 +43,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
       // Get profile data
       const { data: profile, error: profileError } = await supabase
-        .from("Profile")
+        .from("profile")
         .select()
         .eq("id", user.id)
         .maybeSingle();
       if (profile?.id) {
-        setProfile(profile);
+        setProfile(profile as Profile);
       } else {
         throw profileError;
       }

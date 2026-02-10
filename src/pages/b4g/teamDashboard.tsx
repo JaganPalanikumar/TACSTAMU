@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { useAuth } from "./context/authContext";
 import type { TeamType } from "./types/TeamTypes";
 
-export function TeamDashboard() {
+export default function TeamDashboard() {
   const { user } = useAuth();
   const [team, setTeam] = useState<TeamType>();
   const [loading, setLoading] = useState<boolean>(true);
-  const nav = useNavigate();
 
   function leaveTeam(teamName: string | undefined) {
     if (!teamName) {

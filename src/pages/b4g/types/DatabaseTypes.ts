@@ -1,5 +1,3 @@
-import { Json } from "@/utils/supabase_types";
-
 export type Profile = {
   created_at: string;
   diet_restrictions: string[];
