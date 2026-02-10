@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Modak&display=swap');
+
+.b4g {
+  font-family: "Jost", system-ui;
+  line-height: 1.5;
+  font-weight: 400;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+  color: #eaeae9;
+  background-color: #0e121a;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --linear-blue-pink-peach: linear-gradient(90deg,rgba(105, 157, 230, 1) 0%, rgba(213, 148, 220, 1) 50%, rgba(245, 220, 198, 1) 100%);
+  --linear-peach-pink:linear-gradient(90deg,rgba(245, 220, 198, 1) 0%, rgba(213, 148, 220, 1) 100%);
+  --linear-pink-blue:linear-gradient(90deg,rgba(213, 148, 220, 1) 0%, rgba(105, 157, 230, 1) 100%);
+  
+  --radial-peach-pink-blue:radial-gradient(circle,rgba(245, 220, 198, 1) 0%, rgba(213, 148, 220, 1) 58%, rgba(105, 157, 230, 1) 100%);
+  --radial-peach-pink:radial-gradient(circle,rgba(245, 220, 198, 1) 0%, rgba(213, 148, 220, 1) 100%);
+  --radial-pink-blue:radial-gradient(circle,rgba(213, 148, 220, 1) 0%, rgba(105, 157, 230, 1) 100%);
+}

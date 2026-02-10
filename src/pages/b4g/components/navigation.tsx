@@ -1,0 +1,53 @@
+import Link from "next/link";
+import Image from "next/image";
+import { useAuth } from "../context/authContext";
+import shortLogo from "/public/b4g/short logo.png";
+import longLogo from "/public/b4g/long logo.png";
+
+export function Navigation() {
+  const { profile } = useAuth();
+  return (
+    <nav className="flex w-full items-center justify-between p-3 border-b">
+      {/* TODO Make better logo transition */}
+      <Link className="group" href="/b4g">
+        <Image
+          src={shortLogo}
+          alt=""
+          className="inline-block h-14 w-auto group-hover:hidden"
+        />
+        <Image
+          src={longLogo}
+          alt=""
+          className="hidden h-14 w-auto group-hover:inline-block"
+        />
+      </Link>
+
+      <div className="flex flex-row gap-2 text-2xl">
+        <Link className="p-2 hover:scale-110" href="/b4g/dashboard">
+          Dashboard
+        </Link>
+        {profile?.team_name ? (
+          <Link className="p-2 hover:scale-110" href="/b4g/team">
+            {profile.team_name}
+          </Link>
+        ) : (
+          <Link className="p-2 hover:scale-110" href="/b4g/teamSearch">
+            Team Search
+          </Link>
+        )}
+        <Link className="p-2 hover:scale-110" href="/b4g/FAQ">
+          FAQ
+        </Link>
+        {profile?.id ? (
+          <Link href="/b4g/user" className="p-2 hover:scale-110">
+            {profile.first_name}
+          </Link>
+        ) : (
+          <Link href="/b4g/auth" className="p-2 hover:scale-110">
+            Login
+          </Link>
+        )}
+      </div>
+    </nav>
+  );
+}

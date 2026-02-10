@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 import Carousel from "react-multi-carousel";
-import Image from 'next/image';
+import Image from "next/image";
 import "react-multi-carousel/lib/styles.css";
 
 // Import sponsor logos
-import GoodBullLogo from "../../public/good_bull_logo.png";
-import UltraPressLogo from "../../public/ultrapress_logo.svg";
-import DoorDashLogo from "../../public/doordash_logo.png";
-import ConocoPhillipsLogo from "../../public/conocophillips_logo.png";
-import NotionLogo from '../../public/notion_logo.svg';
-import stickermule from "../../public/stickermule_logo.svg";
-import chevronLogo from "../../public/chevron_icon.svg"
-import TAMUIDS from "../../public/TAMIDS_logo.svg"
+import GoodBullLogo from "/public/good_bull_logo.png";
+import UltraPressLogo from "/public/ultrapress_logo.svg";
+import DoorDashLogo from "/public/doordash_logo.png";
+import ConocoPhillipsLogo from "/public/conocophillips_logo.png";
+import NotionLogo from "/public/notion_logo.svg";
+import stickermule from "/public/stickermule_logo.svg";
+import chevronLogo from "/public/chevron_icon.svg";
+import TAMUIDS from "/public/TAMIDS_logo.svg";
 
 const logos = [
   GoodBullLogo,
@@ -23,33 +23,33 @@ const logos = [
   DoorDashLogo,
   ConocoPhillipsLogo,
   chevronLogo,
-  TAMUIDS
+  TAMUIDS,
 ];
 
 const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
-    items: 7
+    items: 7,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 5
+    items: 5,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 3
+    items: 3,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 2
-  }
+    items: 2,
+  },
 };
 
 const SponsorCarousel = () => {
   return (
     <div className="w-full overflow-hidden py-4">
-      <Carousel 
-        responsive={responsive} 
+      <Carousel
+        responsive={responsive}
         infinite={true}
         autoPlay={true}
         autoPlaySpeed={3000}
