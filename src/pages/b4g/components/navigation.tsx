@@ -23,15 +23,15 @@ export function Navigation() {
       </Link>
 
       <div className="flex flex-row gap-2 text-2xl">
-        <Link className="p-2 hover:scale-110" href="/b4g/dashboard">
+        <Link className="p-2 hover:scale-110" href="/b4g/Dashboard">
           Dashboard
         </Link>
         {profile?.team_name ? (
-          <Link className="p-2 hover:scale-110" href="/b4g/team">
+          <Link className="p-2 hover:scale-110" href="/b4g/Team">
             {profile.team_name}
           </Link>
         ) : (
-          <Link className="p-2 hover:scale-110" href="/b4g/teamSearch">
+          <Link className="p-2 hover:scale-110" href="/b4g/TeamSearch">
             Team Search
           </Link>
         )}
@@ -39,11 +39,11 @@ export function Navigation() {
           FAQ
         </Link>
         {profile?.id ? (
-          <Link href="/b4g/user" className="p-2 hover:scale-110">
+          <Link href="/b4g/User" className="p-2 hover:scale-110">
             {profile.first_name}
           </Link>
         ) : (
-          <Link href="/b4g/auth" className="p-2 hover:scale-110">
+          <Link href="/b4g/Auth" className="p-2 hover:scale-110">
             Login
           </Link>
         )}

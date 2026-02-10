@@ -45,7 +45,7 @@ const Navbar: React.FC<Props> = ({ selectedPage }) => {
               Events
             </Link>
             <Link
-              href="/TACS/b4g2025"
+              href="/b4g"
               className={`text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium ${selectedPage === "b4g" || selectedPage === "b4g" ? "text-primary border-b-2 border-primary font-bold font-xl" : ""}`}
             >
               Build4Good

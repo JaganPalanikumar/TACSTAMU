@@ -2,7 +2,7 @@ import { Json } from "@/utils/supabase_types";
 
 export type Profile = {
   created_at: string;
-  diet_restrictions: Json;
+  diet_restrictions: string[];
   first_name: string;
   grad_year: number;
   has_eaten: boolean;

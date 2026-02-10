@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "./context/authContext";
 import { useRouter } from "next/router";
+import { supabase } from "@/utils/supabase";
+import { AuthError, PostgrestError } from "@supabase/supabase-js";
+import { Profile } from "./types/DatabaseTypes";
 
 const Auth = () => {
-  const { user } = useAuth();
+  const { user, login } = useAuth();
   const router = useRouter();
+  const from =
+    typeof router.query.from === "string"
+      ? router.query.from
+      : "/b4g/Dashboard";
 
   const [isSignup, setIsSignup] = useState(false);
 
@@ -16,12 +23,14 @@ const Auth = () => {
   const [dietaryRestrictions, setDietaryRestrictions] = useState<string[]>([]);
   const [customDietary, setCustomDietary] = useState("");
 
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<AuthError | PostgrestError | null>(null);
   const [loading, setLoading] = useState(false);
 
-  if (user) {
-    router.push("/b4g/dashboard");
-  }
+  useEffect(() => {
+    if (user) {
+      router.push("/b4g/dashboard");
+    }
+  }, [user, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,39 +39,58 @@ const Auth = () => {
 
     try {
       if (isSignup) {
-        await axios.post(
-          "/createUser",
-          {
-            email,
-            password,
-            firstName,
-            lastName,
-            gradYear: Number(gradYear),
-            dietaryRestrictions: customDietary
-              ? [
-                  ...dietaryRestrictions.filter((d) => d !== "Other"),
-                  customDietary,
-                ]
-              : dietaryRestrictions,
-          },
-          { withCredentials: true },
-        );
-      }
+        const {
+          data: { user },
+          error,
+        } = await supabase.auth.signUp({ email: email, password: password });
 
-      // sets HTTP-only cookie
-      const res = await axios.post("/auth", {
-        email,
-        password,
-      });
-
-      if (res.data.success) {
-        login(res.data.user);
-        navigate(from, { replace: true });
+        if (user?.id) {
+          const { data: profile, error } = await supabase
+            .from("Profile")
+            .insert({
+              diet_restrictions: [
+                ...dietaryRestrictions.filter((d) => d !== "Other"),
+                customDietary || null,
+              ].filter(Boolean),
+              first_name: firstName,
+              grad_year: Number(gradYear),
+              id: user.id,
+              last_name: lastName,
+            });
+          if (error || !profile) {
+            throw error;
+          }
+          login(user, profile);
+          router.push(from || "/b4g/Dashboard");
+        } else {
+          throw error;
+        }
       } else {
-        setError(res.data.error);
+        const {
+          data: { user },
+          error,
+        } = await supabase.auth.signInWithPassword({
+          email: email,
+          password: password,
+        });
+
+        if (user?.id) {
+          const { data: profile, error } = await supabase
+            .from("Profile")
+            .select()
+            .eq("id", user.id)
+            .maybeSingle();
+          if (!profile) {
+            throw error;
+          }
+          login(user, profile as Profile);
+          router.push(from || "/b4g/Dashboard");
+        } else {
+          throw error;
+        }
       }
     } catch (err: any) {
-      setError(err.response?.data?.error || "Something went wrong");
+      setError(err);
     } finally {
       setLoading(false);
     }
@@ -73,7 +101,7 @@ const Auth = () => {
       <h1 className="text-4xl">{isSignup ? "Sign Up" : "Login"}</h1>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-3 p-3">
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p style={{ color: "red" }}>{error.message}</p>}
 
         {isSignup && (
           <>
