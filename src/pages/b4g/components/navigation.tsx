@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "../context/authContext";
-import shortLogo from "/public/b4g/short logo.png";
-import longLogo from "/public/b4g/long logo.png";
+import shortLogo from "/public/b4g/short logo.svg";
+import longLogo from "/public/b4g/long logo.svg";
 
 export function Navigation() {
   const { profile } = useAuth();
@@ -23,27 +23,45 @@ export function Navigation() {
       </Link>
 
       <div className="flex flex-row gap-2 text-2xl">
-        <Link className="p-2 hover:scale-110" href="/b4g/Dashboard">
+        <Link
+          className="p-2 hover:scale-110 hover:text-[--blue]"
+          href="/b4g/Dashboard"
+        >
           Dashboard
         </Link>
         {profile?.team_id ? (
-          <Link className="p-2 hover:scale-110" href="/b4g/TeamDashboard">
+          <Link
+            className="p-2 hover:scale-110 hover:text-[--blue]"
+            href="/b4g/TeamDashboard"
+          >
             Team
           </Link>
         ) : (
-          <Link className="p-2 hover:scale-110" href="/b4g/TeamSearch">
+          <Link
+            className="p-2 hover:scale-110 hover:text-[--blue]"
+            href="/b4g/TeamSearch"
+          >
             Team Search
           </Link>
         )}
-        <Link className="p-2 hover:scale-110" href="/b4g/FAQ">
+        <Link
+          className="p-2 hover:scale-110 hover:text-[--blue]"
+          href="/b4g/FAQ"
+        >
           FAQ
         </Link>
         {profile?.id ? (
-          <Link href="/b4g/User" className="p-2 hover:scale-110">
+          <Link
+            href="/b4g/User"
+            className="p-2 hover:scale-110 hover:text-[--blue]"
+          >
             {profile.first_name}
           </Link>
         ) : (
-          <Link href="/b4g/Auth" className="p-2 hover:scale-110">
+          <Link
+            href="/b4g/Auth"
+            className="p-2 hover:scale-110 hover:text-[--blue]"
+          >
             Login
           </Link>
         )}

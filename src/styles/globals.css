@@ -8,7 +8,7 @@
   font-family: "Jost", system-ui;
   line-height: 1.5;
   font-weight: 400;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   
@@ -19,6 +19,10 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --blue:rgba(105, 157, 230, 1);
+  --pink:rgba(213, 148, 220, 1);
+  --peach:rgba(245, 220, 198, 1);
 
   --linear-blue-pink-peach: linear-gradient(90deg,rgba(105, 157, 230, 1) 0%, rgba(213, 148, 220, 1) 50%, rgba(245, 220, 198, 1) 100%);
   --linear-peach-pink:linear-gradient(90deg,rgba(245, 220, 198, 1) 0%, rgba(213, 148, 220, 1) 100%);

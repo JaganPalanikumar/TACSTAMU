@@ -7,4 +7,5 @@ export interface AuthContextType {
   login: (user: User, profile: Profile) => void;
   logout: () => void;
   isLoading: boolean;
+  reloadSession: ()=>void;
 }

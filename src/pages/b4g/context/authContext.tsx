@@ -30,7 +30,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   // On page open and reloadsd check if a user is currently signed in or not
-  const restoreSession = async () => {
+  const reloadSession = async () => {
     try {
       // Get user data
       const {
@@ -63,11 +63,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
   useEffect(() => {
-    restoreSession();
+    reloadSession();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, profile, login, logout, isLoading }}>
+    <AuthContext.Provider
+      value={{ user, profile, login, logout, isLoading, reloadSession }}
+    >
       <Navigation />
       {children}
       <Footer />
