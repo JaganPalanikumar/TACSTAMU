@@ -69,6 +69,9 @@ export default function EditUser() {
     "Nut-Free",
     "Halal",
     "Kosher",
+    "No beef",
+    "No pork",
+    "Only chicken",
     "Other",
   ];
 
@@ -113,29 +116,29 @@ export default function EditUser() {
   };
 
   return (
-    <div className="flex flex-col gap-4 p-4 max-w-md">
+    <div className="flex flex-col gap-7 p-4 max-w-md">
       <h1 className="text-3xl font-semibold">Edit Profile</h1>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         {error && <p className="text-red-600">{error}</p>}
         {success && <p className="text-green-600">Profile updated!</p>}
 
         <input
-          className="p-2 border rounded"
+          className="p-2 border rounded text-black text-lg"
           placeholder="First Name"
           value={first_name}
           onChange={(e) => setFirstName(e.target.value)}
         />
 
         <input
-          className="p-2 border rounded"
+          className="p-2 border rounded text-black text-lg"
           placeholder="Last Name"
           value={last_name}
           onChange={(e) => setLastName(e.target.value)}
         />
 
         <input
-          className="p-2 border rounded"
+          className="p-2 border rounded text-black text-lg"
           type="email"
           placeholder="Email"
           value={email}
@@ -143,7 +146,7 @@ export default function EditUser() {
         />
 
         <input
-          className="p-2 border rounded"
+          className="p-2 border rounded text-black text-lg"
           type="number"
           placeholder="Graduation Year"
           value={grad_year}
@@ -153,12 +156,12 @@ export default function EditUser() {
         />
 
         <div className="flex flex-col gap-2">
-          <p className="font-medium">Dietary Restrictions</p>
+          <p className="font-medium text-2xl">Dietary Restrictions</p>
 
           {dietOptions.map((option) => {
             if (option === "Other") {
               return (
-                <label key={option} className="flex items-center gap-2">
+                <label key={option} className="flex items-center gap-2 text-lg">
                   <input
                     type="checkbox"
                     checked={diet_restrictions.includes(option)}
@@ -178,7 +181,7 @@ export default function EditUser() {
               );
             } else {
               return (
-                <label key={option} className="flex items-center gap-2">
+                <label key={option} className="flex items-center gap-2 text-lg">
                   <input
                     type="checkbox"
                     checked={diet_restrictions.includes(option)}
@@ -200,7 +203,7 @@ export default function EditUser() {
 
           {diet_restrictions.includes("Other") && (
             <input
-              className="p-2 border rounded"
+              className="p-2 border rounded text-black text-lg"
               placeholder="Specify other dietary restriction"
               value={customDiet}
               onChange={(e) => setCustomDiet(e.target.value)}

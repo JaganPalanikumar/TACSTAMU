@@ -9,7 +9,7 @@ const Auth = () => {
   const { user, login } = useAuth();
   const router = useRouter();
   const from =
-    typeof router.query.from === "string"
+    typeof router.query.from === "string" && router.query.from.length < 0
       ? router.query.from
       : "/b4g/Dashboard";
 
@@ -56,11 +56,17 @@ const Auth = () => {
               grad_year: Number(gradYear),
               id: user.id,
               last_name: lastName,
-            });
-          if (error || !profile) {
+            })
+            .select()
+            .maybeSingle();
+          if (error) {
             throw error;
           }
-          login(user, profile);
+          if (!profile) {
+            throw new Error("Did not recieve profile");
+          }
+          console.log(from, "Hello");
+          login(user, profile as Profile);
           router.push(from || "/b4g/Dashboard");
         } else {
           throw error;
@@ -84,12 +90,13 @@ const Auth = () => {
             throw error;
           }
           login(user, profile as Profile);
-          router.push(from || "/b4g/Dashboard");
         } else {
           throw error;
         }
+        router.push(from ?? "/b4g/Dashboard");
       }
     } catch (err: any) {
+      console.error(err);
       setError(err);
     } finally {
       setLoading(false);
@@ -140,6 +147,9 @@ const Auth = () => {
                 "Nut-Free",
                 "Halal",
                 "Kosher",
+                "No beef",
+                "No pork",
+                "Only chicken",
                 "Other",
               ].map((option) => (
                 <label key={option} className="flex items-center gap-2">

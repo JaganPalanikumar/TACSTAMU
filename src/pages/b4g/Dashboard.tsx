@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useAuth } from "./context/authContext";
 import { useRouter } from "next/router";
 
-const Dashboard = () => {
+export default function Dashboard() {
   const { profile } = useAuth();
   const router = useRouter();
 
@@ -18,6 +18,4 @@ const Dashboard = () => {
       <h1>Welcome, {profile?.first_name}!</h1>
     </div>
   );
-};
-
-export default Dashboard;
+}

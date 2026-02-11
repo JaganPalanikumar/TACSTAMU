@@ -1,39 +1,74 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "./context/authContext";
 import type { TeamType } from "./types/TeamTypes";
+import { supabase } from "@/utils/supabase";
+import { useRouter } from "next/router";
 
 export default function TeamDashboard() {
-  const { user } = useAuth();
+  const { profile } = useAuth();
+  const router = useRouter();
   const [team, setTeam] = useState<TeamType>();
   const [loading, setLoading] = useState<boolean>(true);
 
-  function leaveTeam(teamName: string | undefined) {
+  function leaveTeam(teamName: string | null | undefined) {
     if (!teamName) {
       return;
     }
-    nav("/updateTeam", {
-      replace: true,
-      state: { joining: false, teamID: null, teamName: teamName },
+    router.push({
+      pathname: "/b4g/UpdateUserTeam",
+      query: { joining: "false", teamName: teamName },
     });
   }
 
-  if (!user?.teamID) {
-    nav("/");
-  }
+  useEffect(() => {
+    if (!profile?.team_id) {
+      router.push("/b4g");
+    }
+  }, [profile]);
 
+  // FIXME Some members are not loading properly
   async function loadTeam() {
-    const res = await axios.get("/getTeam", {
-      params: { teamID: user?.teamID },
-    });
-    if (res.data.success) {
-      setTeam(res.data.team);
-      setLoading(false);
+    if (!profile?.team_id) return;
+    try {
+      const { data: team, error: teamError } = await supabase
+        .from("team_summary")
+        .select()
+        .eq("team_id", profile.team_id)
+        .maybeSingle();
+
+      if (teamError) {
+        throw teamError;
+      }
+
+      const { data: users, error: userError } = await supabase
+        .from("profile")
+        .select(
+          `
+            id,
+            first_name,
+            last_name,
+            grad_year,
+            team_id
+          `,
+        )
+        .eq("team_id", profile.team_id);
+
+      if (userError) {
+        throw userError;
+      }
+
+      if (team) {
+        setTeam({ ...team, members: users });
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
   useEffect(() => {
     loadTeam();
-  }, []);
+  }, [profile, router, team]);
 
   // If user is team leader then allow them to kick others, edit team name, and transfer ownership
 
@@ -44,28 +79,27 @@ export default function TeamDashboard() {
       ) : (
         <>
           <div className="flex flex-row gap-5 text-left items-end justify-between w-[40vw]">
-            <h1 className="text-5xl">{team?.teamName}</h1>
+            <h1 className="text-5xl">{team?.team_name}</h1>
             <h2 className="text-3xl">
-              Leader: {team?.leaderFirstName} {team?.leaderLastName}
+              Leader: {team?.leader_first_name} {team?.leader_last_name}
             </h2>
           </div>
 
-          <h2 className="text-3xl">Member Count: {team?.memberCount}</h2>
+          <h2 className="text-3xl">Member Count: {team?.member_count}</h2>
           <div className="flex flex-col gap-5">
-            {team?.members.map((member) => (
-              <div className="border-2 p-3" key={member.userID}>
+            {team?.members?.map((member) => (
+              <div className="border-2 p-3" key={member.id}>
                 <p className="text-2xl">
-                  {member.firstName} {member.lastName}
+                  {member.first_name} {member.last_name}
                 </p>
-                <p>{member.email}</p>
-                <p>Grad Year: {member.gradYear}</p>
+                <p>Grad Year: {member.grad_year}</p>
               </div>
             ))}
           </div>
           <button
             className="bg-red-600 w-30 h-10"
             onClick={() => {
-              leaveTeam(team?.teamName);
+              leaveTeam(team?.team_name);
             }}
           >
             Leave Team

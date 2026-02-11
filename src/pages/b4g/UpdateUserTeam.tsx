@@ -9,6 +9,7 @@ export default function UpdateUserTeam() {
 
   const joining = searchParams.get("joining") === "true";
   const teamName = searchParams.get("teamName") ?? null;
+  const teamID = searchParams.get("teamID") ?? null;
 
   // FIXME When team leader leaves either delete team or give team leader to another user
   useEffect(() => {
@@ -18,13 +19,13 @@ export default function UpdateUserTeam() {
       try {
         const { error } = await supabase
           .from("profile")
-          .update({ team_name: teamName })
+          .update({ team_id: joining ? teamID : null })
           .eq("id", profile.id);
 
         if (error) throw error;
         // Update local context if necessary
         if (profile) {
-          profile.team_name = teamName;
+          profile.team_id = teamID;
         }
 
         // Force full page reload to the new path
@@ -35,7 +36,7 @@ export default function UpdateUserTeam() {
     };
 
     joinOrLeave();
-  }, [profile, teamName, joining]);
+  }, [profile, teamName, teamID, joining]);
 
   return (
     <div className="p-4">

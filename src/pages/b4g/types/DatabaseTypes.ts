@@ -7,5 +7,5 @@ export type Profile = {
   id: string;
   last_name: string;
   participating: boolean;
-  team_name: string | null;
+  team_id: string | null;
 };

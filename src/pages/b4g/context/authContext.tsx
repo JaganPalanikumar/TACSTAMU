@@ -19,12 +19,14 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const login = (user: User, profile: Profile) => {
     setUser(user); // Adds user info to state
     setProfile(profile);
+    return;
   };
 
   const logout = () => {
     setUser(null); // Removes user info from state
     setProfile(null);
     supabase.auth.signOut();
+    return;
   };
 
   // On page open and reloadsd check if a user is currently signed in or not

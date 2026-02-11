@@ -49,7 +49,7 @@ export type Database = {
           id: string
           last_name: string
           participating: boolean
-          team_name: string | null
+          team_id: string | null
         }
         Insert: {
           created_at?: string
@@ -60,7 +60,7 @@ export type Database = {
           id: string
           last_name: string
           participating?: boolean
-          team_name?: string | null
+          team_id?: string | null
         }
         Update: {
           created_at?: string
@@ -71,38 +71,41 @@ export type Database = {
           id?: string
           last_name?: string
           participating?: boolean
-          team_name?: string | null
+          team_id?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "Profile_team_name_fkey"
-            columns: ["team_name"]
+            foreignKeyName: "profile_team_id_fkey"
+            columns: ["team_id"]
             isOneToOne: false
             referencedRelation: "team"
-            referencedColumns: ["team_name"]
+            referencedColumns: ["team_id"]
           },
           {
-            foreignKeyName: "Profile_team_name_fkey"
-            columns: ["team_name"]
+            foreignKeyName: "profile_team_id_fkey"
+            columns: ["team_id"]
             isOneToOne: false
             referencedRelation: "team_summary"
-            referencedColumns: ["team_name"]
+            referencedColumns: ["team_id"]
           },
         ]
       }
       team: {
         Row: {
           max_members: number
+          team_id: string
           team_leader: string
           team_name: string
         }
         Insert: {
           max_members?: number
+          team_id?: string
           team_leader: string
           team_name: string
         }
         Update: {
           max_members?: number
+          team_id?: string
           team_leader?: string
           team_name?: string
         }
@@ -115,6 +118,7 @@ export type Database = {
           leader_first_name: string | null
           leader_last_name: string | null
           member_count: number | null
+          team_id: string | null
           team_leader: string | null
           team_name: string | null
         }
