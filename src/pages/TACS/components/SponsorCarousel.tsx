@@ -4,14 +4,14 @@ import Image from "next/image";
 import "react-multi-carousel/lib/styles.css";
 
 // Import sponsor logos
-import GoodBullLogo from "/public/good_bull_logo.png";
-import UltraPressLogo from "/public/ultrapress_logo.svg";
-import DoorDashLogo from "/public/doordash_logo.png";
-import ConocoPhillipsLogo from "/public/conocophillips_logo.png";
-import NotionLogo from "/public/notion_logo.svg";
-import stickermule from "/public/stickermule_logo.svg";
-import chevronLogo from "/public/chevron_icon.svg";
-import TAMUIDS from "/public/TAMIDS_logo.svg";
+import GoodBullLogo from "@/good_bull_logo.png";
+import UltraPressLogo from "@/ultrapress_logo.svg";
+import DoorDashLogo from "@/doordash_logo.png";
+import ConocoPhillipsLogo from "@/conocophillips_logo.png";
+import NotionLogo from "@/notion_logo.svg";
+import stickermule from "@/stickermule_logo.svg";
+import chevronLogo from "@/chevron_icon.svg";
+import TAMUIDS from "@/TAMIDS_logo.svg";
 
 const logos = [
   GoodBullLogo,

@@ -1,8 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "../context/authContext";
-import shortLogo from "/public/b4g/short logo.svg";
-import longLogo from "/public/b4g/long logo.svg";
 
 export function Navigation() {
   const { profile } = useAuth();
@@ -11,12 +9,16 @@ export function Navigation() {
       {/* TODO Make better logo transition */}
       <Link className="group" href="/b4g">
         <Image
-          src={shortLogo}
+          src="/b4g/short logo.svg"
+          width={373.47}
+          height={228.67}
           alt=""
           className="inline-block h-14 w-auto group-hover:hidden"
         />
         <Image
-          src={longLogo}
+          src="/b4g/long logo.svg"
+          width={1072.48}
+          height={229.37}
           alt=""
           className="hidden h-14 w-auto group-hover:inline-block"
         />

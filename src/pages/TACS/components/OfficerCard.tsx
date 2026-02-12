@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import linkedinIcon from "/public/linkedin_icon.png";
-import mailIcon from "/public/mail_icon.png";
+import linkedinIcon from "@/linkedin_icon.png";
+import mailIcon from "@/mail_icon.png";
 
 interface Props {
   officer: {

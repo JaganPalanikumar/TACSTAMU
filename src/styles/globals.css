@@ -1,8 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Modak&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Modak&display=swap');
 
 .b4g {
   font-family: "Jost", system-ui;
@@ -19,6 +18,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --font-header:"Modak";
+  --font-text:"Jost";
 
   --blue:rgba(105, 157, 230, 1);
   --pink:rgba(213, 148, 220, 1);

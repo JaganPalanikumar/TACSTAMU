@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaDiscord } from "react-icons/fa";
 
-import tacs_logo from "/public/tacs_logo.png";
+import tacs_logo from "@/tacs_logo.png";
 
 interface Props {
   selectedPage?: string;

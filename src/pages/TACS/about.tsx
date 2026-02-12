@@ -6,22 +6,22 @@ import Navbar from "@/pages/TACS/components/Navbar";
 import Footer from "@/pages/TACS/components/Footer";
 import OfficerCard from "@/pages/TACS/components/OfficerCard";
 
-import WhatWeDoPageImage from "/public/what_we_do_page_image.webp";
+import WhatWeDoPageImage from "@/what_we_do_page_image.webp";
 
-import ayush_garg_headshot from "/public/ayush_garg_headshot.png";
-import akshay_belhe_headshot from "/public/akshay_belhe_headshot.png";
-import kayley_vu_headshot from "/public/kayley_vu_headshot.png";
-import aditya_nambi_headshot from "/public/adi_nambi_headshot.png";
-import montgomery_bohde_headshot from "/public/montgomery_bohde_headshot.png";
-import sumit_nalavade_headshot from "/public/sumit_nalavade_headshot.png";
-import keshari_rijal_headshot from "/public/keshari_rijal_headshot.png";
-import aarya_patel_headshot from "/public/aarya_patel_headshot.png";
-import neelesh_garg_headshot from "/public/neelesh_garg_headshot.png";
-import alysa_zhao_headshot from "/public/alysa_zhao_headshot.png";
-import mann_bellani_headshot from "/public/mann_bellani_headshot.png";
-import lauren_vu_headshot from "/public/lauren_vu_headshot.png";
-import jagan_palanikumar_headshot from "/public/jagan_palanikumar_headshot.png";
-import blank from "/public/GrayAvatar.jpg";
+import ayush_garg_headshot from "@/ayush_garg_headshot.png";
+import akshay_belhe_headshot from "@/akshay_belhe_headshot.png";
+import kayley_vu_headshot from "@/kayley_vu_headshot.png";
+import aditya_nambi_headshot from "@/adi_nambi_headshot.png";
+import montgomery_bohde_headshot from "@/montgomery_bohde_headshot.png";
+import sumit_nalavade_headshot from "@/sumit_nalavade_headshot.png";
+import keshari_rijal_headshot from "@/keshari_rijal_headshot.png";
+import aarya_patel_headshot from "@/aarya_patel_headshot.png";
+import neelesh_garg_headshot from "@/neelesh_garg_headshot.png";
+import alysa_zhao_headshot from "@/alysa_zhao_headshot.png";
+import mann_bellani_headshot from "@/mann_bellani_headshot.png";
+import lauren_vu_headshot from "@/lauren_vu_headshot.png";
+import jagan_palanikumar_headshot from "@/jagan_palanikumar_headshot.png";
+import blank from "@/GrayAvatar.jpg";
 
 const Officers = [
   {

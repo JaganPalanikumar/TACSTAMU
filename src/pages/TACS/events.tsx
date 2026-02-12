@@ -1,20 +1,20 @@
 import React from "react";
 import Image from "next/image";
 
-import Navbar from "@/pages/TACS/components/Navbar";
-import Footer from "@/pages/TACS/components/Footer";
-import EventCard from "@/pages/TACS/components/EventCard";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import EventCard from "./components/EventCard";
 
-import eventsPageImage from "/public/events_page_image.webp";
-import build4GoodHackathonPhoto from "/public/build_4_good_hackathon_photo.webp";
-import easterEggHuntPhoto from "/public/easter_egg_hunt_social_image.webp";
-import capitalOneSpeakersPhoto from "/public/capital_one_speakers.webp";
-import notionEventPhoto from "/public/notion_event_image.webp";
-import paycomTechnicalInterviewPhoto from "/public/paycom_technical_interview_photo.webp";
-import monte_database_workshop_photo from "/public/monte_database_workshop_photo.webp";
-import halloween_social_photo from "/public/halloween_social_photo.webp";
-import engr_102_final_review_photo from "/public/engr_102_final_review_photo.webp";
-import hilcorp_photo from "/public/hilcorp_photo.webp";
+import eventsPageImage from "@/events_page_image.webp";
+import build4GoodHackathonPhoto from "@/build_4_good_hackathon_photo.webp";
+import easterEggHuntPhoto from "@/easter_egg_hunt_social_image.webp";
+import capitalOneSpeakersPhoto from "@/capital_one_speakers.webp";
+import notionEventPhoto from "@/notion_event_image.webp";
+import paycomTechnicalInterviewPhoto from "@/paycom_technical_interview_photo.webp";
+import monte_database_workshop_photo from "@/monte_database_workshop_photo.webp";
+import halloween_social_photo from "@/halloween_social_photo.webp";
+import engr_102_final_review_photo from "@/engr_102_final_review_photo.webp";
+import hilcorp_photo from "@/hilcorp_photo.webp";
 
 const events = [
   {

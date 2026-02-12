@@ -1,15 +1,15 @@
-import Navbar from "@/pages/TACS/components/Navbar";
+import Navbar from "./components/Navbar";
 import Link from "next/link";
 import Image from "next/image";
-import StarIcon from "/public/star_icon.png";
-import CursorIcon from "/public/cursor_icon.png";
-import MicrophoneIcon from "/public/microphone_icon.png";
-import SocialIcon from "/public/social_icon.png";
-import WorkshopsIcon from "/public/workshops_icon.png";
+import StarIcon from "@/star_icon.png";
+import CursorIcon from "@/cursor_icon.png";
+import MicrophoneIcon from "@/microphone_icon.png";
+import SocialIcon from "@/social_icon.png";
+import WorkshopsIcon from "@/workshops_icon.png";
 
-import ImageCarousel from "@/pages/TACS/components/ImageCarousel";
-import SponsorCarousel from "@/pages/TACS/components/SponsorCarousel";
-import Footer from "@/pages/TACS/components/Footer";
+import ImageCarousel from "./components/ImageCarousel";
+import SponsorCarousel from "./components/SponsorCarousel";
+import Footer from "./components/Footer";
 
 const Home: React.FC = () => {
   return (
