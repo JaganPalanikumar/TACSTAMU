@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Landing() {
   const { scrollY } = useScroll();
 
-  const moveCloud = useTransform(scrollY, [0, 2500], ["-55%", "-200%"]);
+  const moveCloud = useTransform(scrollY, [0, 2500], ["-60%", "-200%"]);
   const moveBurst = useTransform(scrollY, [0, 200], ["10%", "100%"]);
   const moveStar = useTransform(scrollY, [0, 500], ["30%", "100%"]);
   // TODO Finish a landing page
