@@ -10,11 +10,22 @@ import { useEffect } from "react";
 import useMeasure from "react-use-measure";
 
 const tracks = [
-  "BEST OVERALL",
-  "POKER BOT",
-  "FIGMA(UI/UX)",
-  "AGGIEX STARTUP",
-  "TBD",
+  {
+    title: "BEST OVERALL",
+    description:
+      "Best overall hack that meets all of the judging criteria: creativity, technical complexity, and societal impact",
+  },
+  {
+    title: "POKER BOT",
+    description:
+      "Create an algorithm to play against other bots in a variant of poker.",
+  },
+  {
+    title: "FIGMA(UI/UX)",
+    description:
+      "Hack with best design and seamless user experience using the Figma API",
+  },
+  { title: "AGGIEX STARTUP", description: "Hello" },
 ];
 
 export default function Landing() {
@@ -46,7 +57,7 @@ export default function Landing() {
   // TODO Finish a landing page
   return (
     <div className="flex flex-col">
-      <section className="relative h-[100dvh]">
+      <section className="relative h-dvh">
         {/* Background */}
         <div className="absolute inset-0 -z-5">
           <motion.div
@@ -104,7 +115,7 @@ export default function Landing() {
             </h1>
           </div>
 
-          <div className="absolute invisible xl:visible xl:w-[50rem] right-0 2xl:right-1/2 top-0 -translate-x-[10%] 2xl:translate-x-[50%] translate-y-[100%]">
+          <div className="absolute invisible xl:visible xl:w-[50rem] right-0 2xl:right-1/2 top-0 -translate-x-[10%] 2xl:translate-x-[50%] translate-y-full">
             <Image
               src="/b4g/long logo.svg"
               alt="Long Logo"
@@ -137,12 +148,11 @@ export default function Landing() {
           />
         </div>
       </section>
-      {/* TODO Change height to fit once everything is done */}
-      <section className="h-[50dvh]">
-        <div className="mx-auto w-[70%] p-[1rem] rounded-[5rem] bg-gradient-to-r from-[#f5dcc6] via-[#d594dc] to-[#f5dcc6]">
+      <section className="h-fit my-[20dvh]">
+        <div className="mx-auto w-[70%] p-[1rem] rounded-[5rem] bg-gradient-to-r from-[--peach] via-[--pink] to-[--peach]">
           <div className="bg-white rounded-[4rem] p-10 flex flex-col gap-3">
             <h1 className="text-8xl font-[700] text-[--pink]">About</h1>
-            <p className="text-lg text-[--gray] font-[600]">
+            <p className="text-3xl text-[--gray] font-[600]">
               Build4Good is a 1.5-day hackathon hosted by the Texas A&M
               Computing Society (TACS). In this event, teams of students
               collaborate on innovative projects based on curated prompts and
@@ -155,22 +165,26 @@ export default function Landing() {
         </div>
       </section>
       {/* TODO Change height to fit once everything is done */}
-      <section className="h-[100dvh] flex flex-col justify-center items-center">
-        <div className="relative flex flex-row gap-5 overflow-clip h-[40vh]">
-          <div className="absolute z-10 top-0 left-0 right-0 h-[50%] w-[100%] bg-gradient-to-b from-[--background] to-transparent" />
-          <h1 className="text-[9vw] 3xl:text-[15vh] my-auto">Tracks</h1>
-          <motion.div
-            ref={ref}
-            style={{ y: carouselTranslation }}
-            className="flex flex-col gap-5 h-fit"
-          >
-            {[...tracks, ...tracks, ...tracks].map((track, index) => (
-              <div key={index} className="snap-center">
-                <h2 className="text-[9vw] 3xl:text-[15vh]  w-fit">{track}</h2>
+      <section className="h-fit">
+        <div className="relative flex flex-col gap-5 h-fit">
+          <h1 className="text-8xl mx-auto">Tracks</h1>
+          <div className="grid grid-flow-row grid-cols-1 xl:grid-cols-2 gap-10 w-full h-fit mx-auto p-[5vw]">
+            {tracks.map((track, index) => (
+              <div
+                key={index}
+                className="w-full h-full p-[1rem] rounded-[5rem] bg-gradient-to-b from-[--peach] to-[--pink]"
+              >
+                <div className="w-full h-full p-[2rem] rounded-[4rem] bg-white flex flex-col gap-4">
+                  <h2 className="text-6xl w-fit text-[--pink]">
+                    {track.title}
+                  </h2>
+                  <p className="text-4xl w-full text-[--gray]">
+                    {track.description}
+                  </p>
+                </div>
               </div>
             ))}
-          </motion.div>
-          <div className="absolute z-10 bottom-0 left-0 right-0 h-[50%] w-[100%] bg-gradient-to-t from-[--background] to-transparent" />
+          </div>
         </div>
       </section>
     </div>

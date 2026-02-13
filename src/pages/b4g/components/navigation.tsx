@@ -30,7 +30,13 @@ export function Navigation() {
         >
           Dashboard
         </Link>
-        {profile?.team_id ? (
+        <Link
+          className="p-2 hover:scale-110 hover:text-[--blue]"
+          href="/b4g/Tracks"
+        >
+          Tracks
+        </Link>
+        {/* {profile?.team_id ? (
           <Link
             className="p-2 hover:scale-110 hover:text-[--blue]"
             href="/b4g/TeamDashboard"
@@ -44,7 +50,7 @@ export function Navigation() {
           >
             Team Search
           </Link>
-        )}
+        )} */}
         <Link
           className="p-2 hover:scale-110 hover:text-[--blue]"
           href="/b4g/FAQ"
