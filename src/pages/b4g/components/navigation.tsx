@@ -6,7 +6,6 @@ export function Navigation() {
   const { profile } = useAuth();
   return (
     <nav className="flex w-full items-center justify-between p-3 border-b">
-      {/* TODO Make better logo transition */}
       <Link className="group" href="/b4g">
         <Image
           src="/b4g/short logo.svg"
