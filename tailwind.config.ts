@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,6 +10,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        jost: ['"Jost"', ...defaultTheme.fontFamily.sans],
+        modak: ['"Modak"', ...defaultTheme.fontFamily.sans]
+      },
       colors: {
         primary: {
           light: '#7791F0',
