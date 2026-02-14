@@ -28,7 +28,7 @@ const Auth = () => {
 
   useEffect(() => {
     if (user) {
-      router.push("/b4g/dashboard");
+      router.push("/b4g/Dashboard");
     }
   }, [user, router]);
 

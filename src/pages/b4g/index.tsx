@@ -1,13 +1,5 @@
-import {
-  animate,
-  motion,
-  useMotionValue,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import { useEffect } from "react";
-import useMeasure from "react-use-measure";
 
 const tracks = [
   {
@@ -35,34 +27,15 @@ export default function Landing() {
   const moveBurst = useTransform(scrollY, [0, 200], ["10%", "100%"]);
   const moveStar = useTransform(scrollY, [0, 500], ["30%", "100%"]);
 
-  let [ref, { height }] = useMeasure();
-
-  const carouselTranslation = useMotionValue(0);
-
-  useEffect(() => {
-    let controls;
-    let finalPosition = -height / 3 - 5;
-
-    controls = animate(carouselTranslation, [0, finalPosition], {
-      ease: "linear",
-      duration: 10,
-      repeat: Infinity,
-      repeatType: "loop",
-      repeatDelay: 0,
-    });
-
-    return controls.stop;
-  }, [carouselTranslation, height]);
-
   // TODO Finish a landing page
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col overflow-x-clip">
       <section className="relative h-dvh">
         {/* Background */}
         <div className="absolute inset-0 -z-5">
           <motion.div
             style={{ x: moveStar }}
-            className="absolute bottom-0 right-0 w-[2052.15px] h-auto invisible 2xl:visible"
+            className="absolute bottom-0 right-0 w-[100vw] h-auto invisible 2xl:visible"
           >
             <Image
               src="/b4g/star.svg"
@@ -75,7 +48,7 @@ export default function Landing() {
           </motion.div>
           <motion.div
             style={{ x: moveCloud, y: "40%" }}
-            className="absolute bottom-0 left-0 w-[2119.83px] h-auto"
+            className="absolute bottom-0 left-0 sm:w-[170vw] md:w-[150vw] 2xl:w-[80vw] h-auto"
           >
             <Image
               src="/b4g/cloud bunny.svg"
@@ -164,7 +137,7 @@ export default function Landing() {
           </div>
         </div>
       </section>
-      {/* TODO Change height to fit once everything is done */}
+      {/* TODO Add location */}
       <section className="h-fit">
         <div className="relative flex flex-col gap-5 h-fit">
           <h1 className="text-8xl mx-auto">Tracks</h1>
@@ -187,6 +160,55 @@ export default function Landing() {
           </div>
         </div>
       </section>
+      <section className="h-fit w-dvw">
+        <div className="realitive flex flex-col gap-5 h-fit">
+          <h1 className="text-8xl mx-auto">Tentative Schedule</h1>
+          <div className="w-fit h-full p-[1rem] rounded-[5rem] bg-gradient-to-b from-[--peach] to-[--pink] mx-auto">
+            <ul className="w-[70dvw] h-full p-[2rem] rounded-[4rem] bg-white flex flex-col gap-4 text-4xl">
+              <h1 className="text-6xl text-[--gray] mb-5">
+                Saturday, March 28th
+              </h1>
+              <li className="flex flex-row w-full justify-between text-[--pink]">
+                <h2>Doors Open</h2> <p>9:00 AM</p>
+              </li>
+              <li className="flex flex-row w-full justify-between text-[--pink]">
+                <h2>Opening Ceremony</h2> <p>11:00 AM</p>
+              </li>
+              <li className="flex flex-row w-full justify-between text-[--pink]">
+                <h2>Hacking Begins</h2> <p>11:30 AM</p>
+              </li>
+              <li className="flex flex-row w-full justify-between text-[--pink]">
+                <h2>Lunch</h2> <p>12:00 PM</p>
+              </li>
+              <li className="flex flex-row w-full justify-between text-[--pink]">
+                <h2>Poker Bot Challenge Closes</h2> <p>5:00 PM</p>
+              </li>
+              <li className="flex flex-row w-full justify-between text-[--pink]">
+                <h2>Doors Close</h2> <p>5:00 PM</p>
+              </li>
+              <h1 className="text-6xl text-[--gray] my-5">
+                Sunday, March 29th
+              </h1>
+              <li className="flex flex-row w-full justify-between text-[--pink]">
+                <h2>Devpost Submissions Due</h2> <p>12:00 PM</p>
+              </li>
+              <li className="flex flex-row w-full justify-between text-[--pink]">
+                <h2>Judging</h2> <p>2:00 - 4:00 PM</p>
+              </li>
+              <li className="flex flex-row w-full justify-between text-[--pink]">
+                <h2>Virtual Award Ceremony</h2> <p>5:00 PM</p>
+              </li>
+              <h1 className="text-6xl text-[--gray] my-5">
+                Wednesday, April 1st
+              </h1>
+              <li className="flex flex-row w-full justify-between text-[--pink]">
+                <h2>Prize Distribution</h2> <p>7:00 PM</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      {/* TODO Add sponsors page */}
     </div>
   );
 }

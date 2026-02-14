@@ -5,7 +5,7 @@ import { useAuth } from "../context/authContext";
 export function Navigation() {
   const { profile } = useAuth();
   return (
-    <nav className="flex w-full items-center justify-between p-3 border-b">
+    <nav className="flex w-full items-center justify-between p-3 border-b z-50">
       <Link className="group" href="/b4g">
         <Image
           src="/b4g/short logo.svg"
