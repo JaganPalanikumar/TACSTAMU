@@ -1,5 +1,13 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValue,
+  animate,
+} from "framer-motion";
 import Image from "next/image";
+import useMeasure from "react-use-measure";
+import { useEffect } from "react";
 
 const tracks = [
   {
@@ -20,6 +28,51 @@ const tracks = [
   { title: "AGGIEX STARTUP", description: "Hello" },
 ];
 
+const logos = [
+  {
+    title: "Cheveron",
+    image: "/chevron_icon.svg",
+    width: 200,
+    height: 200,
+  },
+  {
+    title: "TAMUIDS",
+    image: "/b4g/TAMUIDS_logo.svg",
+    width: 151.98,
+    height: 70.53,
+  },
+  {
+    title: "Figma",
+    image: "/b4g/Figma_Logo.svg",
+    width: 248.45,
+    height: 137.59,
+  },
+  {
+    title: "Jane Street",
+    image: "/b4g/Jane_Street_Capital_Logo.svg",
+    width: 104,
+    height: 41,
+  },
+  {
+    title: "Amazon Web Services",
+    image: "/b4g/Amazon_Web_Services_Logo.svg",
+    width: 300.67,
+    height: 179.8,
+  },
+  {
+    title: "Good Bull Fund",
+    image: "/b4g/Good_Bull_Fund_Logo.svg",
+    width: 305.14,
+    height: 55.18,
+  },
+  {
+    title: "Mai Shan Yun",
+    image: "/Mai_Shan_Yun.png",
+    width: 200,
+    height: 200,
+  },
+];
+
 export default function Landing() {
   const { scrollY } = useScroll();
 
@@ -27,9 +80,28 @@ export default function Landing() {
   const moveBurst = useTransform(scrollY, [0, 200], ["10%", "100%"]);
   const moveStar = useTransform(scrollY, [0, 500], ["30%", "100%"]);
 
+  let [ref, { width }] = useMeasure();
+
+  const carouselTranslation = useMotionValue(0);
+
+  useEffect(() => {
+    let controls;
+    let finalPosition = -width / 2 - 5;
+
+    controls = animate(carouselTranslation, [0, finalPosition], {
+      ease: "linear",
+      duration: 15,
+      repeat: Infinity,
+      repeatType: "loop",
+      repeatDelay: 0,
+    });
+
+    return controls.stop;
+  }, [carouselTranslation, width]);
+
   // TODO Finish a landing page
   return (
-    <div className="flex flex-col overflow-x-clip">
+    <div className="flex flex-col overflow-x-clip gap-20">
       <section className="relative h-dvh">
         {/* Background */}
         <div className="absolute inset-0 -z-5">
@@ -121,8 +193,8 @@ export default function Landing() {
           />
         </div>
       </section>
-      <section className="h-fit my-[20dvh]">
-        <div className="mx-auto w-[70%] p-[1rem] rounded-[5rem] bg-gradient-to-r from-[--peach] via-[--pink] to-[--peach]">
+      <section className="h-fit">
+        <div className="mx-auto w-[70%] p-[1rem] rounded-[5rem] bg-gradient-to-b from-[--peach] to-[--pink]">
           <div className="bg-white rounded-[4rem] p-10 flex flex-col gap-3">
             <h1 className="text-8xl font-[700] text-[--pink]">About</h1>
             <p className="text-3xl text-[--gray] font-[600]">
@@ -165,43 +237,43 @@ export default function Landing() {
           <h1 className="text-8xl mx-auto">Tentative Schedule</h1>
           <div className="w-fit h-full p-[1rem] rounded-[5rem] bg-gradient-to-b from-[--peach] to-[--pink] mx-auto">
             <ul className="w-[70dvw] h-full p-[2rem] rounded-[4rem] bg-white flex flex-col gap-4 text-4xl">
-              <h1 className="text-6xl text-[--gray] mb-5">
+              <h1 className="text-6xl text-[--pink] mb-5">
                 Saturday, March 28th
               </h1>
-              <li className="flex flex-row w-full justify-between text-[--pink]">
+              <li className="flex flex-row w-full justify-between text-[--gray]">
                 <h2>Doors Open</h2> <p>9:00 AM</p>
               </li>
-              <li className="flex flex-row w-full justify-between text-[--pink]">
+              <li className="flex flex-row w-full justify-between text-[--gray]">
                 <h2>Opening Ceremony</h2> <p>11:00 AM</p>
               </li>
-              <li className="flex flex-row w-full justify-between text-[--pink]">
+              <li className="flex flex-row w-full justify-between text-[--gray]">
                 <h2>Hacking Begins</h2> <p>11:30 AM</p>
               </li>
-              <li className="flex flex-row w-full justify-between text-[--pink]">
+              <li className="flex flex-row w-full justify-between text-[--gray]">
                 <h2>Lunch</h2> <p>12:00 PM</p>
               </li>
-              <li className="flex flex-row w-full justify-between text-[--pink]">
+              <li className="flex flex-row w-full justify-between text-[--gray]">
                 <h2>Poker Bot Challenge Closes</h2> <p>5:00 PM</p>
               </li>
-              <li className="flex flex-row w-full justify-between text-[--pink]">
+              <li className="flex flex-row w-full justify-between text-[--gray]">
                 <h2>Doors Close</h2> <p>5:00 PM</p>
               </li>
-              <h1 className="text-6xl text-[--gray] my-5">
+              <h1 className="text-6xl text-[--pink] my-5">
                 Sunday, March 29th
               </h1>
-              <li className="flex flex-row w-full justify-between text-[--pink]">
+              <li className="flex flex-row w-full justify-between text-[--gray]">
                 <h2>Devpost Submissions Due</h2> <p>12:00 PM</p>
               </li>
-              <li className="flex flex-row w-full justify-between text-[--pink]">
+              <li className="flex flex-row w-full justify-between text-[--gray]">
                 <h2>Judging</h2> <p>2:00 - 4:00 PM</p>
               </li>
-              <li className="flex flex-row w-full justify-between text-[--pink]">
+              <li className="flex flex-row w-full justify-between text-[--gray]">
                 <h2>Virtual Award Ceremony</h2> <p>5:00 PM</p>
               </li>
-              <h1 className="text-6xl text-[--gray] my-5">
+              <h1 className="text-6xl text-[--pink] my-5">
                 Wednesday, April 1st
               </h1>
-              <li className="flex flex-row w-full justify-between text-[--pink]">
+              <li className="flex flex-row w-full justify-between text-[--gray]">
                 <h2>Prize Distribution</h2> <p>7:00 PM</p>
               </li>
             </ul>
@@ -209,6 +281,29 @@ export default function Landing() {
         </div>
       </section>
       {/* TODO Add sponsors page */}
+      <section className="flex flex-col gap-20 w-dvw h-fit">
+        <h1 className="text-8xl mx-auto w-fit">Sponsors</h1>
+
+        <div className="relative overflow-hidden w-[80dvw] h-fit mx-auto">
+          <div className="absolute top-0 left-0 h-[10dvh] w-[20%] z-10 bg-gradient-to-r from-[--background] to-transparent" />
+          <motion.div style={{ x: carouselTranslation }}>
+            <div ref={ref} className="flex gap-[5rem] w-max">
+              {[...logos, ...logos].map((logo, index) => (
+                <Image
+                  key={index}
+                  src={logo.image}
+                  alt={`${logo.title} logo`}
+                  width={logo.width}
+                  height={logo.height}
+                  className="my-auto h-[10dvh] w-auto shrink-0"
+                  priority
+                />
+              ))}
+            </div>
+          </motion.div>
+          <div className="absolute top-0 right-0 h-[10dvh] w-[20%] z-10 bg-gradient-to-l from-[--background] to-transparent" />
+        </div>
+      </section>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="h-40 w-full flex flex-col mt-5 items-center justify-center space-y-4 justify-self-end">
+    <footer className="h-40 w-full flex flex-col mt-20 items-center justify-center space-y-4 justify-self-end">
       <div className="flex text-2xl gap-x-8">
         <a
           href="https://discord.gg/CBWn8mKFvx"
