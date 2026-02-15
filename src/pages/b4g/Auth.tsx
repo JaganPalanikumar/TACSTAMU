@@ -117,7 +117,7 @@ const Auth = () => {
               placeholder="First Name"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              className="p-3 border-3"
+              className="p-3 border-3 text-[--gray]"
               required
             />
             <h2 className="text-xl">Last Name</h2>
@@ -125,7 +125,7 @@ const Auth = () => {
               placeholder="Last Name"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              className="p-3 border-3"
+              className="p-3 border-3 text-[--gray]"
               required
             />
             <h2 className="text-xl">Graduation Year</h2>
@@ -134,7 +134,7 @@ const Auth = () => {
               type="number"
               value={gradYear}
               onChange={(e) => setGradYear(e.target.value)}
-              className="p-3 border-3"
+              className="p-3 border-3 text-[--gray]"
               required
             />
             <h2 className="text-xl">Dietary Restrictions</h2>
@@ -178,7 +178,7 @@ const Auth = () => {
                   placeholder="Please specify"
                   value={customDietary}
                   onChange={(e) => setCustomDietary(e.target.value)}
-                  className="p-3 border-3"
+                  className="p-3 border-3 text-[--gray]"
                 />
               )}
             </div>
@@ -191,7 +191,7 @@ const Auth = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           autoComplete="username"
-          className="p-3 border-3"
+          className="p-3 border-3 text-[--gray]"
           required
         />
         <h2 className="text-xl">Password</h2>
@@ -201,7 +201,7 @@ const Auth = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           autoComplete="current-password"
-          className="p-3 border-3"
+          className="p-3 border-3 text-[--gray]"
           required
         />
 
