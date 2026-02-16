@@ -86,7 +86,7 @@ export default function Landing() {
 
   useEffect(() => {
     let controls;
-    let finalPosition = -width / 2 - 5;
+    let finalPosition = -width / 2 - 40;
 
     controls = animate(carouselTranslation, [0, finalPosition], {
       ease: "linear",
