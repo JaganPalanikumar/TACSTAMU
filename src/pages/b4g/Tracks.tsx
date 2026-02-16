@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Tracks() {
   const [selected, setSelected] = useState<number>(0);
+  // TODO Finish this page
   return (
     <div className="w-dvw flex flex-col gap-5">
       <h1 className="mx-auto w-fit p-10 text-8xl">Tracks</h1>

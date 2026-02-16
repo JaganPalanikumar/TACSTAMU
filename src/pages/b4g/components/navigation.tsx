@@ -48,7 +48,7 @@ export function Navigation() {
           </Link>
           <Link
             className="flex gap-5 p-2 px-5 hover:scale-110 border-[--pink] text-[--pink] border-4 rounded-full my-auto"
-            href="/b4g/FAQ"
+            href="https://discord.gg/CBWn8mKFvx"
           >
             <svg
               fill="#D594DC"
@@ -96,7 +96,7 @@ export function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="p-3 absolute top-[100%] w-full left-0"
+            className="p-3 absolute top-[100%] w-full left-0 lg:hidden"
           >
             <div className="p-3 rounded-[3rem] bg-gradient-to-b from-[--peach] to-[--pink]">
               <div className="p-4 rounded-[2.5rem] bg-white flex flex-col gap-5 text-3xl">
@@ -132,7 +132,7 @@ export function Navigation() {
                 </Link>
                 <Link
                   className="flex gap-5 p-2 px-5 hover:scale-105 w-fit border-[--pink] text-[--pink] border-4 rounded-full my-auto"
-                  href="/b4g/FAQ"
+                  href="https://discord.gg/CBWn8mKFvx"
                 >
                   <svg
                     fill="#D594DC"
