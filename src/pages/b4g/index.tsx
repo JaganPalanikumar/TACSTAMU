@@ -31,7 +31,7 @@ const tracks = [
 const logos = [
   {
     title: "Cheveron",
-    image: "/chevron_icon.svg",
+    image: "/b4g/Chevron_Logo.svg",
     width: 200,
     height: 200,
   },
@@ -67,7 +67,7 @@ const logos = [
   },
   {
     title: "Mai Shan Yun",
-    image: "/Mai_Shan_Yun.png",
+    image: "b4g//Mai_Shan_Yun.svg",
     width: 200,
     height: 200,
   },
@@ -211,9 +211,9 @@ export default function Landing() {
       </section>
       {/* TODO Add location */}
       <section className="h-fit">
-        <div className="relative flex flex-col gap-5 h-fit">
+        <div className="relative flex flex-col h-fit gap-5">
           <h1 className="text-8xl mx-auto">Tracks</h1>
-          <div className="grid grid-flow-row grid-cols-1 xl:grid-cols-2 gap-10 w-full h-fit mx-auto p-[5vw]">
+          <div className="grid grid-flow-row grid-cols-1 xl:grid-cols-2 gap-10 w-full h-fit mx-auto px-[5vw]">
             {tracks.map((track, index) => (
               <div
                 key={index}
