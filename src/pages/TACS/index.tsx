@@ -60,7 +60,7 @@ const Home: React.FC = () => {
 
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
             <Link
-              href="/b4g"
+              href="/TACS/b4g2025"
               className="bg-white border-2 border-b-4 border-r-4 border-primary text-primary px-4 py-2 rounded-full text-sm font-medium hover:bg-primary-light hover:text-white"
             >
               Build4Good 2025

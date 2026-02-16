@@ -98,8 +98,8 @@ export function Navigation() {
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="p-3 absolute top-[100%] w-full left-0 lg:hidden"
           >
-            <div className="p-3 rounded-[3rem] bg-gradient-to-b from-[--peach] to-[--pink]">
-              <div className="p-4 rounded-[2.5rem] bg-white flex flex-col gap-5 text-3xl">
+            <div className="p-[1rem] rounded-[3rem] bg-gradient-to-b from-[--peach] to-[--pink]">
+              <div className="p-4 rounded-[2rem] bg-white flex flex-col gap-5 text-3xl">
                 <Link
                   className="p-2 hover:scale-105 w-fit my-auto"
                   href="/b4g/Dashboard"
