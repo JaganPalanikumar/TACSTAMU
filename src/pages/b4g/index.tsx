@@ -196,7 +196,7 @@ export default function Landing() {
         </div>
       </section>
       <section className="h-fit flex flex-col gap-5">
-        <h1 className="text-8xl text-white mx-auto w-fit">About</h1>
+        <h1 className="text-8xl mx-auto w-fit text-center">About</h1>
         <div className="bg-[--container-background] mx-auto w-[90%] max-w-[1500] rounded-[4rem] p-10 flex flex-col gap-3">
           <p className="text-3xl text-[--gray] font-[600]">
             Build4Good is a 1.5-day hackathon hosted by the Texas A&M Computing
@@ -233,7 +233,9 @@ export default function Landing() {
       </section> */}
       <section className="h-fit w-dvw">
         <div className="realitive flex flex-col gap-5 h-fit">
-          <h1 className="text-8xl mx-auto">Tentative Schedule</h1>
+          <h1 className="text-8xl w-auto mx-auto text-center">
+            Tentative Schedule
+          </h1>
           <ul className="bg-[--container-background] mx-auto w-[90%] max-w-[1500] rounded-[4rem] p-10 flex flex-col gap-3">
             <h1 className="text-6xl text-[--pink] mb-5">
               Saturday, March 28th
@@ -277,7 +279,7 @@ export default function Landing() {
       </section>
       {/* TODO Add sponsors page */}
       <section className="flex flex-col gap-20 w-dvw h-fit">
-        <h1 className="text-8xl mx-auto w-fit">Sponsors</h1>
+        <h1 className="text-8xl mx-auto w-fit text-center">Sponsors</h1>
 
         <div className="relative overflow-hidden w-[80dvw] h-fit mx-auto">
           <div className="absolute top-0 left-0 h-[10dvh] w-[20%] z-10 bg-gradient-to-r from-[--background] to-transparent" />
