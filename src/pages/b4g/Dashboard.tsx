@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "./context/authContext";
+import { useAuth } from "@/b4g/context/authContext";
 import { useRouter } from "next/router";
 import { supabase } from "@/utils/supabase";
 import Link from "next/link";

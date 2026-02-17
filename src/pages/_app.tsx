@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
-import { AuthProvider } from "./b4g/context/authContext";
+import { AuthProvider } from "@/b4g/context/authContext";
 import { Jost, Modak } from "next/font/google";
 
 const jost = Jost({

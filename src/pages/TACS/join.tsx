@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 import { FaDiscord, FaInstagram, FaLinkedin } from "react-icons/fa";
 import JoinPageImage from "@/join_page_image.jpg";
 
