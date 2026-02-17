@@ -1,7 +1,7 @@
 import type { TeamType } from "../../types/TeamTypes";
 import { Team } from "./team";
 
-const TeamsTable = ({ teams }: { teams: TeamType[] }) => {
+export const TeamsTable = ({ teams }: { teams: TeamType[] }) => {
   return (
     <table className="table-auto text-left border-collapse border-gray-300">
       <thead>
@@ -21,5 +21,3 @@ const TeamsTable = ({ teams }: { teams: TeamType[] }) => {
     </table>
   );
 };
-
-export default TeamsTable;

@@ -198,7 +198,7 @@ export default function Landing() {
       <section className="h-fit">
         <div className="mx-auto w-[70%] p-[1rem] rounded-[5rem] bg-gradient-to-b from-[--peach] to-[--pink]">
           <div className="bg-white rounded-[4rem] p-10 flex flex-col gap-3">
-            <h1 className="text-8xl font-[700] text-[--pink]">About</h1>
+            <h1 className="text-8xl text-[--pink]">About</h1>
             <p className="text-3xl text-[--gray] font-[600]">
               Build4Good is a 1.5-day hackathon hosted by the Texas A&M
               Computing Society (TACS). In this event, teams of students

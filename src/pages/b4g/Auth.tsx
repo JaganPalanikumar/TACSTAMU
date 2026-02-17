@@ -15,6 +15,9 @@ const Auth = () => {
 
   const [isSignup, setIsSignup] = useState(false);
 
+  const currentYear = new Date().getFullYear();
+  const gradYears = Array.from({ length: 10 }, (_, i) => currentYear + i - 2); // current year - 2 + next 10 years
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -22,6 +25,10 @@ const Auth = () => {
   const [gradYear, setGradYear] = useState("");
   const [dietaryRestrictions, setDietaryRestrictions] = useState<string[]>([]);
   const [customDietary, setCustomDietary] = useState("");
+  const [firstHackathon, setFirstHackathon] = useState<string>("");
+  const [shirtSize, setShirtSize] = useState("");
+  const [heardAbout, setHeardAbout] = useState("");
+  const [helpfulLinks, setHelpfulLinks] = useState("");
 
   const [error, setError] = useState<AuthError | PostgrestError | null>(null);
   const [loading, setLoading] = useState(false);
@@ -32,13 +39,13 @@ const Auth = () => {
     }
   }, [user, router]);
 
-  const capitalize = (str: string) =>
-    str.replace(/\b\w/g, (c) => c.toUpperCase());
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
+
+    const capitalize = (str: string) =>
+      str.replace(/\b\w/g, (c) => c.toUpperCase());
 
     try {
       if (isSignup) {
@@ -68,6 +75,10 @@ const Auth = () => {
               ...dietaryRestrictions.filter((d) => d !== "Other"),
               customDietary || null,
             ].filter(Boolean),
+            first_hackathon: firstHackathon === "yes",
+            shirt_size: shirtSize,
+            heard_about: heardAbout.trim(),
+            helpful_links: helpfulLinks.trim() || null,
           })
           .select()
           .maybeSingle();
@@ -131,6 +142,7 @@ const Auth = () => {
               className="p-3 border-3 text-[--gray]"
               required
             />
+
             <h2 className="text-xl">Last Name</h2>
             <input
               placeholder="Last Name"
@@ -143,15 +155,48 @@ const Auth = () => {
               className="p-3 border-3 text-[--gray]"
               required
             />
+
             <h2 className="text-xl">Graduation Year</h2>
-            <input
-              placeholder="Graduation Year"
-              type="number"
+            <select
               value={gradYear}
               onChange={(e) => setGradYear(e.target.value)}
               className="p-3 border-3 text-[--gray]"
               required
-            />
+            >
+              <option value="">Select graduation year</option>
+              {gradYears.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
+
+            <h2 className="text-xl">Is this your first time at a hackathon?</h2>
+            <div className="flex gap-4">
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="firstHackathon"
+                  value="yes"
+                  checked={firstHackathon === "yes"}
+                  onChange={(e) => setFirstHackathon(e.target.value)}
+                  required
+                />
+                Yes
+              </label>
+
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="firstHackathon"
+                  value="no"
+                  checked={firstHackathon === "no"}
+                  onChange={(e) => setFirstHackathon(e.target.value)}
+                  required
+                />
+                No
+              </label>
+            </div>
             <h2 className="text-xl">Dietary Restrictions</h2>
             <div className="flex flex-col gap-2">
               {[
@@ -197,6 +242,39 @@ const Auth = () => {
                 />
               )}
             </div>
+
+            <h2 className="text-xl">What is your shirt size?</h2>
+            <select
+              value={shirtSize}
+              onChange={(e) => setShirtSize(e.target.value)}
+              className="p-3 border-3 text-[--gray]"
+              required
+            >
+              <option value="">Select size</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+            </select>
+
+            <h2 className="text-xl">How did you hear about this?</h2>
+            <input
+              type="text"
+              value={heardAbout}
+              onChange={(e) => setHeardAbout(e.target.value)}
+              placeholder="Canvas, Instagram, email, etc."
+              className="p-3 border-3 text-[--gray]"
+              required
+            />
+
+            <h2 className="text-xl">Any links/info that would be helpful?</h2>
+            <textarea
+              value={helpfulLinks}
+              onChange={(e) => setHelpfulLinks(e.target.value)}
+              placeholder="GitHub, portfolio, LinkedIn, etc."
+              rows={4}
+              className="p-3 border-3 text-[--gray]"
+            />
           </>
         )}
         <h2 className="text-xl">Email</h2>
