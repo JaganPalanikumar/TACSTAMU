@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "../context/authContext";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
-import ExpandLessRoundedIcon from "@mui/icons-material/ExpandLessRounded";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/utils/supabase";
@@ -40,7 +40,7 @@ export function Navigation() {
   };
 
   return (
-    <nav className="relative flex w-full items-center justify-between p-3 text-[--gray] rounded-full z-50">
+    <nav className="relative flex w-full items-center justify-between p-5 text-[--gray] rounded-full z-50">
       <Link className="hover:scale-110 w-fit p-4" href="/b4g">
         <Image
           src="/b4g/bordered long logo.svg"
@@ -50,15 +50,16 @@ export function Navigation() {
           className="h-14 w-auto"
         />
       </Link>
-      <div className="flex w-fit items-center justify-between p-3 px-6 rounded-full bg-white text-center">
-        <div className="hidden lg:flex flex-row gap-3 text-2xl max-w-[70dvw]">
+      <div className="hidden lg:flex w-fit items-center justify-between p-3 px-6 rounded-full bg-white text-center">
+        <div className="flex flex-row gap-3 text-2xl max-w-[70dvw]">
           <Link className="p-2 hover:scale-110 my-auto" href="/b4g/Dashboard">
             Dashboard
           </Link>
+          {/* XXX Remove track and nav stuff atm
           <Link className="p-2 hover:scale-110 my-auto" href="/b4g/Tracks">
             Tracks
           </Link>
-          {/* {profile?.team_id ? (
+          {profile?.team_id ? (
           <Link
             className="p-2 hover:scale-110 "
             href="/b4g/TeamDashboard"
@@ -114,24 +115,25 @@ export function Navigation() {
             </Link>
           )}
         </div>
-        <div className="flex lg:hidden flex-row gap-3 text-2xl max-w-[70dvw]">
-          <button
-            onClick={() => {
-              setMenuOpen(!menuOpen);
-            }}
-            className="h-full hover:scale-110 text-[3rem] mx-auto"
-          >
-            {!menuOpen ? (
-              <MenuRoundedIcon fontSize="inherit" sx={{ color: "#D594DC" }} />
-            ) : (
-              <ExpandLessRoundedIcon
-                fontSize="inherit"
-                sx={{ color: "#D594DC" }}
-              />
-            )}
-          </button>
-        </div>
       </div>
+
+      <button
+        onClick={() => setMenuOpen(!menuOpen)}
+        className="relative flex lg:hidden flex-col justify-between items-center p-5 rounded-full bg-white aspect-square"
+      >
+        <div className="grid justify-items-center gap-1.5 my-auto">
+          <span
+            className={`h-1 w-8 rounded-full bg-[--pink] transition duration-500 ${menuOpen ? "rotate-45" : ""} ${menuOpen ? "translate-y-2.5" : ""}`}
+          />
+          <span
+            className={`h-1 w-8 rounded-full bg-[--pink] ${menuOpen ? "scale-x-0" : ""} transition duration-500`}
+          />
+          <span
+            className={`h-1 w-8 rounded-full bg-[--pink] ${menuOpen ? "-rotate-45" : ""} ${menuOpen ? "-translate-y-2.5" : ""} duration-500`}
+          />
+        </div>
+      </button>
+
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -149,13 +151,15 @@ export function Navigation() {
                 >
                   Dashboard
                 </Link>
+
+                {/* XXX Remove tracks and team stuff atm
                 <Link
                   className="p-2 hover:scale-105 w-fit my-auto"
                   href="/b4g/Tracks"
                 >
                   Tracks
                 </Link>
-                {/* {profile?.team_id ? (
+                {profile?.team_id ? (
                   <Link
                     className="p-2 hover:scale-110 "
                     href="/b4g/TeamDashboard"
