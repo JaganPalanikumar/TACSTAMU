@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 
 interface FAQItemProps {
   question: string;
@@ -14,24 +14,39 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
       onClick={() => setIsOpen(!isOpen)}
     >
       <div className="flex justify-between items-center select-none">
-        {/* Color Logic:
-            - text-white by default
-            - group-hover:text-[--pink] triggers when mouse enters the <li>
-            - isOpen ? "text-[--pink]" keeps it pink while open
-        */}
         <h2 className={`text-3xl transition-colors duration-300 ease-out 
           group-hover:text-[--pink] 
           ${isOpen ? "text-[--pink]" : "text-white"}`}
         >
           {question}
         </h2>
-        
-        <span className={`text-4xl font-mono ml-4 transition-colors duration-300
-          group-hover:text-[--pink] 
-          ${isOpen ? "text-[--pink]" : "text-white"}`}
-        >
-          {isOpen ? "−" : "+"}
-        </span>
+
+        {/* Sparkle Container */}
+        <div className="relative w-8 h-8 ml-4">
+
+          {/* Sparkle 1 (Closed State) */}
+          <img
+            src="/b4g/sparkle1.svg"
+            alt="sparkle"
+            className={`absolute inset-0 w-full h-full transition-all duration-300 ease-in-out
+              ${isOpen
+                ? "rotate-0 scale-0 opacity-0"
+                : "rotate-0 scale-100 opacity-100"
+              }`}
+          />
+
+          {/* Sparkle 2 (Open State) */}
+          <img
+            src="/b4g/sparkle2.svg"
+            alt="sparkle"
+            className={`absolute inset-0 w-full h-full transition-all duration-300 ease-in-out
+              ${isOpen
+                ? "rotate-0 scale-100 opacity-100"
+                : "-rotate-0 scale-0 opacity-0"
+              }`}
+          />
+
+        </div>
       </div>
       
       {/* answer */}
@@ -41,13 +56,11 @@ export default function FAQItem({ question, answer }: FAQItemProps) {
         }`}
       >
         <div className="overflow-hidden">
-
           <p className="text-2xl cursor-default leading-relaxed">
             {answer}
           </p>
         </div>
       </div>
-
     </li>
   );
 }
