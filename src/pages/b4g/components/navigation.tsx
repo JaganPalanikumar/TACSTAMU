@@ -2,12 +2,43 @@ import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "../context/authContext";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import ExpandLessRoundedIcon from "@mui/icons-material/ExpandLessRounded";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { supabase } from "@/utils/supabase";
 
 export function Navigation() {
-  const { profile } = useAuth();
+  const { user, profile } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const message = formData.get("message") as string;
+
+    const { error } = await supabase.from("contact_submissions").insert([
+      {
+        name,
+        email,
+        message,
+        user_id: profile?.id ?? null,
+      },
+    ]);
+
+    if (error) {
+      alert("Something went wrong.");
+      return;
+    }
+
+    alert("Message sent successfully!");
+    setContactOpen(false);
+  };
+
   return (
     <nav className="relative w-full items-center justify-between p-3 text-[--gray] rounded-full z-50">
       <div className="flex w-full items-center justify-between p-3 px-6 rounded-full bg-white text-center">
@@ -46,6 +77,12 @@ export function Navigation() {
           <Link className="p-2 hover:scale-110 my-auto" href="/b4g/FAQ">
             FAQ
           </Link>
+          <button
+            onClick={() => setContactOpen(true)}
+            className="p-2 hover:scale-110 my-auto"
+          >
+            Contact
+          </button>
           <Link
             className="flex gap-5 p-2 px-5 hover:scale-110 border-[--pink] text-[--pink] border-4 rounded-full my-auto"
             href="https://discord.gg/CBWn8mKFvx"
@@ -85,7 +122,14 @@ export function Navigation() {
             }}
             className="h-full hover:scale-110 text-[3rem] mx-auto"
           >
-            <MenuRoundedIcon fontSize="inherit" sx={{ color: "#D594DC" }} />
+            {!menuOpen ? (
+              <MenuRoundedIcon fontSize="inherit" sx={{ color: "#D594DC" }} />
+            ) : (
+              <ExpandLessRoundedIcon
+                fontSize="inherit"
+                sx={{ color: "#D594DC" }}
+              />
+            )}
           </button>
         </div>
       </div>
@@ -130,6 +174,15 @@ export function Navigation() {
                 >
                   FAQ
                 </Link>
+                <button
+                  onClick={() => {
+                    setMenuOpen(false);
+                    setContactOpen(true);
+                  }}
+                  className="p-2 hover:scale-105 w-fit my-auto text-left"
+                >
+                  Contact
+                </button>
                 <Link
                   className="flex gap-5 p-2 px-5 hover:scale-105 w-fit border-[--pink] text-[--pink] border-4 rounded-full my-auto"
                   href="https://discord.gg/CBWn8mKFvx"
@@ -165,6 +218,67 @@ export function Navigation() {
                 )}
               </div>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {contactOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[100]"
+            onClick={() => setContactOpen(false)}
+          >
+            <motion.div
+              initial={{ y: -40, opacity: 0, scale: 0.98 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: -40, opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.25 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white w-[90%] max-w-md p-8 rounded-[2rem] shadow-xl flex flex-col gap-5"
+            >
+              <h2 className="text-3xl font-semibold text-center">
+                Contact TACS
+              </h2>
+
+              <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+                <input
+                  name="name"
+                  autoComplete="name"
+                  placeholder="Your Name"
+                  defaultValue={
+                    profile ? `${profile.first_name} ${profile.last_name}` : ""
+                  }
+                  className="p-3 rounded-xl border focus:outline-none focus:ring-2 focus:ring-[--pink]"
+                />
+
+                <input
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  defaultValue={user?.email ?? ""}
+                  placeholder="Your Email"
+                  className="p-3 rounded-xl border focus:outline-none focus:ring-2 focus:ring-[--pink]"
+                />
+
+                <textarea
+                  name="message"
+                  placeholder="Your Message"
+                  required
+                  rows={4}
+                  className="p-3 rounded-xl border resize-none focus:outline-none focus:ring-2 focus:ring-[--pink]"
+                />
+
+                <button
+                  type="submit"
+                  className="bg-gradient-to-r from-[--peach] to-[--pink] text-white p-3 rounded-full hover:scale-105 transition"
+                >
+                  Send Message
+                </button>
+              </form>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

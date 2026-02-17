@@ -9,7 +9,7 @@ const Auth = () => {
   const { user, login } = useAuth();
   const router = useRouter();
   const from =
-    typeof router.query.from === "string" && router.query.from.length < 0
+    typeof router.query.from === "string" && router.query.from.length > 0
       ? router.query.from
       : "/b4g/Dashboard";
 
@@ -32,6 +32,9 @@ const Auth = () => {
     }
   }, [user, router]);
 
+  const capitalize = (str: string) =>
+    str.replace(/\b\w/g, (c) => c.toUpperCase());
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -39,61 +42,65 @@ const Auth = () => {
 
     try {
       if (isSignup) {
-        const {
-          data: { user },
-          error,
-        } = await supabase.auth.signUp({ email: email, password: password });
-
-        if (user?.id) {
-          const { data: profile, error } = await supabase
-            .from("profile")
-            .insert({
-              diet_restrictions: [
-                ...dietaryRestrictions.filter((d) => d !== "Other"),
-                customDietary || null,
-              ].filter(Boolean),
-              first_name: firstName,
-              grad_year: Number(gradYear),
-              id: user.id,
-              last_name: lastName,
-            })
-            .select()
-            .maybeSingle();
-          if (error) {
-            throw error;
-          }
-          if (!profile) {
-            throw new Error("Did not recieve profile");
-          }
-          console.log(from, "Hello");
-          login(user, profile as Profile);
-          router.push(from || "/b4g/Dashboard");
-        } else {
-          throw error;
-        }
-      } else {
-        const {
-          data: { user },
-          error,
-        } = await supabase.auth.signInWithPassword({
+        const { data, error: signUpError } = await supabase.auth.signUp({
           email: email,
           password: password,
         });
 
-        if (user?.id) {
-          const { data: profile, error } = await supabase
-            .from("profile")
-            .select()
-            .eq("id", user.id)
-            .maybeSingle();
-          if (!profile) {
-            throw error;
-          }
-          login(user, profile as Profile);
-        } else {
-          throw error;
+        if (signUpError) throw signUpError;
+
+        if (!data.user) {
+          throw new Error("Signup failed. Please check your email.");
         }
-        router.push(from ?? "/b4g/Dashboard");
+
+        if (!data.user.id) {
+          throw new Error("User ID missing.");
+        }
+
+        const { data: profile, error: profileError } = await supabase
+          .from("profile")
+          .insert({
+            id: data.user.id,
+            first_name: capitalize(firstName.trim()),
+            last_name: capitalize(lastName.trim()),
+            grad_year: Number(gradYear),
+            diet_restrictions: [
+              ...dietaryRestrictions.filter((d) => d !== "Other"),
+              customDietary || null,
+            ].filter(Boolean),
+          })
+          .select()
+          .maybeSingle();
+
+        if (profileError) throw profileError;
+
+        if (!profile) throw new Error("Did not recieve profile");
+
+        login(data.user, profile as Profile);
+        router.push(from || "/b4g/Dashboard");
+      } else {
+        const {
+          data: { user },
+          error: loginError,
+        } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+        if (loginError) throw loginError;
+        if (!user) throw new Error("Login failed");
+
+        const { data: profile, error: profileError } = await supabase
+          .from("profile")
+          .select()
+          .eq("id", user.id)
+          .maybeSingle();
+
+        if (profileError) throw profileError;
+        if (!profile) throw new Error("Profile not found");
+
+        login(user, profile as Profile);
+        router.push(from);
       }
     } catch (err: any) {
       console.error(err);
@@ -116,6 +123,10 @@ const Auth = () => {
             <input
               placeholder="First Name"
               value={firstName}
+              autoCapitalize="words"
+              autoComplete="given-name"
+              autoCorrect="off"
+              spellCheck={false}
               onChange={(e) => setFirstName(e.target.value)}
               className="p-3 border-3 text-[--gray]"
               required
@@ -124,6 +135,10 @@ const Auth = () => {
             <input
               placeholder="Last Name"
               value={lastName}
+              autoCapitalize="words"
+              autoComplete="family-name"
+              autoCorrect="off"
+              spellCheck={false}
               onChange={(e) => setLastName(e.target.value)}
               className="p-3 border-3 text-[--gray]"
               required

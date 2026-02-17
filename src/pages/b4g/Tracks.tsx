@@ -4,9 +4,9 @@ export default function Tracks() {
   const [selected, setSelected] = useState<number>(0);
   // TODO Finish this page
   return (
-    <div className="w-dvw flex flex-col gap-5">
+    <div className="w-dvw flex flex-col gap-5 max-w-[90dvw] mx-auto">
       <h1 className="mx-auto w-fit p-10 text-8xl">Tracks</h1>
-      <div className="flex flex-row w-fit mx-auto gap-20">
+      <div className="flex flex-row w-fit mx-auto gap-[2dvw]">
         <button
           className={`text-2xl ${selected == 0 ? "text-[--blue]" : "text-white"}`}
           onClick={() => {
