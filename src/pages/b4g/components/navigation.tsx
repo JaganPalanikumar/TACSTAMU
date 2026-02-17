@@ -1,8 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "../context/authContext";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/utils/supabase";
