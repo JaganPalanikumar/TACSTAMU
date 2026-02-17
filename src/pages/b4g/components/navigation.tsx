@@ -38,8 +38,12 @@ export function Navigation() {
   };
 
   return (
-    <nav className="mx-auto w-[90%] max-w-[1500] flex items-center justify-between p-5 text-black rounded-full z-50">
-      <Link className="hover:scale-110 w-fit p-4" href="/b4g">
+    <nav className="relative mx-auto my-0 w-[90%] max-w-[1500] h-fit flex items-center justify-between p-5 text-black rounded-full z-50">
+      <Link
+        className="hover:scale-110 w-fit p-4"
+        href="/b4g"
+        onClick={() => setMenuOpen(false)}
+      >
         <Image
           src="/b4g/bordered long logo.svg"
           width={1072.48}
@@ -48,30 +52,13 @@ export function Navigation() {
           className="h-14 w-auto"
         />
       </Link>
-      <div className="hidden max-w-[1000] flex-1 lg:flex text-2xl items-center justify-between p-3 px-6 rounded-full bg-white text-center">
-        <Link className="p-2 hover:scale-110 my-auto" href="/b4g/Dashboard">
-          Dashboard
-        </Link>
-
-        {/* XXX Remove track and nav stuff atm
+      {/* TODO Change max-w to 1000 when Tracks are added */}
+      <div className="hidden max-w-[800] flex-1 xl:flex text-2xl items-center justify-between p-3 px-6 rounded-full bg-white text-center">
+        {/* XXX Remove track atm
           <Link className="p-2 hover:scale-110 my-auto" href="/b4g/Tracks">
             Tracks
           </Link>
-          {profile?.team_id ? (
-          <Link
-            className="p-2 hover:scale-110 "
-            href="/b4g/TeamDashboard"
-          >
-            Team
-          </Link>
-        ) : (
-          <Link
-            className="p-2 hover:scale-110 "
-            href="/b4g/TeamSearch"
-          >
-            Team Search
-          </Link>
-        )} */}
+          */}
 
         <Link className="p-2 hover:scale-110 my-auto" href="/b4g/FAQ">
           FAQ
@@ -86,7 +73,7 @@ export function Navigation() {
 
         {profile?.id && (
           <Link
-            href="/b4g/User"
+            href="/b4g/Dashboard"
             className="flex flex-row w-fit p-2 gap-3 px-5 hover:scale-110 text-black my-auto"
           >
             <Image
@@ -135,7 +122,7 @@ export function Navigation() {
 
       <button
         onClick={() => setMenuOpen(!menuOpen)}
-        className={`relative flex lg:hidden flex-col justify-between items-center p-5 rounded-full ${menuOpen ? "bg-[--pink]" : ""} aspect-square transition duration-500`}
+        className={`relative flex xl:hidden flex-col justify-between items-center p-5 rounded-full ${menuOpen ? "bg-[--pink]" : ""} aspect-square transition duration-500`}
       >
         <div className="grid justify-items-center gap-1.5 my-auto">
           <span
@@ -153,40 +140,40 @@ export function Navigation() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="p-3 absolute top-[100%] w-full left-0 lg:hidden"
+            initial={{ opacity: 0, scale: 0.95, y: -10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -10 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="p-3 absolute top-full h-fit w-full left-0 xl:hidden"
+            onClick={() => setMenuOpen(false)}
           >
             <div className="p-[1rem] rounded-[3rem] bg-gradient-to-b from-[--peach] to-[--pink]">
               <div className="p-4 rounded-[2rem] bg-white flex flex-col gap-5 text-3xl">
-                <Link
-                  className="p-2 hover:scale-105 w-fit my-auto"
-                  href="/b4g/Dashboard"
-                >
-                  Dashboard
-                </Link>
+                {profile?.id && (
+                  <Link
+                    href="/b4g/Dashboard"
+                    className="flex flex-row w-fit p-2 gap-3 px-5 hover:scale-110 text-black my-auto"
+                  >
+                    <Image
+                      src="/b4g/bunny icon.svg"
+                      alt="bunny icon"
+                      width={21.92}
+                      height={31.16}
+                    />
+                    <span className="min-w-0 truncate">
+                      {profile.first_name}
+                    </span>
+                  </Link>
+                )}
 
-                {/* XXX Remove tracks and team stuff atm
+                {/* XXX Remove tracks atm
                 <Link
                   className="p-2 hover:scale-105 w-fit my-auto"
                   href="/b4g/Tracks"
                 >
                   Tracks
                 </Link>
-                {profile?.team_id ? (
-                  <Link
-                    className="p-2 hover:scale-110 "
-                    href="/b4g/TeamDashboard"
-                  >
-                    Team
-                  </Link>
-                ) : (
-                  <Link className="p-2 hover:scale-110 " href="/b4g/TeamSearch">
-                    Team Search
-                  </Link>
-                )} */}
+                 */}
 
                 <Link
                   className="p-2 hover:scale-105 w-fit my-auto"
@@ -296,7 +283,7 @@ export function Navigation() {
 
                 <button
                   type="submit"
-                  className="bg-gradient-to-r from-[--peach] to-[--pink] text-white p-3 rounded-full hover:scale-105 transition"
+                  className="bg-[--pink] text-white p-3 rounded-full hover:scale-105 transition"
                 >
                   Send Message
                 </button>
