@@ -33,7 +33,7 @@
   --blue:#42A9D7;
   --pink:#D594DC;
   --peach:#F5DCC6;
-  --gray:#757D83;
+  --gray:rgba(255, 255, 255, 0.50);
   --background:#0e121a;
-  
+  --container-background:rgb(255, 255, 255, 0.10);
 }
