@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { TeamsTable } from "./components/teams/teamTable";
+import { TeamsTable } from "@/b4g/components/teams/teamTable";
 import { supabase } from "@/utils/supabase";
-import type { TeamMember, TeamType } from "./types/TeamTypes";
+import type { TeamMember, TeamType } from "@/b4g/types/TeamTypes";
 import Link from "next/link";
 
 export default function TeamSearch() {

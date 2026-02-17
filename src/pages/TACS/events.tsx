@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import EventCard from "./components/EventCard";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import EventCard from "../../components/EventCard";
 
 import eventsPageImage from "@/events_page_image.webp";
 import build4GoodHackathonPhoto from "@/build_4_good_hackathon_photo.webp";

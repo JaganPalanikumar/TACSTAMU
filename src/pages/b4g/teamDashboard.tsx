@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "./context/authContext";
-import type { TeamType } from "./types/TeamTypes";
+import { useAuth } from "@/b4g/context/authContext";
+import type { TeamType } from "@/b4g/types/TeamTypes";
 import { supabase } from "@/utils/supabase";
 import { useRouter } from "next/router";
 

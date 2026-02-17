@@ -1,4 +1,4 @@
-import Navbar from "./components/Navbar";
+import Navbar from "../../components/Navbar";
 import Link from "next/link";
 import Image from "next/image";
 import StarIcon from "@/star_icon.png";
@@ -7,9 +7,9 @@ import MicrophoneIcon from "@/microphone_icon.png";
 import SocialIcon from "@/social_icon.png";
 import WorkshopsIcon from "@/workshops_icon.png";
 
-import ImageCarousel from "./components/ImageCarousel";
-import SponsorCarousel from "./components/SponsorCarousel";
-import Footer from "./components/Footer";
+import ImageCarousel from "../../components/ImageCarousel";
+import SponsorCarousel from "../../components/SponsorCarousel";
+import Footer from "../../components/Footer";
 
 const Home: React.FC = () => {
   return (

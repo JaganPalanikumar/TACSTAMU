@@ -1,5 +1,5 @@
 import { useSearchParams } from "next/navigation";
-import { useAuth } from "./context/authContext";
+import { useAuth } from "@/b4g/context/authContext";
 import { useEffect } from "react";
 import { supabase } from "@/utils/supabase";
 

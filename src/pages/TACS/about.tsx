@@ -2,9 +2,9 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import Navbar from "@/pages/TACS/components/Navbar";
-import Footer from "@/pages/TACS/components/Footer";
-import OfficerCard from "@/pages/TACS/components/OfficerCard";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import OfficerCard from "@/components/OfficerCard";
 
 import WhatWeDoPageImage from "@/what_we_do_page_image.webp";
 

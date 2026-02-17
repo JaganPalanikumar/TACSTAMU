@@ -1,11 +1,11 @@
-import Navbar from "./components/Navbar";
+import Navbar from "../../components/Navbar";
 import Image from "next/image";
 import B4G_Logo from "@/B4G_Logo.png";
 import Challenges_Header from "@/challenges_header.png";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-import Footer from "./components/Footer";
+import Footer from "../../components/Footer";
 
 const B4G: React.FC = () => {
   // Example schedule data

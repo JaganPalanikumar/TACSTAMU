@@ -195,24 +195,21 @@ export default function Landing() {
           />
         </div>
       </section>
-      <section className="h-fit">
-        <div className="mx-auto w-[70%] p-[1rem] rounded-[5rem] bg-gradient-to-b from-[--peach] to-[--pink]">
-          <div className="bg-white rounded-[4rem] p-10 flex flex-col gap-3">
-            <h1 className="text-8xl text-[--pink]">About</h1>
-            <p className="text-3xl text-[--gray] font-[600]">
-              Build4Good is a 1.5-day hackathon hosted by the Texas A&M
-              Computing Society (TACS). In this event, teams of students
-              collaborate on innovative projects based on curated prompts and
-              challenges. This year marks our third year hosting, bringing
-              together creativity, technical skill, and a passion for making an
-              impact. <br /> <br />
-              We can’t wait to see what you build!
-            </p>
-          </div>
+      <section className="h-fit flex flex-col gap-5">
+        <h1 className="text-8xl mx-auto w-fit text-center">About</h1>
+        <div className="bg-[--container-background] mx-auto w-[90%] max-w-[1500] rounded-[4rem] p-10 flex flex-col gap-3">
+          <p className="text-3xl text-[--gray] font-[600]">
+            Build4Good is a 1.5-day hackathon hosted by the Texas A&M Computing
+            Society (TACS). In this event, teams of students collaborate on
+            innovative projects based on curated prompts and challenges. This
+            year marks our third year hosting, bringing together creativity,
+            technical skill, and a passion for making an impact. <br /> <br />
+            We can’t wait to see what you build!
+          </p>
         </div>
       </section>
       {/* TODO Add location */}
-      <section className="h-fit">
+      {/* <section className="h-fit">
         <div className="relative flex flex-col h-fit gap-5">
           <h1 className="text-8xl mx-auto">Tracks</h1>
           <div className="grid grid-flow-row grid-cols-1 xl:grid-cols-2 gap-10 w-full h-fit mx-auto px-[5vw]">
@@ -233,58 +230,56 @@ export default function Landing() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
       <section className="h-fit w-dvw">
         <div className="realitive flex flex-col gap-5 h-fit">
-          <h1 className="text-8xl mx-auto">Tentative Schedule</h1>
-          <div className="w-fit h-full p-[1rem] rounded-[5rem] bg-gradient-to-b from-[--peach] to-[--pink] mx-auto">
-            <ul className="w-[70dvw] h-full p-[2rem] rounded-[4rem] bg-white flex flex-col gap-4 text-4xl">
-              <h1 className="text-6xl text-[--pink] mb-5">
-                Saturday, March 28th
-              </h1>
-              <li className="flex flex-row w-full justify-between text-[--gray]">
-                <h2>Doors Open</h2> <p>9:00 AM</p>
-              </li>
-              <li className="flex flex-row w-full justify-between text-[--gray]">
-                <h2>Opening Ceremony</h2> <p>11:00 AM</p>
-              </li>
-              <li className="flex flex-row w-full justify-between text-[--gray]">
-                <h2>Hacking Begins</h2> <p>11:30 AM</p>
-              </li>
-              <li className="flex flex-row w-full justify-between text-[--gray]">
-                <h2>Lunch</h2> <p>12:00 PM</p>
-              </li>
-              <li className="flex flex-row w-full justify-between text-[--gray]">
-                <h2>Poker Bot Challenge Closes</h2> <p>5:00 PM</p>
-              </li>
-              <li className="flex flex-row w-full justify-between text-[--gray]">
-                <h2>Doors Close</h2> <p>5:00 PM</p>
-              </li>
-              <h1 className="text-6xl text-[--pink] my-5">
-                Sunday, March 29th
-              </h1>
-              <li className="flex flex-row w-full justify-between text-[--gray]">
-                <h2>Devpost Submissions Due</h2> <p>12:00 PM</p>
-              </li>
-              <li className="flex flex-row w-full justify-between text-[--gray]">
-                <h2>Judging</h2> <p>2:00 - 4:00 PM</p>
-              </li>
-              <li className="flex flex-row w-full justify-between text-[--gray]">
-                <h2>Virtual Award Ceremony</h2> <p>5:00 PM</p>
-              </li>
-              <h1 className="text-6xl text-[--pink] my-5">
-                Wednesday, April 1st
-              </h1>
-              <li className="flex flex-row w-full justify-between text-[--gray]">
-                <h2>Prize Distribution</h2> <p>7:00 PM</p>
-              </li>
-            </ul>
-          </div>
+          <h1 className="text-8xl w-auto mx-auto text-center">
+            Tentative Schedule
+          </h1>
+          <ul className="bg-[--container-background] mx-auto w-[90%] max-w-[1500] rounded-[4rem] p-10 flex flex-col gap-3">
+            <h1 className="text-6xl text-[--pink] mb-5">
+              Saturday, March 28th
+            </h1>
+            <li className="flex flex-row w-full justify-between text-[--gray]">
+              <h2>Doors Open</h2> <p>9:00 AM</p>
+            </li>
+            <li className="flex flex-row w-full justify-between text-[--gray]">
+              <h2>Opening Ceremony</h2> <p>11:00 AM</p>
+            </li>
+            <li className="flex flex-row w-full justify-between text-[--gray]">
+              <h2>Hacking Begins</h2> <p>11:30 AM</p>
+            </li>
+            <li className="flex flex-row w-full justify-between text-[--gray]">
+              <h2>Lunch</h2> <p>12:00 PM</p>
+            </li>
+            <li className="flex flex-row w-full justify-between text-[--gray]">
+              <h2>Poker Bot Challenge Closes</h2> <p>5:00 PM</p>
+            </li>
+            <li className="flex flex-row w-full justify-between text-[--gray]">
+              <h2>Doors Close</h2> <p>5:00 PM</p>
+            </li>
+            <h1 className="text-6xl text-[--pink] my-5">Sunday, March 29th</h1>
+            <li className="flex flex-row w-full justify-between text-[--gray]">
+              <h2>Devpost Submissions Due</h2> <p>12:00 PM</p>
+            </li>
+            <li className="flex flex-row w-full justify-between text-[--gray]">
+              <h2>Judging</h2> <p>2:00 - 4:00 PM</p>
+            </li>
+            <li className="flex flex-row w-full justify-between text-[--gray]">
+              <h2>Virtual Award Ceremony</h2> <p>5:00 PM</p>
+            </li>
+            <h1 className="text-6xl text-[--pink] my-5">
+              Wednesday, April 1st
+            </h1>
+            <li className="flex flex-row w-full justify-between text-[--gray]">
+              <h2>Prize Distribution</h2> <p>7:00 PM</p>
+            </li>
+          </ul>
         </div>
       </section>
       {/* TODO Add sponsors page */}
       <section className="flex flex-col gap-20 w-dvw h-fit">
-        <h1 className="text-8xl mx-auto w-fit">Sponsors</h1>
+        <h1 className="text-8xl mx-auto w-fit text-center">Sponsors</h1>
 
         <div className="relative overflow-hidden w-[80dvw] h-fit mx-auto">
           <div className="absolute top-0 left-0 h-[10dvh] w-[20%] z-10 bg-gradient-to-r from-[--background] to-transparent" />

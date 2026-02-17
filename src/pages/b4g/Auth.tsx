@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "./context/authContext";
+import { useAuth } from "@/b4g/context/authContext";
 import { useRouter } from "next/router";
 import { supabase } from "@/utils/supabase";
 import { AuthError, PostgrestError } from "@supabase/supabase-js";
-import { Profile } from "./types/DatabaseTypes";
+import { Profile } from "@/b4g/types/DatabaseTypes";
 
 const Auth = () => {
   const { user, login } = useAuth();
