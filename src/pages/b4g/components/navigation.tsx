@@ -40,18 +40,17 @@ export function Navigation() {
   };
 
   return (
-    <nav className="relative w-full items-center justify-between p-3 text-[--gray] rounded-full z-50">
-      <div className="flex w-full items-center justify-between p-3 px-6 rounded-full bg-white text-center">
-        <Link className="group" href="/b4g">
-          <Image
-            src="/b4g/bordered long logo.svg"
-            width={1072.48}
-            height={229.37}
-            alt=""
-            className="h-14 w-auto group-hover:scale-110"
-          />
-        </Link>
-
+    <nav className="relative flex w-full items-center justify-between p-3 text-[--gray] rounded-full z-50">
+      <Link className="hover:scale-110 w-fit p-4" href="/b4g">
+        <Image
+          src="/b4g/bordered long logo.svg"
+          width={1072.48}
+          height={229.37}
+          alt=""
+          className="h-14 w-auto"
+        />
+      </Link>
+      <div className="flex w-fit items-center justify-between p-3 px-6 rounded-full bg-white text-center">
         <div className="hidden lg:flex flex-row gap-3 text-2xl max-w-[70dvw]">
           <Link className="p-2 hover:scale-110 my-auto" href="/b4g/Dashboard">
             Dashboard

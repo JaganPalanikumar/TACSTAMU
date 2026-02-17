@@ -8,24 +8,26 @@ import {
 import Image from "next/image";
 import useMeasure from "react-use-measure";
 import { useEffect } from "react";
+import { Description } from "@mui/icons-material";
 
 const tracks = [
-  {
-    title: "BEST OVERALL",
-    description:
-      "Best overall hack that meets all of the judging criteria: creativity, technical complexity, and societal impact",
-  },
-  {
-    title: "POKER BOT",
-    description:
-      "Create an algorithm to play against other bots in a variant of poker.",
-  },
-  {
-    title: "FIGMA(UI/UX)",
-    description:
-      "Hack with best design and seamless user experience using the Figma API",
-  },
-  { title: "AGGIEX STARTUP", description: "Hello" },
+  { title: "TBD", description: "Tracks will be announced on March 28" },
+  // {
+  //   title: "BEST OVERALL",
+  //   description:
+  //     "Best overall hack that meets all of the judging criteria: creativity, technical complexity, and societal impact",
+  // },
+  // {
+  //   title: "POKER BOT",
+  //   description:
+  //     "Create an algorithm to play against other bots in a variant of poker.",
+  // },
+  // {
+  //   title: "FIGMA(UI/UX)",
+  //   description:
+  //     "Hack with best design and seamless user experience using the Figma API",
+  // },
+  // { title: "AGGIEX STARTUP", description: "Hello" },
 ];
 
 const logos = [
@@ -53,12 +55,12 @@ const logos = [
     width: 104,
     height: 41,
   },
-  {
-    title: "Amazon Web Services",
-    image: "/b4g/Amazon_Web_Services_Logo.svg",
-    width: 300.67,
-    height: 179.8,
-  },
+  // {
+  //   title: "Amazon Web Services",
+  //   image: "/b4g/Amazon_Web_Services_Logo.svg",
+  //   width: 300.67,
+  //   height: 179.8,
+  // },
   {
     title: "Good Bull Fund",
     image: "/b4g/Good_Bull_Fund_Logo.svg",
