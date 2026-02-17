@@ -13,10 +13,22 @@ export default function FAQ() {
 ];
 
   return (
-    <div className="flex flex-col gap-3 p-3">
+    /*
+    <div className="flex flex-col gap-3 p-3 px-20">
       <h1 className="w-fit mx-auto text-5xl">Frequently Asked Questions</h1>
       <div className="w-full mx-auto p-[1rem] rounded-[5rem] bg-gradient-to-b from-[--peach] to-[--pink]">
-        <ul className="w-full mx-auto p-7 rounded-[4rem] bg-white text-[--gray]">
+        <ul className="w-full mx-auto px-5 py-5 rounded-[4rem] bg-white text-[--gray]">
+          {faqs.map((faq, index) => (
+            <FAQItem key={index} question={faq.question} answer={faq.answer} />
+          ))}
+        </ul>
+      </div>
+    </div>
+    */
+    <div className="flex flex-col gap-3 p-16">
+      <h1 className="w-fit mx-auto text-5xl">Frequently Asked Questions</h1>
+       <div className="">
+        <ul className="">
           {faqs.map((faq, index) => (
             <FAQItem key={index} question={faq.question} answer={faq.answer} />
           ))}
