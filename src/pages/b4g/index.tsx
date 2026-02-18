@@ -81,12 +81,12 @@ const logos = [
     width: 104,
     height: 41,
   },
-  // {
-  //   title: "Amazon Web Services",
-  //   image: "/b4g/Amazon_Web_Services_Logo.svg",
-  //   width: 300.67,
-  //   height: 179.8,
-  // },
+  {
+    title: "Aggie X",
+    image: "/b4g/AggieX_Logo.svg",
+    width: 610,
+    height: 145,
+  },
   {
     title: "Good Bull Fund",
     image: "/b4g/Good_Bull_Fund_Logo.svg",
