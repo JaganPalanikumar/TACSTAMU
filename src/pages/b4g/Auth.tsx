@@ -192,8 +192,7 @@ const Auth = () => {
 
   const inputBubbles =
     "self-stretch focus:border-[--pink] focus:border-[2.5px] h-14 px-6 py-2.5 bg-[--container-background] rounded-2xl inline-flex items-center gap-2.5 text-white text-lg font-normal font-['Jost'] outline-none placeholder:text-white/50 placeholder:text-lg placeholder:font-normal placeholder:font-['Jost']";
-  const formText =
-    "px-3 text-white text-2xl font-medium font-['Jost'] whitespace-nowrap";
+  const formText = "px-3 text-white text-2xl font-medium font-['Jost']";
   const dropDownBubble =
     "self-stretch h-14 px-6 py-2.5 bg-[--container-background] rounded-2xl inline-flex items-center gap-2.5 text-lg font-normal font-['Jost'] outline-none appearance-none cursor-pointer";
   const qWrap = "w-full max-w-3xl mx-auto flex flex-col gap-6";
@@ -215,7 +214,6 @@ const Auth = () => {
   const errorText = "px-3 text-red-400 text-sm font-normal font-['Jost']";
   const errorWrap = "self-stretch flex flex-col gap-2";
 
-  // BUG Auth page doesnt fill screen on mobile for some reason and I can only test by pushing to prod
   return (
     <div className="min-h-screen w-full overflow-x-hidden">
       <div className="mx-auto w-full px-6 pt-24 pb-24">
