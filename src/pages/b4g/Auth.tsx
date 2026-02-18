@@ -16,7 +16,7 @@ const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
 
   const currentYear = new Date().getFullYear();
-  const gradYears = Array.from({ length: 10 }, (_, i) => currentYear + i - 2); // current year - 2 + next 10 years
+  const gradYears = Array.from({ length: 10 }, (_, i) => currentYear + i - 2); 
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,6 +29,8 @@ const Auth = () => {
   const [shirtSize, setShirtSize] = useState("");
   const [heardAbout, setHeardAbout] = useState("");
   const [helpfulLinks, setHelpfulLinks] = useState("");
+  const [resetMsg, setResetMsg] = useState<string | null>(null);
+  const [resetLoading, setResetLoading] = useState(false);
 
   const [error, setError] = useState<AuthError | PostgrestError | null>(null);
   const [loading, setLoading] = useState(false);
@@ -60,7 +62,6 @@ const Auth = () => {
       if (!gradYear) e.gradYear = "Please select a graduation year.";
       if (!firstHackathon) e.firstHackathon = "This is a required field.";
       if (!shirtSize) e.shirtSize = "Please select a size.";
-      if (!heardAbout.trim()) e.heardAbout = "This is a required field.";
     }
   
     if (!email.trim()) e.email = "This is a required field.";
@@ -77,8 +78,8 @@ const Auth = () => {
 
     if (Object.keys(errs).length > 0) {
       const order = isSignup
-        ? ["firstName","lastName","gradYear","firstHackathon","shirtSize","heardAbout","email","password"]
-        : ["email","password"];
+  ? ["firstName","lastName","gradYear","firstHackathon","shirtSize","email","password"]
+  : ["email","password"];
 
       const firstKey = order.find((k) => errs[k]);
       const map: Record<string, HTMLElement | null> = {
@@ -87,7 +88,6 @@ const Auth = () => {
         gradYear: gradYearRef.current,
         firstHackathon: firstHackathonRef.current,
         shirtSize: shirtSizeRef.current,
-        heardAbout: heardAboutRef.current,
         email: emailRef.current,
         password: passwordRef.current,
       };
@@ -180,6 +180,34 @@ const Auth = () => {
     }
   };
 
+  const handleForgotPassword = async () => {
+    setResetMsg(null);
+  
+    if (!email.trim()) {
+      setSubmitAttempted(true);
+      setFieldErrors((prev) => ({ ...prev, email: "Enter your email above first." }));
+      emailRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      emailRef.current?.focus();
+      return;
+    }
+  
+    try {
+      setResetLoading(true);
+  
+      const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
+        redirectTo: `${window.location.origin}/b4g/reset-password`,
+      });
+  
+      if (error) throw error;
+  
+      setResetMsg("Password reset email sent. Check your inbox.");
+    } catch (err: any) {
+      setResetMsg(err?.message || "Could not send reset email.");
+    } finally {
+      setResetLoading(false);
+    }
+  };
+
   const inputBubbles = "self-stretch h-14 px-6 py-2.5 bg-white/10 rounded-2xl inline-flex items-center gap-2.5 text-white text-lg font-normal font-['Jost'] outline-none placeholder:text-white/50 placeholder:text-lg placeholder:font-normal placeholder:font-['Jost']";
   const formText = "px-3 text-white text-2xl font-medium font-['Jost'] whitespace-nowrap";
   const dropDownBubble = "self-stretch h-14 px-6 py-2.5 bg-white/10 rounded-2xl inline-flex items-center gap-2.5 text-lg font-normal font-['Jost'] outline-none appearance-none cursor-pointer";
@@ -193,11 +221,9 @@ const Auth = () => {
   const toggleOff = "w-8 h-8 relative rounded-[999px] border-[2.5px] border-white/20";
   const dot = "w-4 h-4 left-[8px] top-[8px] absolute bg-purple-400 rounded-full";
 
-  const errorBubble =
-  "outline outline-[2.5px] outline-offset-[-2.5px] outline-red-400";
-const errorText =
-  "px-3 text-red-400 text-sm font-normal font-['Jost']";
-const errorWrap = "self-stretch flex flex-col gap-2";
+  const errorBubble = "outline outline-[2.5px] outline-offset-[-2.5px] outline-red-400";
+  const errorText = "px-3 text-red-400 text-sm font-normal font-['Jost']";
+  const errorWrap = "self-stretch flex flex-col gap-2";
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-[#0B0F17] via-[#070A10] to-black">
@@ -499,6 +525,25 @@ const errorWrap = "self-stretch flex flex-col gap-2";
             <div className={errorText}>{fieldErrors.password}</div>
           )}
         </div>
+
+        {!isSignup && (
+  <div className="px-3 -mt-2">
+    <button
+      type="button"
+      onClick={handleForgotPassword}
+      disabled={resetLoading}
+      className="text-lg px-0 w-auto h-auto align-baseline text-purple-400 hover:text-purple-300 disabled:opacity-60"
+    >
+      {resetLoading ? "Sending..." : "Forgot your password?"}
+    </button>
+
+    {resetMsg && (
+      <div className="mt-2 text-white/70 text-sm font-normal font-['Jost']">
+        {resetMsg}
+      </div>
+    )}
+  </div>
+)}
 
 
         <button
