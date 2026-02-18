@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import { supabase } from "@/utils/supabase";
 import { AuthError, PostgrestError } from "@supabase/supabase-js";
 import { Profile } from "@/b4g/types/DatabaseTypes";
+import { AnimatePresence, motion } from "framer-motion";
+import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 
 const Auth = () => {
   const { user, login } = useAuth();
@@ -14,9 +16,10 @@ const Auth = () => {
       : "/b4g/Dashboard";
 
   const [isSignup, setIsSignup] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const currentYear = new Date().getFullYear();
-  const gradYears = Array.from({ length: 10 }, (_, i) => currentYear + i - 2); 
+  const gradYears = Array.from({ length: 10 }, (_, i) => currentYear + i - 2);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -45,8 +48,6 @@ const Auth = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-
-
   useEffect(() => {
     if (user) {
       router.push("/b4g/Dashboard");
@@ -55,7 +56,7 @@ const Auth = () => {
 
   const validate = () => {
     const e: Record<string, string> = {};
-  
+
     if (isSignup) {
       if (!firstName.trim()) e.firstName = "This is a required field.";
       if (!lastName.trim()) e.lastName = "This is a required field.";
@@ -63,10 +64,10 @@ const Auth = () => {
       if (!firstHackathon) e.firstHackathon = "This is a required field.";
       if (!shirtSize) e.shirtSize = "Please select a size.";
     }
-  
+
     if (!email.trim()) e.email = "This is a required field.";
     if (!password) e.password = "This is a required field.";
-  
+
     setFieldErrors(e);
     return e;
   };
@@ -78,8 +79,16 @@ const Auth = () => {
 
     if (Object.keys(errs).length > 0) {
       const order = isSignup
-  ? ["firstName","lastName","gradYear","firstHackathon","shirtSize","email","password"]
-  : ["email","password"];
+        ? [
+            "firstName",
+            "lastName",
+            "gradYear",
+            "firstHackathon",
+            "shirtSize",
+            "email",
+            "password",
+          ]
+        : ["email", "password"];
 
       const firstKey = order.find((k) => errs[k]);
       const map: Record<string, HTMLElement | null> = {
@@ -182,24 +191,30 @@ const Auth = () => {
 
   const handleForgotPassword = async () => {
     setResetMsg(null);
-  
+
     if (!email.trim()) {
       setSubmitAttempted(true);
-      setFieldErrors((prev) => ({ ...prev, email: "Enter your email above first." }));
+      setFieldErrors((prev) => ({
+        ...prev,
+        email: "Enter your email above first.",
+      }));
       emailRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
       emailRef.current?.focus();
       return;
     }
-  
+
     try {
       setResetLoading(true);
-  
-      const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
-        redirectTo: `${window.location.origin}/b4g/reset-password`,
-      });
-  
+
+      const { error } = await supabase.auth.resetPasswordForEmail(
+        email.trim(),
+        {
+          redirectTo: `${window.location.origin}/b4g/reset-password`,
+        },
+      );
+
       if (error) throw error;
-  
+
       setResetMsg("Password reset email sent. Check your inbox.");
     } catch (err: any) {
       setResetMsg(err?.message || "Could not send reset email.");
@@ -208,372 +223,443 @@ const Auth = () => {
     }
   };
 
-  const inputBubbles = "self-stretch h-14 px-6 py-2.5 bg-white/10 rounded-2xl inline-flex items-center gap-2.5 text-white text-lg font-normal font-['Jost'] outline-none placeholder:text-white/50 placeholder:text-lg placeholder:font-normal placeholder:font-['Jost']";
-  const formText = "px-3 text-white text-2xl font-medium font-['Jost'] whitespace-nowrap";
-  const dropDownBubble = "self-stretch h-14 px-6 py-2.5 bg-white/10 rounded-2xl inline-flex items-center gap-2.5 text-lg font-normal font-['Jost'] outline-none appearance-none cursor-pointer";
-  const qWrap = "w-full max-w-3xl mx-auto flex flex-col gap-6"; 
-  const qText = "px-3 text-white text-2xl font-medium font-['Jost']"; 
+  const inputBubbles =
+    "self-stretch h-14 px-6 py-2.5 bg-[--container-background] rounded-2xl inline-flex items-center gap-2.5 text-white text-lg font-normal font-['Jost'] outline-none placeholder:text-white/50 placeholder:text-lg placeholder:font-normal placeholder:font-['Jost']";
+  const formText =
+    "px-3 text-white text-2xl font-medium font-['Jost'] whitespace-nowrap";
+  const dropDownBubble =
+    "self-stretch h-14 px-6 py-2.5 bg-[--container-background] rounded-2xl inline-flex items-center gap-2.5 text-lg font-normal font-['Jost'] outline-none appearance-none cursor-pointer";
+  const qWrap = "w-full max-w-3xl mx-auto flex flex-col gap-6";
+  const qText = "px-3 text-white text-2xl font-medium font-['Jost']";
   const optStack = "w-full flex flex-col gap-4";
-  const optBase = "w-full h-16 px-6 py-2 rounded-2xl inline-flex justify-between items-center gap-4";
-  const optOn = "bg-white/20 outline outline-[2.5px] outline-offset-[-2.5px] outline-purple-400";
-  const optOff = "bg-white/10";
-  const toggleOn = "w-8 h-8 relative rounded-[999px] outline outline-4 outline-offset-[-4px] outline-purple-400 overflow-hidden";
-  const toggleOff = "w-8 h-8 relative rounded-[999px] border-[2.5px] border-white/20";
-  const dot = "w-4 h-4 left-[8px] top-[8px] absolute bg-purple-400 rounded-full";
+  const optBase =
+    "w-full h-16 px-6 py-2 rounded-2xl inline-flex justify-between items-center gap-4";
+  const optOn =
+    "bg-white/20 outline outline-[2.5px] outline-offset-[-2.5px] outline-purple-400";
+  const optOff = "bg-[--container-background]";
+  const toggleOn =
+    "w-8 h-8 relative rounded-[999px] outline outline-4 outline-offset-[-4px] outline-purple-400 overflow-hidden";
+  const toggleOff =
+    "w-8 h-8 relative rounded-[999px] border-[2.5px] border-white/20";
+  const dot =
+    "w-4 h-4 left-[8px] top-[8px] absolute bg-purple-400 rounded-full";
 
-  const errorBubble = "outline outline-[2.5px] outline-offset-[-2.5px] outline-red-400";
+  const errorBubble =
+    "outline outline-[2.5px] outline-offset-[-2.5px] outline-red-400";
   const errorText = "px-3 text-red-400 text-sm font-normal font-['Jost']";
   const errorWrap = "self-stretch flex flex-col gap-2";
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-[#0B0F17] via-[#070A10] to-black">
+    <div className="min-h-screen w-full">
       <div className="mx-auto w-full max-w-3xl px-6 pt-24 pb-24">
-      <h1 className="self-stretch text-center justify-center text-white text-7xl font-semibold font-['Jost']">{isSignup ? "Sign Up" : "Login"}</h1>
+        <h1 className="self-stretch text-center justify-center text-white text-7xl font-semibold font-['Jost']">
+          {isSignup ? "Sign Up" : "Login"}
+        </h1>
 
-      <form noValidate onSubmit={handleSubmit} className="flex flex-col gap-5 p-3">
-        {error && <p style={{ color: "red" }}>{error.message}</p>}
+        <form
+          noValidate
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-5 p-3"
+        >
+          {error && <p style={{ color: "red" }}>{error.message}</p>}
 
-        {isSignup && (
-          <>
-            <div className={errorWrap}>
-              <h2 className={formText}>First Name *</h2>
-              <input ref={firstNameRef}
-                placeholder="First Name"
-                value={firstName}
-                autoCapitalize="words"
-                autoComplete="given-name"
-                autoCorrect="off"
-                spellCheck={false}
-                onChange={(e) => setFirstName(e.target.value)}
-                className={`${inputBubbles} ${
-                  submitAttempted && fieldErrors.firstName ? errorBubble : ""
-                }`}
-                required
-              />
-              {submitAttempted && fieldErrors.firstName && (
-                <div className={errorText}>{fieldErrors.firstName}</div>
-              )}
-            </div>
-
-            <div className="self-stretch flex flex-col gap-2">
-              <h2 className={formText}>Last Name *</h2>
-              <input ref= {lastNameRef}
-                placeholder="Last Name"
-                value={lastName}
-                autoCapitalize="words"
-                autoComplete="family-name"
-                autoCorrect="off"
-                spellCheck={false}
-                onChange={(e) => setLastName(e.target.value)}
-                className={`${inputBubbles} ${
-                  submitAttempted && fieldErrors.lastName ? "outline outline-[2.5px] outline-offset-[-2.5px] outline-red-400" : ""
-                }`}
-              />
-              {submitAttempted && fieldErrors.lastName && (
-                <div className="px-3 text-red-400 text-sm font-normal font-['Jost']">
-                  {fieldErrors.lastName}
-                </div>
-              )}
-            </div>
-
-            <div className={errorWrap}>
-              <h2 className={formText}>Graduation Year *</h2>
-
-              <select ref={gradYearRef}
-                value={gradYear}
-                onChange={(e) => setGradYear(e.target.value)}
-                className={`${dropDownBubble} ${gradYear === "" ? "text-white/50" : "text-white"} ${
-                  submitAttempted && fieldErrors.gradYear ? errorBubble : ""
-                }`}
-                // remove required if using form noValidate + validate()
-              >
-                <option value="">Select graduation year</option>
-                {gradYears.map((year) => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
-
-              {submitAttempted && fieldErrors.gradYear && (
-                <div className={errorText}>{fieldErrors.gradYear}</div>
-              )}
-            </div>
-
-            <div className={errorWrap}>
-            <div ref={firstHackathonRef} className={qWrap}>
-              <div className={qText}>Will this be your first time at a hackathon? *</div>
-
-              <div className={optStack}>
-                <label className="w-full cursor-pointer">
-                  <input
-                    className="sr-only"
-                    type="radio"
-                    name="firstHackathon"
-                    value="yes"
-                    checked={firstHackathon === "yes"}
-                    onChange={(e) => setFirstHackathon(e.target.value)}
-                  />
-                  <div
-                    className={`${optBase} ${
-                      firstHackathon === "yes" ? optOn : optOff
-                    } ${submitAttempted && fieldErrors.firstHackathon ? errorBubble : ""}`}
-                  >
-                    <div className="text-white text-2xl font-normal font-['Jost']">Yes</div>
-                    <div className={firstHackathon === "yes" ? toggleOn : toggleOff}>
-                      {firstHackathon === "yes" && <div className={dot} />}
-                    </div>
-                  </div>
-                </label>
-
-                <label className="w-full cursor-pointer">
-                  <input
-                    className="sr-only"
-                    type="radio"
-                    name="firstHackathon"
-                    value="no"
-                    checked={firstHackathon === "no"}
-                    onChange={(e) => setFirstHackathon(e.target.value)}
-                  />
-                  <div
-                    className={`${optBase} ${
-                      firstHackathon === "no" ? optOn : optOff
-                    } ${submitAttempted && fieldErrors.firstHackathon ? errorBubble : ""}`}
-                  >
-                    <div className="text-white text-2xl font-normal font-['Jost']">No</div>
-                    <div className={firstHackathon === "no" ? toggleOn : toggleOff}>
-                      {firstHackathon === "no" && <div className={dot} />}
-                    </div>
-                  </div>
-                </label>
-              </div>
-            </div>
-
-            {submitAttempted && fieldErrors.firstHackathon && (
-              <div className={errorText}>{fieldErrors.firstHackathon}</div>
-            )}
-          </div>
-
-            <div className="self-stretch inline-flex flex-col justify-center items-start gap-1.5">
-              <div className="px-3 inline-flex justify-center items-center gap-2.5">
-                <div className="justify-center text-white text-2xl font-medium font-['Jost']">
-                  Dietary restrictions (if any)
-                </div>
+          {isSignup && (
+            <>
+              <div className={errorWrap}>
+                <h2 className={formText}>First Name *</h2>
+                <input
+                  ref={firstNameRef}
+                  placeholder="First Name"
+                  value={firstName}
+                  autoCapitalize="words"
+                  autoComplete="given-name"
+                  autoCorrect="off"
+                  spellCheck={false}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className={`${inputBubbles} ${
+                    submitAttempted && fieldErrors.firstName ? errorBubble : ""
+                  }`}
+                  required
+                />
+                {submitAttempted && fieldErrors.firstName && (
+                  <div className={errorText}>{fieldErrors.firstName}</div>
+                )}
               </div>
 
-              <div className="self-stretch grid grid-cols-1 md:grid-cols-2 gap-3">
-                {[
-                  "Vegetarian",
-                  "Vegan",
-                  "Gluten-Free",
-                  "Dairy-Free",
-                  "Nut-Free",
-                  "Halal",
-                  "Kosher",
-                  "No beef",
-                  "No pork",
-                  "Only chicken",
-                  "Other",
-                ].map((option) => {
-                  const checked = dietaryRestrictions.includes(option);
+              <div className="self-stretch flex flex-col gap-2">
+                <h2 className={formText}>Last Name *</h2>
+                <input
+                  ref={lastNameRef}
+                  placeholder="Last Name"
+                  value={lastName}
+                  autoCapitalize="words"
+                  autoComplete="family-name"
+                  autoCorrect="off"
+                  spellCheck={false}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className={`${inputBubbles} ${
+                    submitAttempted && fieldErrors.lastName
+                      ? "outline outline-[2.5px] outline-offset-[-2.5px] outline-red-400"
+                      : ""
+                  }`}
+                />
+                {submitAttempted && fieldErrors.lastName && (
+                  <div className="px-3 text-red-400 text-sm font-normal font-['Jost']">
+                    {fieldErrors.lastName}
+                  </div>
+                )}
+              </div>
 
-                  return (
-                    <label key={option} className="w-full cursor-pointer">
+              <div className={errorWrap}>
+                <h2 className={formText}>Graduation Year *</h2>
+
+                <select
+                  ref={gradYearRef}
+                  value={gradYear}
+                  onChange={(e) => setGradYear(e.target.value)}
+                  className={`${dropDownBubble} ${gradYear === "" ? "text-white/50" : "text-white"} ${
+                    submitAttempted && fieldErrors.gradYear ? errorBubble : ""
+                  }`}
+                  // remove required if using form noValidate + validate()
+                >
+                  <option value="">Select graduation year</option>
+                  {gradYears.map((year) => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
+                </select>
+
+                {submitAttempted && fieldErrors.gradYear && (
+                  <div className={errorText}>{fieldErrors.gradYear}</div>
+                )}
+              </div>
+
+              <div className={errorWrap}>
+                <div ref={firstHackathonRef} className={qWrap}>
+                  <div className={qText}>
+                    Will this be your first time at a hackathon? *
+                  </div>
+
+                  <div className={optStack}>
+                    <label className="w-full cursor-pointer">
                       <input
-                        type="checkbox"
-                        value={option}
-                        checked={checked}
-                        onChange={(e) => {
-                          const value = e.target.value;
-                          if (e.target.checked) {
-                            setDietaryRestrictions([...dietaryRestrictions, value]);
-                          } else {
-                            setDietaryRestrictions(
-                              dietaryRestrictions.filter((d) => d !== value),
-                            );
-                          }
-                        }}
                         className="sr-only"
+                        type="radio"
+                        name="firstHackathon"
+                        value="yes"
+                        checked={firstHackathon === "yes"}
+                        onChange={(e) => setFirstHackathon(e.target.value)}
                       />
-
                       <div
-                        className={`w-full h-14 pl-6 pr-2.5 py-2.5 rounded-2xl inline-flex justify-start items-center gap-2.5
+                        className={`${optBase} ${
+                          firstHackathon === "yes" ? optOn : optOff
+                        } ${submitAttempted && fieldErrors.firstHackathon ? errorBubble : ""}`}
+                      >
+                        <div className="text-white text-2xl font-normal font-['Jost']">
+                          Yes
+                        </div>
+                        <div
+                          className={
+                            firstHackathon === "yes" ? toggleOn : toggleOff
+                          }
+                        >
+                          {firstHackathon === "yes" && <div className={dot} />}
+                        </div>
+                      </div>
+                    </label>
+
+                    <label className="w-full cursor-pointer">
+                      <input
+                        className="sr-only"
+                        type="radio"
+                        name="firstHackathon"
+                        value="no"
+                        checked={firstHackathon === "no"}
+                        onChange={(e) => setFirstHackathon(e.target.value)}
+                      />
+                      <div
+                        className={`${optBase} ${
+                          firstHackathon === "no" ? optOn : optOff
+                        } ${submitAttempted && fieldErrors.firstHackathon ? errorBubble : ""}`}
+                      >
+                        <div className="text-white text-2xl font-normal font-['Jost']">
+                          No
+                        </div>
+                        <div
+                          className={
+                            firstHackathon === "no" ? toggleOn : toggleOff
+                          }
+                        >
+                          {firstHackathon === "no" && <div className={dot} />}
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                {submitAttempted && fieldErrors.firstHackathon && (
+                  <div className={errorText}>{fieldErrors.firstHackathon}</div>
+                )}
+              </div>
+
+              <div className="self-stretch inline-flex flex-col justify-center items-start gap-1.5">
+                <div className="px-3 inline-flex justify-center items-center gap-2.5">
+                  <div className="justify-center text-white text-2xl font-medium font-['Jost']">
+                    Dietary restrictions (if any)
+                  </div>
+                </div>
+
+                <div className="self-stretch grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {[
+                    "Vegetarian",
+                    "Vegan",
+                    "Gluten-Free",
+                    "Dairy-Free",
+                    "Nut-Free",
+                    "Halal",
+                    "Kosher",
+                    "No beef",
+                    "No pork",
+                    "Only chicken",
+                    "Other",
+                  ].map((option) => {
+                    const checked = dietaryRestrictions.includes(option);
+
+                    return (
+                      <label key={option} className="w-full cursor-pointer">
+                        <input
+                          type="checkbox"
+                          value={option}
+                          checked={checked}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            if (e.target.checked) {
+                              setDietaryRestrictions([
+                                ...dietaryRestrictions,
+                                value,
+                              ]);
+                            } else {
+                              setDietaryRestrictions(
+                                dietaryRestrictions.filter((d) => d !== value),
+                              );
+                            }
+                          }}
+                          className="sr-only"
+                        />
+
+                        <div
+                          className={`w-full h-14 pl-6 pr-2.5 py-2.5 rounded-2xl inline-flex justify-start items-center gap-2.5
                           ${
                             checked
                               ? "bg-white/20 outline outline-[2.5px] outline-offset-[-2.5px] outline-purple-400"
-                              : "bg-white/10"
+                              : "bg-[--container-background]"
                           }`}
-                      >
-                        <div className="flex-1 whitespace-nowrap overflow-hidden text-ellipsis text-white text-lg font-normal font-['Jost']">
-                          {option}
-                        </div>
+                        >
+                          <div className="flex-1 whitespace-nowrap overflow-hidden text-ellipsis text-white text-lg font-normal font-['Jost']">
+                            {option}
+                          </div>
 
-                        <div
-                          className={`w-8 h-8 relative rounded-xl overflow-hidden
+                          <div
+                            className={`w-8 h-8 relative rounded-xl overflow-hidden
                             ${
                               checked
                                 ? "bg-purple-400 outline outline-1 outline-offset-[-1px] outline-purple-400"
                                 : "outline outline-[2.5px] outline-offset-[-2.5px] outline-white/20"
                             }`}
-                        >
-                          {checked && (
-                            <svg
-                              viewBox="0 0 24 24"
-                              className="absolute inset-0 m-auto h-5 w-5"
-                              fill="none"
-                              stroke="white"
-                              strokeWidth="3"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            >
-                              <path d="M20 6L9 17l-5-5" />
-                            </svg>
-                          )}
+                          >
+                            {checked && (
+                              <svg
+                                viewBox="0 0 24 24"
+                                className="absolute inset-0 m-auto h-5 w-5"
+                                fill="none"
+                                stroke="white"
+                                strokeWidth="3"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <path d="M20 6L9 17l-5-5" />
+                              </svg>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    </label>
-                  );
-                })}
+                      </label>
+                    );
+                  })}
+                </div>
+
+                {dietaryRestrictions.includes("Other") && (
+                  <input
+                    type="text"
+                    placeholder="Please specify"
+                    value={customDietary}
+                    onChange={(e) => setCustomDietary(e.target.value)}
+                    className={`${inputBubbles} mt-3`}
+                  />
+                )}
               </div>
 
-              {dietaryRestrictions.includes("Other") && (
-                <input
-                  type="text"
-                  placeholder="Please specify"
-                  value={customDietary}
-                  onChange={(e) => setCustomDietary(e.target.value)}
-                  className={`${inputBubbles} mt-3`}
-                />
-              )}
-            </div>
+              <div className={errorWrap}>
+                <h2 className={formText}>What is your shirt size? *</h2>
 
+                <div className="relative w-full">
+                  <button
+                    type="button"
+                    onClick={() => setOpen(!open)}
+                    className={`${dropDownBubble} flex justify-between w-full items-center ${
+                      shirtSize === "" ? "text-white/50" : "text-white"
+                    } ${
+                      submitAttempted && fieldErrors.shirtSize
+                        ? errorBubble
+                        : ""
+                    }`}
+                  >
+                    {shirtSize || "Select size"}
+                    <span className={`transition ${open ? "rotate-180" : ""}`}>
+                      <ExpandMoreRoundedIcon className="-translate-y-0.5 text-white" />
+                    </span>
+                  </button>
 
-            <div className={errorWrap}>
-            <h2 className={formText}>What is your shirt size? *</h2>
+                  <AnimatePresence>
+                    {open && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -5 }}
+                        className="absolute z-50 mt-2 w-full bg-[#24272D] outline outline-[2.5px] outline-offset-[-2.5px] outline-purple-400 rounded-[1.5rem] shadow-xl p-3"
+                      >
+                        {["Small", "Medium", "Large", "X-Large"].map((size) => (
+                          <button
+                            key={size}
+                            type="button"
+                            onClick={() => {
+                              setShirtSize(size);
+                              setOpen(false);
+                            }}
+                            className="w-full text-left p-3 rounded-[1.125rem] text-white hover:bg-white/20 hover:scale-[1.02] transition"
+                          >
+                            {size}
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
-            <select ref={shirtSizeRef}
-              value={shirtSize}
-              onChange={(e) => setShirtSize(e.target.value)}
-              className={`${dropDownBubble} ${shirtSize === "" ? "text-white/50" : "text-white"} ${
-                submitAttempted && fieldErrors.shirtSize ? errorBubble : ""
+                {submitAttempted && fieldErrors.shirtSize && (
+                  <div className={errorText}>{fieldErrors.shirtSize}</div>
+                )}
+              </div>
+
+              <h2 className={formText}>How did you hear about this?</h2>
+              <input
+                type="text"
+                value={heardAbout}
+                onChange={(e) => setHeardAbout(e.target.value)}
+                placeholder="Canvas, Instagram, email, etc."
+                className={inputBubbles}
+                required
+              />
+
+              <h2 className={formText}>
+                Any links/info that would be helpful?
+              </h2>
+              <textarea
+                value={helpfulLinks}
+                onChange={(e) => setHelpfulLinks(e.target.value)}
+                placeholder="GitHub, portfolio, LinkedIn, etc."
+                rows={4}
+                className="self-stretch h-40 px-6 py-2.5 bg-[--container-background] rounded-2xl inline-flex items-center gap-2.5 text-white text-lg font-normal font-['Jost'] outline-none placeholder:text-white/50 placeholder:text-lg placeholder:font-normal placeholder:font-['Jost']"
+              />
+            </>
+          )}
+          <div className={errorWrap}>
+            <h2 className={formText}>Email *</h2>
+            <input
+              ref={emailRef}
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="username"
+              className={`${inputBubbles} ${
+                submitAttempted && fieldErrors.email ? errorBubble : ""
               }`}
-              // remove required if using form noValidate + validate()
-            >
-              <option value="">Select size</option>
-              <option value="S">S</option>
-              <option value="M">M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
-            </select>
-
-            {submitAttempted && fieldErrors.shirtSize && (
-              <div className={errorText}>{fieldErrors.shirtSize}</div>
+            />
+            {submitAttempted && fieldErrors.email && (
+              <div className={errorText}>{fieldErrors.email}</div>
             )}
           </div>
 
-
-            <h2 className={formText}>How did you hear about this?</h2>
+          <div className={errorWrap}>
+            <h2 className={formText}>Password *</h2>
             <input
-              type="text"
-              value={heardAbout}
-              onChange={(e) => setHeardAbout(e.target.value)}
-              placeholder="Canvas, Instagram, email, etc."
-              className={inputBubbles}
-              required
+              ref={passwordRef}
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
+              className={`${inputBubbles} ${
+                submitAttempted && fieldErrors.password ? errorBubble : ""
+              }`}
             />
+            {submitAttempted && fieldErrors.password && (
+              <div className={errorText}>{fieldErrors.password}</div>
+            )}
+          </div>
 
-            <h2 className={formText}>Any links/info that would be helpful?</h2>
-            <textarea
-              value={helpfulLinks}
-              onChange={(e) => setHelpfulLinks(e.target.value)}
-              placeholder="GitHub, portfolio, LinkedIn, etc."
-              rows={4}
-              className="self-stretch h-40 px-6 py-2.5 bg-white/10 rounded-2xl inline-flex items-center gap-2.5 text-white text-lg font-normal font-['Jost'] outline-none placeholder:text-white/50 placeholder:text-lg placeholder:font-normal placeholder:font-['Jost']"
-            />
-          </>
-        )}
-        <div className={errorWrap}>
-          <h2 className={formText}>Email *</h2>
-          <input ref={emailRef}
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            autoComplete="username"
-            className={`${inputBubbles} ${
-              submitAttempted && fieldErrors.email ? errorBubble : ""
-            }`}
-          />
-          {submitAttempted && fieldErrors.email && (
-            <div className={errorText}>{fieldErrors.email}</div>
+          {!isSignup && (
+            <div className="px-3 -mt-2">
+              <button
+                type="button"
+                onClick={handleForgotPassword}
+                disabled={resetLoading}
+                className="text-lg px-0 w-auto h-auto align-baseline text-purple-400 hover:text-purple-300 disabled:opacity-60"
+              >
+                {resetLoading ? "Sending..." : "Forgot your password?"}
+              </button>
+
+              {resetMsg && (
+                <div className="mt-2 text-white/70 text-sm font-normal font-['Jost']">
+                  {resetMsg}
+                </div>
+              )}
+            </div>
           )}
-        </div>
 
-        <div className={errorWrap}>
-          <h2 className={formText}>Password *</h2>
-          <input ref={passwordRef}
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            autoComplete="current-password"
-            className={`${inputBubbles} ${
-              submitAttempted && fieldErrors.password ? errorBubble : ""
-            }`}
-          />
-          {submitAttempted && fieldErrors.password && (
-            <div className={errorText}>{fieldErrors.password}</div>
-          )}
-        </div>
-
-        {!isSignup && (
-  <div className="px-3 -mt-2">
-    <button
-      type="button"
-      onClick={handleForgotPassword}
-      disabled={resetLoading}
-      className="text-lg px-0 w-auto h-auto align-baseline text-purple-400 hover:text-purple-300 disabled:opacity-60"
-    >
-      {resetLoading ? "Sending..." : "Forgot your password?"}
-    </button>
-
-    {resetMsg && (
-      <div className="mt-2 text-white/70 text-sm font-normal font-['Jost']">
-        {resetMsg}
-      </div>
-    )}
-  </div>
-)}
-
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="mt-5 mx-auto w-full max-w-sm px-6 py-2.5
+          <button
+            type="submit"
+            disabled={loading}
+            className="mt-5 mx-auto w-full max-w-sm px-6 py-2.5
           bg-purple-400 rounded-[999px]
           outline outline-[3px] outline-offset-[-3px] outline-purple-400
           inline-flex justify-center items-center gap-2.5
           text-center text-white text-2xl font-semibold font-['Jost']
           disabled:opacity-60"
-        >
-          {loading ? "Please wait..." : isSignup ? "Create Account" : "Login"}
-        </button> 
-      </form>
+          >
+            {loading ? "Please wait..." : isSignup ? "Create Account" : "Login"}
+          </button>
+        </form>
 
-      <div className="mt-6 mb-12 w-full text-center">
-        <span className={"text-white/80 text-lg font-normal font-['Jost']"}>
-          {isSignup ? "Already have an account?" : "Don't have an account?"}{" "}
-        </span>
+        <div className="mt-6 mb-12 w-full text-center">
+          <span className={"text-white/80 text-lg font-normal font-['Jost']"}>
+            {isSignup
+              ? "Already have an account?"
+              : "Don't have an account?"}{" "}
+          </span>
 
-        <button
-          type="button"
-          onClick={() => setIsSignup(!isSignup)}
-          className={"text-lg px-0 w-auto h-auto align-baseline text-purple-400 hover:text-purple-300"}
-        >
-          {isSignup ? "Login" : "Sign up"}
-        </button>
+          <button
+            type="button"
+            onClick={() => setIsSignup(!isSignup)}
+            className={
+              "text-lg px-0 w-auto h-auto align-baseline text-purple-400 hover:text-purple-300"
+            }
+          >
+            {isSignup ? "Login" : "Sign up"}
+          </button>
+        </div>
       </div>
-    </div>
     </div>
   );
 };
