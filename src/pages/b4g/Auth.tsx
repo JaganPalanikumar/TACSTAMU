@@ -226,7 +226,7 @@ const Auth = () => {
         <form
           noValidate
           onSubmit={handleSubmit}
-          className="flex flex-col gap-5 p-3"
+          className="flex flex-col gap-5 p-3 w-vw bg-[--background]"
         >
           {error && <p style={{ color: "red" }}>{error.message}</p>}
 
