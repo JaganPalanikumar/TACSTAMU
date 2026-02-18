@@ -122,7 +122,7 @@ export default function Landing() {
           </motion.div>
           <motion.div
             style={{ x: moveCloud, y: "40%" }}
-            className="absolute bottom-0 left-0 sm:w-[170vw] md:w-[150vw] 2xl:w-[80vw] h-auto"
+            className="absolute bottom-0 left-0 w-[250dvw] sm:w-[180vw] md:w-[150vw] 2xl:w-[80vw] h-auto"
           >
             <Image
               src="/b4g/cloud bunny.svg"
@@ -134,13 +134,14 @@ export default function Landing() {
           </motion.div>
           <motion.div
             style={{ x: moveBurst }}
-            className="absolute bottom-0 right-0 w-fit h-auto"
+            className="invisible sm:visible absolute bottom-0 right-0 w-fit h-auto"
           >
             <Image
               src="/b4g/flower burst.svg"
               alt="Flower and Burst"
               width={605}
               height={452}
+              className="w-[60dvw] lg:w-[50dvw] 2xl:w-[30dvw]"
               priority
             />
           </motion.div>
@@ -157,7 +158,7 @@ export default function Landing() {
               priority
               className="-rotate-[6.69deg]"
             />
-            <h1 className="w-fit text-center m-auto text-3xl">
+            <h1 className="w-fit text-center m-auto text-2xl">
               BUILD4GOOD 2026
             </h1>
           </div>
@@ -182,7 +183,7 @@ export default function Landing() {
             width={317.5}
             height={232.93}
             priority
-            className="h-auto w-[20rem] absolute left-0 top-0 translate-x-[10%] translate-y-[10%]"
+            className="invisible sm:visible h-auto w-[30dvw] md:w-[20dvw] xl:w-[15dvw] absolute left-0 top-0 translate-x-[10%] translate-y-[10%]"
           />
 
           <Image
@@ -195,7 +196,7 @@ export default function Landing() {
           />
         </div>
       </section>
-      <section className="h-fit flex flex-col gap-5">
+      <section id="About" className="h-fit flex flex-col gap-5">
         <h1 className="text-8xl mx-auto w-fit text-center">About</h1>
         <div className="bg-[--container-background] mx-auto w-[90%] max-w-[1500] rounded-[4rem] p-10 flex flex-col gap-3">
           <p className="text-3xl text-[--gray] font-[600]">
@@ -231,11 +232,9 @@ export default function Landing() {
           </div>
         </div>
       </section> */}
-      <section className="h-fit w-dvw">
+      <section id="Schedule" className="h-fit w-dvw">
         <div className="realitive flex flex-col gap-5 h-fit">
-          <h1 className="text-8xl w-auto mx-auto text-center">
-            Tentative Schedule
-          </h1>
+          <h1 className="text-8xl w-auto mx-auto text-center">Schedule</h1>
           <ul className="bg-[--container-background] mx-auto w-[90%] max-w-[1500] rounded-[4rem] p-10 flex flex-col gap-3">
             <h1 className="text-6xl text-[--pink] mb-5">
               Saturday, March 28th
@@ -278,7 +277,7 @@ export default function Landing() {
         </div>
       </section>
       {/* TODO Add sponsors page */}
-      <section className="flex flex-col gap-20 w-dvw h-fit">
+      <section id="Sponsors" className="flex flex-col gap-20 w-dvw h-fit">
         <h1 className="text-8xl mx-auto w-fit text-center">Sponsors</h1>
 
         <div className="relative overflow-hidden w-[80dvw] h-fit mx-auto">

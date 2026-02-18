@@ -6,6 +6,7 @@ import { AuthError, PostgrestError } from "@supabase/supabase-js";
 import { Profile } from "@/b4g/types/DatabaseTypes";
 import { AnimatePresence, motion } from "framer-motion";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
+import Link from "next/link";
 
 const Auth = () => {
   const { user, login } = useAuth();
@@ -186,40 +187,6 @@ const Auth = () => {
       setError(err);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleForgotPassword = async () => {
-    setResetMsg(null);
-
-    if (!email.trim()) {
-      setSubmitAttempted(true);
-      setFieldErrors((prev) => ({
-        ...prev,
-        email: "Enter your email above first.",
-      }));
-      emailRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-      emailRef.current?.focus();
-      return;
-    }
-
-    try {
-      setResetLoading(true);
-
-      const { error } = await supabase.auth.resetPasswordForEmail(
-        email.trim(),
-        {
-          redirectTo: `${window.location.origin}/b4g/reset-password`,
-        },
-      );
-
-      if (error) throw error;
-
-      setResetMsg("Password reset email sent. Check your inbox.");
-    } catch (err: any) {
-      setResetMsg(err?.message || "Could not send reset email.");
-    } finally {
-      setResetLoading(false);
     }
   };
 
@@ -623,14 +590,13 @@ const Auth = () => {
 
           {!isSignup && (
             <div className="px-3 -mt-2">
-              <button
+              <Link
                 type="button"
-                onClick={handleForgotPassword}
-                disabled={resetLoading}
+                href="/b4g/ForgotPassword"
                 className="text-lg px-0 w-auto h-auto align-baseline text-purple-400 hover:text-purple-300 disabled:opacity-60"
               >
                 {resetLoading ? "Sending..." : "Forgot your password?"}
-              </button>
+              </Link>
 
               {resetMsg && (
                 <div className="mt-2 text-white/70 text-sm font-normal font-['Jost']">

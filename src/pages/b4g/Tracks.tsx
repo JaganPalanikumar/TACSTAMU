@@ -1,7 +1,21 @@
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Tracks() {
   const [selected, setSelected] = useState<number>(0);
+  return (
+    <div className="flex flex-col max-w-[80dvw] mx-auto gap-10">
+      <h1 className="text-6xl text-white text-center">
+        STOP LOOKING AT THIS PAGE
+      </h1>
+      <Link
+        href="/b4g"
+        className="text-6xl text-white text-center mx-auto bg-[--pink] rounded-full p-5"
+      >
+        GO BACK
+      </Link>
+    </div>
+  );
   // TODO Finish this page
   return (
     <div className="w-dvw flex flex-col gap-5 max-w-[90dvw] mx-auto">

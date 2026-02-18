@@ -171,7 +171,7 @@ export default function Dashboard() {
           </div>
 
           <Link
-            href="/b4g"
+            href="/b4g#Schedule"
             className="mx-auto mt-4 px-8 py-3 rounded-full bg-[--pink] text-white hover:scale-105 transition"
           >
             View Full Schedule
