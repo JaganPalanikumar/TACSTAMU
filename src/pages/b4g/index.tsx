@@ -203,15 +203,14 @@ export default function Landing() {
               priority
               className="-rotate-[6.69deg]"
             />
-            <h1 className="w-fit text-center m-auto text-3xl flex flex-col gap-4">
-              BUILD4GOOD 2026
+            <div className="mt-5 w-fit text-center m-auto text-3xl flex flex-col gap-4">
               <Link
                 href="/b4g/Auth"
                 className="p-2 px-5 hover:scale-110 bg-[--pink] text-3xl w-fit text-white font-bold rounded-full mx-auto transition-transform duration-300"
               >
                 Register Now
               </Link>
-            </h1>
+            </div>
           </div>
 
           <Image

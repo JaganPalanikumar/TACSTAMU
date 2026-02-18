@@ -8,6 +8,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import Link from "next/link";
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0, // Scrolls to the top (vertical coordinate 0)
+    left: 0, // Scrolls to the left (horizontal coordinate 0)
+    behavior: "smooth", // Optional: smooth animation. Use 'instant' for an immediate jump
+  });
+};
+
 const Auth = () => {
   const { user, login } = useAuth();
   const router = useRouter();
@@ -215,7 +223,7 @@ const Auth = () => {
   const errorWrap = "self-stretch flex flex-col gap-2";
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden">
+    <div id="Auth" className="min-h-screen w-full overflow-x-hidden">
       <div className="mx-auto w-full px-6 pt-24 pb-24">
         <h1 className="self-stretch text-center justify-center text-white text-5xl mb-12 font-['Jost']">
           {isSignup ? "Sign Up" : "Login"}
@@ -627,7 +635,18 @@ const Auth = () => {
 
           <button
             type="button"
-            onClick={() => setIsSignup(!isSignup)}
+            onClick={() => {
+              setIsSignup(!isSignup);
+              const element = document.querySelector("#Auth");
+
+              if (element) {
+                // Always check if the element exists
+                element.scrollIntoView({
+                  behavior: "smooth", // Optional: smooth animation
+                  block: "start", // Aligns the top edge of the element with the top of the viewport
+                });
+              }
+            }}
             className={
               "text-lg px-0 w-auto h-auto align-baseline text-[--pink] hover:text-purple-300"
             }
