@@ -217,7 +217,7 @@ const Auth = () => {
 
   // BUG Auth page doesnt fill screen on mobile for some reason and I can only test by pushing to prod
   return (
-    <div className="min-h-screen w-vw">
+    <div className="min-h-screen w-full overflow-x-hidden">
       <div className="mx-auto w-full px-6 pt-24 pb-24">
         <h1 className="self-stretch text-center justify-center text-white text-7xl font-semibold font-['Jost']">
           {isSignup ? "Sign Up" : "Login"}
@@ -226,7 +226,7 @@ const Auth = () => {
         <form
           noValidate
           onSubmit={handleSubmit}
-          className="flex flex-col gap-5 p-3 w-vw bg-[--background]"
+          className="flex flex-col gap-5 p-3 w-full bg-[--background]"
         >
           {error && <p style={{ color: "red" }}>{error.message}</p>}
 
