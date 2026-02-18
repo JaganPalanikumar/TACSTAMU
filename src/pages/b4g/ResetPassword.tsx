@@ -55,7 +55,7 @@ export default function ResetPassword() {
             placeholder="New password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="h-12 px-5 rounded-2xl outline-none focus:border-purple-400 focus:border-[2.5px] bg-white/10"
+            className="h-12 px-5 rounded-2xl outline-none focus:border-[--pink] focus:border-[2.5px] bg-white/10"
           />
 
           <input
@@ -63,7 +63,7 @@ export default function ResetPassword() {
             placeholder="Confirm password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className="h-12 px-5 rounded-2xl outline-none focus:border-purple-400 focus:border-[2.5px] bg-white/10"
+            className="h-12 px-5 rounded-2xl outline-none focus:border-[--pink] focus:border-[2.5px] bg-white/10"
           />
 
           {error && <p className="text-red-500 text-sm">{error}</p>}
@@ -77,7 +77,7 @@ export default function ResetPassword() {
           <button
             type="submit"
             disabled={loading}
-            className="mt-2 px-6 py-3 rounded-full bg-purple-400 text-white font-semibold hover:scale-105 transition disabled:opacity-50"
+            className="mt-2 px-6 py-3 rounded-full bg-[--pink] text-white font-semibold hover:scale-105 transition disabled:opacity-50"
           >
             {loading ? "Updating..." : "Update Password"}
           </button>

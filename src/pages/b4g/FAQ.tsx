@@ -1,4 +1,4 @@
-import FAQItem from "../../components/FAQItem";
+import FAQItem from "../../b4g/components/FAQItem";
 
 export default function FAQ() {
   const faqs = [

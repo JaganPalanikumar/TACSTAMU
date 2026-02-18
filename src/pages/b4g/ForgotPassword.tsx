@@ -38,12 +38,12 @@ export default function ForgotPassword() {
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="h-12 px-5 rounded-2xl outline-none focus:border-purple-400 focus:border-[2.5px] bg-white/10"
+          className="h-12 px-5 rounded-2xl outline-none focus:border-[--pink] focus:border-[2.5px] bg-white/10"
         />
         <button
           type="submit"
           disabled={loading}
-          className="mt-2 px-6 py-3 rounded-full bg-purple-400 text-white font-semibold hover:scale-105 transition disabled:opacity-50"
+          className="mt-2 px-6 py-3 rounded-full bg-[--pink] text-white font-semibold hover:scale-105 transition disabled:opacity-50"
         >
           Send Reset Email
         </button>

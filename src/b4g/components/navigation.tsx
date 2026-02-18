@@ -41,12 +41,12 @@ export function Navigation() {
   return (
     <nav className="relative mx-auto my-0 w-[90%] max-w-[1500] h-fit flex items-center justify-between p-5 text-black rounded-full z-50">
       <Link
-        className="hover:scale-110 w-fit p-4"
+        className="hover:scale-110 w-fit p-4 transition-transform duration-300"
         href="/b4g"
         onClick={() => setMenuOpen(false)}
       >
         <Image
-          src="/b4g/bordered long logo.svg"
+          src="/b4g/long logo.svg"
           width={1072.48}
           height={229.37}
           alt=""
@@ -61,13 +61,16 @@ export function Navigation() {
           </Link>
           */}
 
-        <Link className="p-2 hover:scale-110 my-auto" href="/b4g/FAQ">
+        <Link
+          className="p-2 hover:scale-110 my-auto transition-transform duration-300"
+          href="/b4g/FAQ"
+        >
           FAQ
         </Link>
 
         <button
           onClick={() => setContactOpen(true)}
-          className="p-2 hover:scale-110 my-auto"
+          className="p-2 hover:scale-110 my-auto transition-transform duration-300"
         >
           Contact
         </button>
@@ -75,7 +78,7 @@ export function Navigation() {
         {profile?.id && (
           <Link
             href="/b4g/Dashboard"
-            className="flex flex-row w-fit p-2 gap-3 px-5 hover:scale-110 text-black my-auto"
+            className="flex flex-row w-fit p-2 gap-3 px-5 hover:scale-110 text-black my-auto transition-transform duration-300"
           >
             <Image
               src="/b4g/bunny icon.svg"
@@ -90,21 +93,21 @@ export function Navigation() {
         {profile?.id ? (
           <button
             onClick={logout}
-            className="p-2 px-5 hover:scale-105 bg-[--pink] text-white rounded-full my-auto"
+            className="p-2 px-5 hover:scale-105 bg-[--pink] text-white rounded-full my-auto transition-transform duration-300"
           >
             Logout
           </button>
         ) : (
           <Link
             href="/b4g/Auth"
-            className="p-2 px-5 hover:scale-110 bg-[--pink] text-white rounded-full my-auto"
+            className="p-2 px-5 hover:scale-110 bg-[--pink] text-white rounded-full my-auto transition-transform duration-300"
           >
             Login
           </Link>
         )}
 
         <Link
-          className="flex gap-5 p-2 px-5 hover:scale-110 border-[--pink] text-[--pink] border-4 rounded-full my-auto"
+          className="flex gap-5 p-2 px-5 hover:scale-110 border-[--pink] text-[--pink] border-4 rounded-full my-auto transition-transform duration-300"
           href="https://discord.gg/CBWn8mKFvx"
         >
           <svg
@@ -149,7 +152,7 @@ export function Navigation() {
             onClick={() => setMenuOpen(false)}
           >
             <div className="p-[1rem] rounded-[3rem] bg-gradient-to-b from-[--peach] to-[--pink]">
-              <div className="p-4 rounded-[2rem] bg-white flex flex-col gap-5 text-3xl">
+              <div className="p-4 rounded-[2rem] bg-white flex flex-col gap-5 text-2xl">
                 {profile?.id && (
                   <Link
                     href="/b4g/Dashboard"

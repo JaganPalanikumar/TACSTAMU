@@ -191,7 +191,7 @@ const Auth = () => {
   };
 
   const inputBubbles =
-    "self-stretch h-14 px-6 py-2.5 bg-[--container-background] rounded-2xl inline-flex items-center gap-2.5 text-white text-lg font-normal font-['Jost'] outline-none placeholder:text-white/50 placeholder:text-lg placeholder:font-normal placeholder:font-['Jost']";
+    "self-stretch focus:border-[--pink] focus:border-[2.5px] h-14 px-6 py-2.5 bg-[--container-background] rounded-2xl inline-flex items-center gap-2.5 text-white text-lg font-normal font-['Jost'] outline-none placeholder:text-white/50 placeholder:text-lg placeholder:font-normal placeholder:font-['Jost']";
   const formText =
     "px-3 text-white text-2xl font-medium font-['Jost'] whitespace-nowrap";
   const dropDownBubble =
@@ -202,14 +202,13 @@ const Auth = () => {
   const optBase =
     "w-full h-16 px-6 py-2 rounded-2xl inline-flex justify-between items-center gap-4";
   const optOn =
-    "bg-white/20 outline outline-[2.5px] outline-offset-[-2.5px] outline-purple-400";
+    "bg-white/20 outline outline-[2.5px] outline-offset-[-2.5px] outline-[--pink]";
   const optOff = "bg-[--container-background]";
   const toggleOn =
-    "w-8 h-8 relative rounded-[999px] outline outline-4 outline-offset-[-4px] outline-purple-400 overflow-hidden";
+    "w-8 h-8 relative rounded-[999px] outline outline-4 outline-offset-[-4px] outline-[--pink] overflow-hidden";
   const toggleOff =
     "w-8 h-8 relative rounded-[999px] border-[2.5px] border-white/20";
-  const dot =
-    "w-4 h-4 left-[8px] top-[8px] absolute bg-purple-400 rounded-full";
+  const dot = "w-4 h-4 left-[8px] top-[8px] absolute bg-[--pink] rounded-full";
 
   const errorBubble =
     "outline outline-[2.5px] outline-offset-[-2.5px] outline-red-400";
@@ -217,7 +216,7 @@ const Auth = () => {
   const errorWrap = "self-stretch flex flex-col gap-2";
 
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h-screen w-dvw">
       <div className="mx-auto w-full max-w-3xl px-6 pt-24 pb-24">
         <h1 className="self-stretch text-center justify-center text-white text-7xl font-semibold font-['Jost']">
           {isSignup ? "Sign Up" : "Login"}
@@ -419,7 +418,7 @@ const Auth = () => {
                           className={`w-full h-14 pl-6 pr-2.5 py-2.5 rounded-2xl inline-flex justify-start items-center gap-2.5
                           ${
                             checked
-                              ? "bg-white/20 outline outline-[2.5px] outline-offset-[-2.5px] outline-purple-400"
+                              ? "bg-white/20 outline outline-[2.5px] outline-offset-[-2.5px] outline-[--pink]"
                               : "bg-[--container-background]"
                           }`}
                         >
@@ -431,7 +430,7 @@ const Auth = () => {
                             className={`w-8 h-8 relative rounded-xl overflow-hidden
                             ${
                               checked
-                                ? "bg-purple-400 outline outline-1 outline-offset-[-1px] outline-purple-400"
+                                ? "bg-[--pink] outline outline-1 outline-offset-[-1px] outline-[--pink]"
                                 : "outline outline-[2.5px] outline-offset-[-2.5px] outline-white/20"
                             }`}
                           >
@@ -473,7 +472,7 @@ const Auth = () => {
                   <button
                     type="button"
                     onClick={() => setOpen(!open)}
-                    className={`${dropDownBubble} flex justify-between w-full items-center ${
+                    className={`${dropDownBubble} flex justify-between w-full items-center  ${
                       shirtSize === "" ? "text-white/50" : "text-white"
                     } ${
                       submitAttempted && fieldErrors.shirtSize
@@ -493,7 +492,7 @@ const Auth = () => {
                         initial={{ opacity: 0, y: -5 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -5 }}
-                        className="absolute z-50 mt-2 w-full bg-[#24272D] outline outline-[2.5px] outline-offset-[-2.5px] outline-purple-400 rounded-[1.5rem] shadow-xl p-3"
+                        className="absolute z-50 mt-2 w-full bg-[#24272D] outline outline-[2.5px] outline-offset-[-2.5px] outline-[--pink] rounded-[1.5rem] shadow-xl p-3"
                       >
                         {["Small", "Medium", "Large", "X-Large"].map((size) => (
                           <button
@@ -538,7 +537,7 @@ const Auth = () => {
                   placeholder="GitHub, portfolio, LinkedIn, etc."
                   rows={4}
                   maxLength={500}
-                  className="self-stretch h-40 px-6 py-2.5 bg-[--container-background] rounded-2xl inline-flex items-center gap-2.5 text-white text-lg font-normal font-['Jost'] outline-none placeholder:text-white/50 placeholder:text-lg placeholder:font-normal placeholder:font-['Jost']"
+                  className="self-stretch focus:border-[--pink] focus:border-[2.5px] h-40 px-6 py-2.5 bg-[--container-background] rounded-2xl inline-flex items-center gap-2.5 text-white text-lg font-normal font-['Jost'] outline-none placeholder:text-white/50 placeholder:text-lg placeholder:font-normal placeholder:font-['Jost']"
                 />
                 <small
                   className={`m-0 text-sm ${
@@ -593,7 +592,7 @@ const Auth = () => {
               <Link
                 type="button"
                 href="/b4g/ForgotPassword"
-                className="text-lg px-0 w-auto h-auto align-baseline text-purple-400 hover:text-purple-300 disabled:opacity-60"
+                className="text-lg px-0 w-auto h-auto align-baseline text-[--pink] hover:text-purple-300 disabled:opacity-60"
               >
                 {resetLoading ? "Sending..." : "Forgot your password?"}
               </Link>
@@ -610,8 +609,8 @@ const Auth = () => {
             type="submit"
             disabled={loading}
             className="mt-5 mx-auto w-full max-w-sm px-6 py-2.5
-          bg-purple-400 rounded-[999px]
-          outline outline-[3px] outline-offset-[-3px] outline-purple-400
+          bg-[--pink] rounded-[999px]
+          outline outline-[3px] outline-offset-[-3px] outline-[--pink]
           inline-flex justify-center items-center gap-2.5
           text-center text-white text-2xl font-semibold font-['Jost']
           disabled:opacity-60"
@@ -631,7 +630,7 @@ const Auth = () => {
             type="button"
             onClick={() => setIsSignup(!isSignup)}
             className={
-              "text-lg px-0 w-auto h-auto align-baseline text-purple-400 hover:text-purple-300"
+              "text-lg px-0 w-auto h-auto align-baseline text-[--pink] hover:text-purple-300"
             }
           >
             {isSignup ? "Login" : "Sign up"}

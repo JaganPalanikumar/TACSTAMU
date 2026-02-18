@@ -9,6 +9,8 @@ import Image from "next/image";
 import useMeasure from "react-use-measure";
 import { useEffect } from "react";
 import Link from "next/link";
+import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
+import { AccessAlarmRounded, LocationOnRounded } from "@mui/icons-material";
 
 function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
@@ -172,7 +174,7 @@ export default function Landing() {
 
         {/* Content */}
         <div className="absolute z-10 inset-0">
-          <div className="absolute visible xl:invisible w-fit right-0 top-0  -translate-x-[20%] translate-y-[10%]">
+          <div className="absolute visible xl:invisible w-[60dvw] sm:w-fit right-0 top-0 -translate-x-[20%] translate-y-[10%]">
             <Image
               src="/b4g/bordered short logo.svg"
               alt="short Logo"
@@ -221,7 +223,7 @@ export default function Landing() {
       </section>
       <section id="About" className="h-fit flex flex-col gap-5">
         <SectionHeader>About</SectionHeader>
-        <div className=" mx-auto w-[90%] max-w-[1500] rounded-[4rem] px-[60px] py-[40px] flex flex-col gap-3">
+        <div className=" mx-auto w-[80%] max-w-[1500px] rounded-[4rem] flex flex-col gap-3">
           <p className="text-2xl sm:text-3xl text-[--gray] text-center">
             Build4Good is a 1.5-day hackathon hosted by the Texas A&M Computing
             Society (TACS). In this event, teams of students collaborate on
@@ -232,7 +234,7 @@ export default function Landing() {
           </p>
           <Link
             href="/b4g/Auth"
-            className="p-2 px-5 hover:scale-110 bg-[--pink] text-3xl w-fit text-white rounded-full mx-auto"
+            className="p-2 px-5 hover:scale-110 bg-[--pink] text-3xl w-fit text-white rounded-full mx-auto transition-transform duration-300"
           >
             Register Here
           </Link>
@@ -240,22 +242,29 @@ export default function Landing() {
       </section>
 
       <section
-        id="Location"
+        id="Event Details"
         className="h-fit flex flex-col gap-10 py-20 bg-[--background]"
       >
-        <SectionHeader>Location</SectionHeader>
+        <SectionHeader>Event Details</SectionHeader>
 
-        <div className="flex flex-col items-center gap-6 mx-auto w-[90%] max-w-[1200px] text-center">
+        <div className="flex flex-col items-center gap-6 mx-auto w-[80%] max-w-[1500px] text-center">
           <p className="text-2xl sm:text-3xl text-[--gray]">
             Build4Good 2026 will be held at the{" "}
             <strong>Innovative Learning Classroom Building (ILCB)</strong> on
             the Texas A&M campus.
           </p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-10 text-gray-600 text-lg font-medium">
-            <div>📅 March 28-29, 2026</div>
-            <div>📍 Innovative Learning Classroom Building (ILCB)</div>
-            <div>⏰ Check-in: 9:00 AM</div>
+          <div className="flex flex-col sm:flex-row justify-center gap-3 text-[--gray] text-lg font-medium">
+            <div>
+              <CalendarMonthRoundedIcon /> March 28-29, 2026
+            </div>
+            <div>
+              <LocationOnRounded /> Innovative Learning Classroom Building
+              (ILCB)
+            </div>
+            <div>
+              <AccessAlarmRounded /> Check-in: 9:00 AM
+            </div>
           </div>
 
           <div className="w-full h-[400px] sm:h-[500px] mt-6 rounded-3xl overflow-hidden shadow-lg">
@@ -296,7 +305,7 @@ export default function Landing() {
       <section id="Schedule" className="h-fit w-dvw">
         <div className="realitive flex flex-col gap-5 h-fit">
           <SectionHeader>Schedule</SectionHeader>
-          <ul className="text-xl  mx-auto w-[90%] max-w-[1500] rounded-[4rem] px-[60px] py-[40px] flex flex-col gap-3">
+          <ul className="text-xl  mx-auto w-[80%] max-w-[1500] rounded-[4rem] flex flex-col gap-3">
             <h1 className="text-4xl sm:text-6xl text-[--pink] mb-5">
               Saturday, March 28th
             </h1>
