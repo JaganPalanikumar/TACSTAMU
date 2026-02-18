@@ -74,7 +74,10 @@ export function Footer() {
           <h1 className="text-[#0e121a] text-[2rem]">Back to TACS</h1>
         </Link> */}
       </div>
-      <Link href="/TACS" className="font-light">
+      <Link
+        href="/TACS"
+        className="font-light hover:scale-110 hover:text-[--pink]"
+      >
         Texas A&amp;M Computing Society © 2026
       </Link>
     </footer>

@@ -8,7 +8,30 @@ import {
 import Image from "next/image";
 import useMeasure from "react-use-measure";
 import { useEffect } from "react";
-import { Description } from "@mui/icons-material";
+
+function SectionHeader({ children }: { children: React.ReactNode }) {
+  return (
+    <h1 className="text-6xl sm:text-8xl mx-auto w-fit text-center flex items-center justify-center gap-4 sm:gap-6 h-[3.5rem] sm:h-[6rem]">
+      <Image
+        src="/b4g/sparkle.svg"
+        alt=""
+        width={260}
+        height={240}
+        className="h-10 sm:h-full w-auto"
+      />
+
+      <span className="leading-none">{children}</span>
+
+      <Image
+        src="/b4g/sparkle.svg"
+        alt=""
+        width={260}
+        height={240}
+        className="h-10 sm:h-full w-auto"
+      />
+    </h1>
+  );
+}
 
 const tracks = [
   { title: "TBD", description: "Tracks will be announced on March 28" },
@@ -197,9 +220,9 @@ export default function Landing() {
         </div>
       </section>
       <section id="About" className="h-fit flex flex-col gap-5">
-        <h1 className="text-8xl mx-auto w-fit text-center">About</h1>
-        <div className="bg-[--container-background] mx-auto w-[90%] max-w-[1500] rounded-[4rem] p-10 flex flex-col gap-3">
-          <p className="text-3xl text-[--gray] font-[600]">
+        <SectionHeader>About</SectionHeader>
+        <div className=" mx-auto w-[90%] max-w-[1500] rounded-[4rem] px-[60px] py-[40px] flex flex-col gap-3">
+          <p className="text-2xl sm:text-3xl text-[--gray] text-center">
             Build4Good is a 1.5-day hackathon hosted by the Texas A&M Computing
             Society (TACS). In this event, teams of students collaborate on
             innovative projects based on curated prompts and challenges. This
@@ -234,51 +257,56 @@ export default function Landing() {
       </section> */}
       <section id="Schedule" className="h-fit w-dvw">
         <div className="realitive flex flex-col gap-5 h-fit">
-          <h1 className="text-8xl w-auto mx-auto text-center">Schedule</h1>
-          <ul className="bg-[--container-background] mx-auto w-[90%] max-w-[1500] rounded-[4rem] p-10 flex flex-col gap-3">
-            <h1 className="text-6xl text-[--pink] mb-5">
+          <SectionHeader>Schedule</SectionHeader>
+          <ul className="text-xl  mx-auto w-[90%] max-w-[1500] rounded-[4rem] px-[60px] py-[40px] flex flex-col gap-3">
+            <h1 className="text-4xl sm:text-6xl text-[--pink] mb-5">
               Saturday, March 28th
             </h1>
             <li className="flex flex-row w-full justify-between text-[--gray]">
-              <h2>Doors Open</h2> <p>9:00 AM</p>
+              <h2 className="text-white">Doors Open</h2> <p>9:00 AM</p>
             </li>
             <li className="flex flex-row w-full justify-between text-[--gray]">
-              <h2>Opening Ceremony</h2> <p>11:00 AM</p>
+              <h2 className="text-white">Opening Ceremony</h2> <p>11:00 AM</p>
             </li>
             <li className="flex flex-row w-full justify-between text-[--gray]">
-              <h2>Hacking Begins</h2> <p>11:30 AM</p>
+              <h2 className="text-white">Hacking Begins</h2> <p>11:30 AM</p>
             </li>
             <li className="flex flex-row w-full justify-between text-[--gray]">
-              <h2>Lunch</h2> <p>12:00 PM</p>
+              <h2 className="text-white">Lunch</h2> <p>12:00 PM</p>
             </li>
             <li className="flex flex-row w-full justify-between text-[--gray]">
-              <h2>Poker Bot Challenge Closes</h2> <p>5:00 PM</p>
+              <h2 className="text-white">Close Poker Bot Challenge </h2>{" "}
+              <p>5:00 PM</p>
             </li>
             <li className="flex flex-row w-full justify-between text-[--gray]">
-              <h2>Doors Close</h2> <p>5:00 PM</p>
+              <h2 className="text-white">Doors Close</h2> <p>5:00 PM</p>
             </li>
-            <h1 className="text-6xl text-[--pink] my-5">Sunday, March 29th</h1>
+            <h1 className="text-4xl sm:text-6xl text-[--pink] my-5">
+              Sunday, March 29th
+            </h1>
             <li className="flex flex-row w-full justify-between text-[--gray]">
-              <h2>Devpost Submissions Due</h2> <p>12:00 PM</p>
+              <h2 className="text-white">Devpost Submissions Due</h2>{" "}
+              <p>12:00 PM</p>
             </li>
             <li className="flex flex-row w-full justify-between text-[--gray]">
-              <h2>Judging</h2> <p>2:00 - 4:00 PM</p>
+              <h2 className="text-white">Judging</h2> <p>2:00 - 4:00 PM</p>
             </li>
             <li className="flex flex-row w-full justify-between text-[--gray]">
-              <h2>Virtual Award Ceremony</h2> <p>5:00 PM</p>
+              <h2 className="text-white">Virtual Award Ceremony</h2>{" "}
+              <p>5:00 PM</p>
             </li>
-            <h1 className="text-6xl text-[--pink] my-5">
+            <h1 className="text-4xl sm:text-6xl text-[--pink] my-5">
               Wednesday, April 1st
             </h1>
             <li className="flex flex-row w-full justify-between text-[--gray]">
-              <h2>Prize Distribution</h2> <p>7:00 PM</p>
+              <h2 className="text-white">Prize Distribution</h2> <p>7:00 PM</p>
             </li>
           </ul>
         </div>
       </section>
       {/* TODO Add sponsors page */}
       <section id="Sponsors" className="flex flex-col gap-20 w-dvw h-fit">
-        <h1 className="text-8xl mx-auto w-fit text-center">Sponsors</h1>
+        <SectionHeader>Sponsors</SectionHeader>
 
         <div className="relative overflow-hidden w-[80dvw] h-fit mx-auto">
           <div className="absolute top-0 left-0 h-[10dvh] w-[20%] z-10 bg-gradient-to-r from-[--background] to-transparent" />
