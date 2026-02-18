@@ -564,13 +564,25 @@ const Auth = () => {
               <h2 className={formText}>
                 Any links/info that would be helpful?
               </h2>
-              <textarea
-                value={helpfulLinks}
-                onChange={(e) => setHelpfulLinks(e.target.value)}
-                placeholder="GitHub, portfolio, LinkedIn, etc."
-                rows={4}
-                className="self-stretch h-40 px-6 py-2.5 bg-[--container-background] rounded-2xl inline-flex items-center gap-2.5 text-white text-lg font-normal font-['Jost'] outline-none placeholder:text-white/50 placeholder:text-lg placeholder:font-normal placeholder:font-['Jost']"
-              />
+              <div className="flex flex-col gap-1">
+                <textarea
+                  value={helpfulLinks}
+                  onChange={(e) => setHelpfulLinks(e.target.value)}
+                  placeholder="GitHub, portfolio, LinkedIn, etc."
+                  rows={4}
+                  maxLength={500}
+                  className="self-stretch h-40 px-6 py-2.5 bg-[--container-background] rounded-2xl inline-flex items-center gap-2.5 text-white text-lg font-normal font-['Jost'] outline-none placeholder:text-white/50 placeholder:text-lg placeholder:font-normal placeholder:font-['Jost']"
+                />
+                <small
+                  className={`m-0 text-sm ${
+                    helpfulLinks.length === 500
+                      ? "text-red-500"
+                      : "text-gray-400"
+                  }`}
+                >
+                  {helpfulLinks.length}/500 characters
+                </small>
+              </div>
             </>
           )}
           <div className={errorWrap}>

@@ -39,7 +39,6 @@ export default function Dashboard() {
     }
   }
 
-  // TODO Flush out this page
   return (
     <div className="min-h-screen px-6 py-20 flex justify-center">
       <div className="w-full max-w-5xl flex flex-col gap-12">
@@ -111,7 +110,7 @@ export default function Dashboard() {
             </div>
             <div>
               <span className="font-medium">Dietary Restrictions:</span>{" "}
-              {profile?.diet_restrictions || "None"}
+              {profile?.diet_restrictions.join(", ") || "None"}
             </div>
           </div>
         </div>
