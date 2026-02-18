@@ -215,8 +215,9 @@ const Auth = () => {
   const errorText = "px-3 text-red-400 text-sm font-normal font-['Jost']";
   const errorWrap = "self-stretch flex flex-col gap-2";
 
+  // BUG Auth page doesnt fill screen on mobile for some reason and I can only test by pushing to prod
   return (
-    <div className="min-h-screen w-dvw">
+    <div className="min-h-screen w-vw">
       <div className="mx-auto w-full px-6 pt-24 pb-24">
         <h1 className="self-stretch text-center justify-center text-white text-7xl font-semibold font-['Jost']">
           {isSignup ? "Sign Up" : "Login"}
