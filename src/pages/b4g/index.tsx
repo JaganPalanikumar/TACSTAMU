@@ -254,29 +254,22 @@ export default function Landing() {
             the Texas A&M campus.
           </p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-3 text-[--gray] text-lg font-medium">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 text-[--pink] text-lg font-medium">
             <div>
               <CalendarMonthRoundedIcon /> March 28-29, 2026
             </div>
             <div>
-              <LocationOnRounded /> Innovative Learning Classroom Building
-              (ILCB)
+              <LocationOnRounded />{" "}
+              <a
+                href="https://maps.app.goo.gl/cinzFi6V5J7yagip9"
+                className="underline"
+              >
+                Innovative Learning Classroom Building (ILCB)
+              </a>
             </div>
             <div>
               <AccessAlarmRounded /> Check-in: 9:00 AM
             </div>
-          </div>
-
-          <div className="w-full h-[400px] sm:h-[500px] mt-6 rounded-3xl overflow-hidden shadow-lg">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3433.7791629393496!2d-96.34449719999999!3d30.611991600000007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864683e0796a3d63%3A0xdd0440b15e5686a7!2sInnovative%20Learning%20Classroom%20Building%20(ILCB)!5e0!3m2!1sen!2sus!4v1771406176695!5m2!1sen!2sus"
-              width="100%"
-              height="100%"
-              className="border-0"
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
           </div>
         </div>
       </section>
@@ -353,7 +346,11 @@ export default function Landing() {
       </section>
       {/* TODO Add sponsors page */}
       <section id="Sponsors" className="flex flex-col gap-20 w-dvw h-fit">
-        <SectionHeader>Sponsors</SectionHeader>
+        <SectionHeader>
+          <span className="break-words">
+            Sponsors & <br className="block sm:hidden" /> Partners
+          </span>
+        </SectionHeader>
 
         <div className="relative overflow-hidden w-[80dvw] h-fit mx-auto">
           <div className="absolute top-0 left-0 h-[10dvh] w-[20%] z-10 bg-gradient-to-r from-[--background] to-transparent" />
