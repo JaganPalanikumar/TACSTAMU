@@ -9,6 +9,7 @@ export function Navigation() {
   const { user, profile, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -257,6 +258,7 @@ export function Navigation() {
                   name="name"
                   autoComplete="name"
                   placeholder="Your Name"
+                  required
                   defaultValue={
                     profile ? `${profile.first_name} ${profile.last_name}` : ""
                   }
@@ -273,13 +275,27 @@ export function Navigation() {
                   className="p-3 rounded-xl border focus:outline-none focus:ring-2 focus:ring-[--pink]"
                 />
 
-                <textarea
-                  name="message"
-                  placeholder="Your Message"
-                  required
-                  rows={4}
-                  className="p-3 rounded-xl border resize-none focus:outline-none focus:ring-2 focus:ring-[--pink]"
-                />
+                <div className="flex flex-col gap-2">
+                  <textarea
+                    name="message"
+                    placeholder="Your Message"
+                    maxLength={500}
+                    value={message}
+                    onChange={(e) => {
+                      setMessage(e.target.value);
+                    }}
+                    required
+                    rows={4}
+                    className="p-3 rounded-xl border resize-none focus:outline-none focus:ring-2 focus:ring-[--pink]"
+                  />
+                  <small
+                    className={`m-0 text-sm ${
+                      message.length === 500 ? "text-red-500" : "text-gray-400"
+                    }`}
+                  >
+                    {message.length}/500 characters
+                  </small>
+                </div>
 
                 <button
                   type="submit"
