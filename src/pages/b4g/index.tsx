@@ -62,7 +62,7 @@ const logos = [
   },
   {
     title: "TAMUIDS",
-    image: "/b4g/TAMUIDS_logo.svg",
+    image: "/b4g/TAMUIDS_Logo.svg",
     width: 151.98,
     height: 70.53,
   },
@@ -144,7 +144,7 @@ export default function Landing() {
           </motion.div>
           <motion.div
             style={{ x: moveCloud, y: "40%" }}
-            className="absolute bottom-0 left-0 w-[250dvw] sm:w-[180vw] md:w-[150vw] 2xl:w-[80vw] h-auto"
+            className="absolute bottom-0 left-0 w-[250dvw] sm:w-[180vw] md:w-[150vw] lg:w-[100vw] 2xl:w-[80vw] h-auto max-h-[120%]"
           >
             <Image
               src="/b4g/cloud bunny.svg"
@@ -163,7 +163,7 @@ export default function Landing() {
               alt="Flower and Burst"
               width={605}
               height={452}
-              className="w-[60dvw] lg:w-[50dvw] 2xl:w-[30dvw]"
+              className="w-[60dvw] lg:w-[50dvw] 2xl:w-[30dvw] max-h-[50dvh]"
               priority
             />
           </motion.div>
@@ -171,9 +171,9 @@ export default function Landing() {
 
         {/* Content */}
         <div className="absolute z-10 inset-0">
-          <div className="absolute visible xl:invisible w-fit right-0 top-0  -translate-x-[20%] translate-y-[40%]">
+          <div className="absolute visible xl:invisible w-fit right-0 top-0  -translate-x-[20%] translate-y-[10%]">
             <Image
-              src="/b4g/short logo.svg"
+              src="/b4g/bordered short logo.svg"
               alt="short Logo"
               width={373.47}
               height={228.67}
@@ -185,9 +185,9 @@ export default function Landing() {
             </h1>
           </div>
 
-          <div className="absolute invisible xl:visible xl:w-[50rem] right-0 2xl:right-1/2 top-0 -translate-x-[10%] 2xl:translate-x-[50%] translate-y-full">
+          <div className="absolute invisible xl:visible xl:w-[50rem] right-0 2xl:right-1/2 top-0 -translate-x-[10%] 2xl:translate-x-[50%] translate-y-1/2">
             <Image
-              src="/b4g/long logo.svg"
+              src="/b4g/bordered long logo.svg"
               alt="Long Logo"
               width={1072.48}
               height={229.37}
