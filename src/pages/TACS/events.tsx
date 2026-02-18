@@ -1,20 +1,20 @@
 import React from "react";
 import Image from "next/image";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import EventCard from "@/components/EventCard";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import EventCard from "../../components/EventCard";
 
-import eventsPageImage from "../../public/events_page_image.webp";
-import build4GoodHackathonPhoto from "../../public/build_4_good_hackathon_photo.webp";
-import easterEggHuntPhoto from "../../public/easter_egg_hunt_social_image.webp";
-import capitalOneSpeakersPhoto from "../../public/capital_one_speakers.webp";
-import notionEventPhoto from "../../public/notion_event_image.webp";
-import paycomTechnicalInterviewPhoto from "../../public/paycom_technical_interview_photo.webp";
-import monte_database_workshop_photo from "../../public/monte_database_workshop_photo.webp";
-import halloween_social_photo from "../../public/halloween_social_photo.webp";
-import engr_102_final_review_photo from "../../public/engr_102_final_review_photo.webp";
-import hilcorp_photo from "../../public/hilcorp_photo.webp";
+import eventsPageImage from "@/events_page_image.webp";
+import build4GoodHackathonPhoto from "@/build_4_good_hackathon_photo.webp";
+import easterEggHuntPhoto from "@/easter_egg_hunt_social_image.webp";
+import capitalOneSpeakersPhoto from "@/capital_one_speakers.webp";
+import notionEventPhoto from "@/notion_event_image.webp";
+import paycomTechnicalInterviewPhoto from "@/paycom_technical_interview_photo.webp";
+import monte_database_workshop_photo from "@/monte_database_workshop_photo.webp";
+import halloween_social_photo from "@/halloween_social_photo.webp";
+import engr_102_final_review_photo from "@/engr_102_final_review_photo.webp";
+import hilcorp_photo from "@/hilcorp_photo.webp";
 
 const events = [
   {
@@ -33,15 +33,17 @@ const events = [
   },
   {
     title: "Database Workshop With Monte",
-    description: "“Learn about the different hosted database providers, how to make SQL and NoSQL queries and different tradeoffs in this interactive workshop.”",
+    description:
+      "“Learn about the different hosted database providers, how to make SQL and NoSQL queries and different tradeoffs in this interactive workshop.”",
     link: "https://www.instagram.com/p/DACFneay98S/",
-    photo: monte_database_workshop_photo
+    photo: monte_database_workshop_photo,
   },
   {
     title: "Halloween Social with Team Building Games",
-    description: "“Join us for a Halloween social with free food and team related games.”",
+    description:
+      "“Join us for a Halloween social with free food and team related games.”",
     link: "https://www.instagram.com/p/DBtoATqx4jw/",
-    photo: halloween_social_photo
+    photo: halloween_social_photo,
   },
   {
     title: "CapitalOne Industry Speakers",
@@ -59,9 +61,10 @@ const events = [
   },
   {
     title: "ENGR 102 Final Review",
-    description: "“Join us for a comprehensive review session for the ENGR 102 final exam. We will be covering a lot of tricks and tips that tend to get people, as well as covering general material that can be hard to grasp.”",
+    description:
+      "“Join us for a comprehensive review session for the ENGR 102 final exam. We will be covering a lot of tricks and tips that tend to get people, as well as covering general material that can be hard to grasp.”",
     link: "https://www.instagram.com/p/DCUXs_QRX4m/",
-    photo: engr_102_final_review_photo
+    photo: engr_102_final_review_photo,
   },
   {
     title: "Technical Interview Workshop With Paycom",
@@ -72,7 +75,8 @@ const events = [
   },
   {
     title: "Hilcorp Information Session & Tech Talk",
-    description:"“Stop by for an IT information session and tech talk hosted by Hilcorp. This is an amazing opportunity to network and possibly get a tech internship!”",
+    description:
+      "“Stop by for an IT information session and tech talk hosted by Hilcorp. This is an amazing opportunity to network and possibly get a tech internship!”",
     link: "https://www.instagram.com/p/DAmC4uMyWxT/",
     photo: hilcorp_photo,
   },
@@ -87,10 +91,17 @@ const EventsPage: React.FC = () => {
           <div className="space-y-4 sm:w-1/2">
             <h1 className="text-3xl sm:text-4xl font-bold mb-6">Events</h1>
             <p className="text-gray-600">
-              We host industry professionals and academic experts as guest speakers throughout the semester, as well as executing our own workshops and events to cover necessary skills to navigate the industry. Each meeting provides unique opportunities for networking and practical learning, and our social events foster a supportive and close community.
+              We host industry professionals and academic experts as guest
+              speakers throughout the semester, as well as executing our own
+              workshops and events to cover necessary skills to navigate the
+              industry. Each meeting provides unique opportunities for
+              networking and practical learning, and our social events foster a
+              supportive and close community.
             </p>
             <p className="text-gray-500">
-              In the past we have collaborated with top tech companies and startups in order to give the most industry exposure to students. Take a look at some of the cool stuff we’ve been up to!
+              In the past we have collaborated with top tech companies and
+              startups in order to give the most industry exposure to students.
+              Take a look at some of the cool stuff we’ve been up to!
             </p>
           </div>
           <div className="flex justify-end">
