@@ -174,7 +174,7 @@ export default function Landing() {
 
         {/* Content */}
         <div className="absolute z-10 inset-0">
-          <div className="absolute visible xl:invisible w-[60dvw] sm:w-fit right-0 top-0 -translate-x-[20%] translate-y-[10%]">
+          <div className="absolute visible xl:invisible w-[60dvw] sm:w-fit right-1/2 top-0 translate-x-[50%] translate-y-[10%]">
             <Image
               src="/b4g/bordered short logo.svg"
               alt="short Logo"
@@ -183,12 +183,18 @@ export default function Landing() {
               priority
               className="-rotate-[6.69deg]"
             />
-            <h1 className="w-fit text-center m-auto text-2xl">
+            <h1 className="w-fit text-center m-auto text-2xl flex flex-col gap-4">
               BUILD4GOOD 2026
+              <Link
+                href="/b4g/Auth"
+                className="p-2 px-5 hover:scale-110 bg-[--pink] text-3xl w-fit text-white font-bold rounded-full mx-auto transition-transform duration-300"
+              >
+                Register Now
+              </Link>
             </h1>
           </div>
 
-          <div className="absolute invisible xl:visible xl:w-[50rem] right-0 2xl:right-1/2 top-0 -translate-x-[10%] 2xl:translate-x-[50%] translate-y-1/2">
+          <div className="absolute invisible xl:visible xl:w-[50rem] right-1/2 top-0 translate-x-[50%] translate-y-1/2">
             <Image
               src="/b4g/bordered long logo.svg"
               alt="Long Logo"
@@ -197,8 +203,14 @@ export default function Landing() {
               priority
               className="-rotate-[6.69deg]"
             />
-            <h1 className="w-fit text-center m-auto text-3xl">
+            <h1 className="w-fit text-center m-auto text-3xl flex flex-col gap-4">
               BUILD4GOOD 2026
+              <Link
+                href="/b4g/Auth"
+                className="p-2 px-5 hover:scale-110 bg-[--pink] text-3xl w-fit text-white font-bold rounded-full mx-auto transition-transform duration-300"
+              >
+                Register Now
+              </Link>
             </h1>
           </div>
 
@@ -208,7 +220,7 @@ export default function Landing() {
             width={317.5}
             height={232.93}
             priority
-            className="invisible sm:visible h-auto w-[30dvw] md:w-[20dvw] xl:w-[15dvw] absolute left-0 top-0 translate-x-[10%] translate-y-[10%]"
+            className="invisible md:visible h-auto w-[30dvw] md:w-[20dvw] xl:w-[15dvw] absolute left-0 top-0 translate-x-[10%] translate-y-[10%]"
           />
 
           <Image
@@ -232,12 +244,6 @@ export default function Landing() {
             technical skill, and a passion for making an impact. <br /> <br />
             We can’t wait to see what you build!
           </p>
-          <Link
-            href="/b4g/Auth"
-            className="p-2 px-5 hover:scale-110 bg-[--pink] text-3xl w-fit text-white rounded-full mx-auto transition-transform duration-300"
-          >
-            Register Here
-          </Link>
         </div>
       </section>
 
