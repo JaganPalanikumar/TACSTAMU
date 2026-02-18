@@ -8,6 +8,7 @@ import {
 import Image from "next/image";
 import useMeasure from "react-use-measure";
 import { useEffect } from "react";
+import Link from "next/link";
 
 function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
@@ -229,9 +230,15 @@ export default function Landing() {
             technical skill, and a passion for making an impact. <br /> <br />
             We can’t wait to see what you build!
           </p>
+          <Link
+            href="/b4g/Auth"
+            className="p-2 px-5 hover:scale-110 bg-[--pink] text-3xl w-fit text-white rounded-full mx-auto"
+          >
+            Register Here
+          </Link>
         </div>
       </section>
-      {/* TODO Add location */}
+
       <section
         id="Location"
         className="h-fit flex flex-col gap-10 py-20 bg-[--background]"
