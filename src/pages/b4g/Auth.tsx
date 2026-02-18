@@ -217,7 +217,7 @@ const Auth = () => {
 
   return (
     <div className="min-h-screen w-dvw">
-      <div className="mx-auto w-full max-w-3xl px-6 pt-24 pb-24">
+      <div className="mx-auto w-full px-6 pt-24 pb-24">
         <h1 className="self-stretch text-center justify-center text-white text-7xl font-semibold font-['Jost']">
           {isSignup ? "Sign Up" : "Login"}
         </h1>
