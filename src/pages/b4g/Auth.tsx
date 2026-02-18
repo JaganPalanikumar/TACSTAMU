@@ -191,11 +191,11 @@ const Auth = () => {
   };
 
   const inputBubbles =
-    "self-stretch focus:border-[--pink] focus:border-[2.5px] h-14 px-6 py-2.5 bg-[--container-background] rounded-2xl inline-flex items-center gap-2.5 text-white text-lg font-normal font-['Jost'] outline-none placeholder:text-white/50 placeholder:text-lg placeholder:font-normal placeholder:font-['Jost']";
+    "self-stretch focus:border-[--pink] focus:border-[2.5px] h-14 px-6 py-2.5 bg-[--container-background] rounded-2xl inline-flex items-center gap-2.5 text-white text-lg font-['Jost'] outline-none placeholder:text-white/50 placeholder:text-lg placeholder:font-['Jost']";
   const formText = "px-3 text-white text-2xl font-medium font-['Jost']";
   const dropDownBubble =
-    "self-stretch h-14 px-6 py-2.5 bg-[--container-background] rounded-2xl inline-flex items-center gap-2.5 text-lg font-normal font-['Jost'] outline-none appearance-none cursor-pointer";
-  const qWrap = "w-full max-w-3xl mx-auto flex flex-col gap-6";
+    "self-stretch h-14 px-6 py-2.5 bg-[--container-background] rounded-2xl inline-flex items-center gap-2.5 text-lg font-['Jost'] outline-none appearance-none cursor-pointer";
+  const qWrap = "w-full mx-auto flex flex-col gap-6";
   const qText = "px-3 text-white text-2xl font-medium font-['Jost']";
   const optStack = "w-full flex flex-col gap-4";
   const optBase =
@@ -217,14 +217,14 @@ const Auth = () => {
   return (
     <div className="min-h-screen w-full overflow-x-hidden">
       <div className="mx-auto w-full px-6 pt-24 pb-24">
-        <h1 className="self-stretch text-center justify-center text-white text-7xl font-semibold font-['Jost']">
+        <h1 className="self-stretch text-center justify-center text-white text-5xl mb-12 font-['Jost']">
           {isSignup ? "Sign Up" : "Login"}
         </h1>
 
         <form
           noValidate
           onSubmit={handleSubmit}
-          className="flex flex-col gap-5 p-3 w-full bg-[--background]"
+          className="flex flex-col gap-5 p-3 w-full bg-[--background] max-w-[800px] mx-auto"
         >
           {error && <p style={{ color: "red" }}>{error.message}</p>}
 
@@ -269,7 +269,7 @@ const Auth = () => {
                   }`}
                 />
                 {submitAttempted && fieldErrors.lastName && (
-                  <div className="px-3 text-red-400 text-sm font-normal font-['Jost']">
+                  <div className="px-3 text-red-400 text-sm font-['Jost']">
                     {fieldErrors.lastName}
                   </div>
                 )}
@@ -321,7 +321,7 @@ const Auth = () => {
                           firstHackathon === "yes" ? optOn : optOff
                         } ${submitAttempted && fieldErrors.firstHackathon ? errorBubble : ""}`}
                       >
-                        <div className="text-white text-2xl font-normal font-['Jost']">
+                        <div className="text-white text-2xl font-['Jost']">
                           Yes
                         </div>
                         <div
@@ -348,7 +348,7 @@ const Auth = () => {
                           firstHackathon === "no" ? optOn : optOff
                         } ${submitAttempted && fieldErrors.firstHackathon ? errorBubble : ""}`}
                       >
-                        <div className="text-white text-2xl font-normal font-['Jost']">
+                        <div className="text-white text-2xl font-['Jost']">
                           No
                         </div>
                         <div
@@ -421,7 +421,7 @@ const Auth = () => {
                               : "bg-[--container-background]"
                           }`}
                         >
-                          <div className="flex-1 whitespace-nowrap overflow-hidden text-ellipsis text-white text-lg font-normal font-['Jost']">
+                          <div className="flex-1 whitespace-nowrap overflow-hidden text-ellipsis text-white text-lg font-['Jost']">
                             {option}
                           </div>
 
@@ -536,7 +536,7 @@ const Auth = () => {
                   placeholder="GitHub, portfolio, LinkedIn, etc."
                   rows={4}
                   maxLength={500}
-                  className="self-stretch focus:border-[--pink] focus:border-[2.5px] h-40 px-6 py-2.5 bg-[--container-background] rounded-2xl inline-flex items-center gap-2.5 text-white text-lg font-normal font-['Jost'] outline-none placeholder:text-white/50 placeholder:text-lg placeholder:font-normal placeholder:font-['Jost']"
+                  className="self-stretch focus:border-[--pink] focus:border-[2.5px] h-40 px-6 py-2.5 bg-[--container-background] rounded-2xl inline-flex items-center gap-2.5 text-white text-lg font-['Jost'] outline-none placeholder:text-white/50 placeholder:text-lg placeholder:font-['Jost']"
                 />
                 <small
                   className={`m-0 text-sm ${
@@ -597,7 +597,7 @@ const Auth = () => {
               </Link>
 
               {resetMsg && (
-                <div className="mt-2 text-white/70 text-sm font-normal font-['Jost']">
+                <div className="mt-2 text-white/70 text-sm font-['Jost']">
                   {resetMsg}
                 </div>
               )}
@@ -619,7 +619,7 @@ const Auth = () => {
         </form>
 
         <div className="mt-6 mb-12 w-full text-center">
-          <span className={"text-white/80 text-lg font-normal font-['Jost']"}>
+          <span className={"text-white/80 text-lg font-['Jost']"}>
             {isSignup
               ? "Already have an account?"
               : "Don't have an account?"}{" "}
