@@ -8,14 +8,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import Link from "next/link";
 
-const scrollToTop = () => {
-  window.scrollTo({
-    top: 0, // Scrolls to the top (vertical coordinate 0)
-    left: 0, // Scrolls to the left (horizontal coordinate 0)
-    behavior: "smooth", // Optional: smooth animation. Use 'instant' for an immediate jump
-  });
-};
-
 const Auth = () => {
   const { user, login } = useAuth();
   const router = useRouter();
