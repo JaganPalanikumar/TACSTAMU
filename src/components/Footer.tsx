@@ -28,7 +28,7 @@ const Footer = () => {
             <FaLinkedinIn />
           </a>
         </div>
-        <small className="font-thin">Texas A&M Computing Society © 2024</small>
+        <small className="font-thin">Texas A&M Computing Society © 2026</small>
       </div>
     </footer>
   );

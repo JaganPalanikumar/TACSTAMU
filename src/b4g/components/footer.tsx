@@ -75,7 +75,7 @@ export function Footer() {
         </Link> */}
       </div>
       <Link href="/TACS" className="font-light">
-        Texas A&amp;M Computing Society © 2024
+        Texas A&amp;M Computing Society © 2026
       </Link>
     </footer>
   );
