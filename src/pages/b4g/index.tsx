@@ -124,7 +124,6 @@ export default function Landing() {
     return controls.stop;
   }, [carouselTranslation, width]);
 
-  // TODO Finish a landing page
   return (
     <div className="flex flex-col overflow-x-clip gap-20">
       <section className="relative h-dvh">
@@ -233,6 +232,38 @@ export default function Landing() {
         </div>
       </section>
       {/* TODO Add location */}
+      <section
+        id="Location"
+        className="h-fit flex flex-col gap-10 py-20 bg-[--background]"
+      >
+        <SectionHeader>Location</SectionHeader>
+
+        <div className="flex flex-col items-center gap-6 mx-auto w-[90%] max-w-[1200px] text-center">
+          <p className="text-2xl sm:text-3xl text-[--gray]">
+            Build4Good 2026 will be held at the{" "}
+            <strong>Innovative Learning Classroom Building (ILCB)</strong> on
+            the Texas A&M campus.
+          </p>
+
+          <div className="flex flex-col sm:flex-row justify-center gap-10 text-gray-600 text-lg font-medium">
+            <div>📅 March 28-29, 2026</div>
+            <div>📍 Innovative Learning Classroom Building (ILCB)</div>
+            <div>⏰ Check-in: 9:00 AM</div>
+          </div>
+
+          <div className="w-full h-[400px] sm:h-[500px] mt-6 rounded-3xl overflow-hidden shadow-lg">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3433.7791629393496!2d-96.34449719999999!3d30.611991600000007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864683e0796a3d63%3A0xdd0440b15e5686a7!2sInnovative%20Learning%20Classroom%20Building%20(ILCB)!5e0!3m2!1sen!2sus!4v1771406176695!5m2!1sen!2sus"
+              width="100%"
+              height="100%"
+              className="border-0"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </section>
       {/* <section className="h-fit">
         <div className="relative flex flex-col h-fit gap-5">
           <h1 className="text-8xl mx-auto">Tracks</h1>

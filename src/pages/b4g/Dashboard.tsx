@@ -75,8 +75,8 @@ export default function Dashboard() {
           </div>
 
           <div className="flex justify-center gap-10 text-gray-600 text-lg pt-4">
-            <div>📅 March 14–15, 2026</div>
-            <div>📍 Main Campus Hall</div>
+            <div>📅 March 28–29, 2026</div>
+            <div>📍 Innovative Learning Classroom Building (ILCB)</div>
             <div>⏰ Check-in: 9:00 AM</div>
           </div>
         </div>
