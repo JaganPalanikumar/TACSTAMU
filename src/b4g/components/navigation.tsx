@@ -4,15 +4,20 @@ import { useAuth } from "../context/authContext";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/utils/supabase";
+import { send } from "process";
 
 export function Navigation() {
   const { user, profile, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [msgError, setMsgError] = useState("");
+  const [sendingMsg, setSendingMsg] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setMsgError("");
+    setSendingMsg(true);
 
     const formData = new FormData(e.currentTarget);
 
@@ -20,22 +25,40 @@ export function Navigation() {
     const email = formData.get("email") as string;
     const message = formData.get("message") as string;
 
-    const { error } = await supabase.from("contact_submissions").insert([
-      {
-        name,
-        email,
-        message,
-        user_id: profile?.id ?? null,
-      },
-    ]);
+    const { error: submissionError } = await supabase
+      .from("contact_submissions")
+      .insert([
+        {
+          name,
+          email,
+          message,
+          user_id: profile?.id ?? null,
+        },
+      ]);
 
-    if (error) {
-      alert("Something went wrong.");
+    if (submissionError) {
+      setMsgError(submissionError.message);
+      setSendingMsg(false);
+      return;
+    }
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, message }),
+    });
+
+    if (!res.ok) {
+      setMsgError((await res.json()).error);
+      setSendingMsg(false);
       return;
     }
 
     alert("Message sent successfully!");
     setContactOpen(false);
+    setSendingMsg(false);
   };
 
   return (
@@ -258,6 +281,10 @@ export function Navigation() {
                 Contact TACS
               </h2>
 
+              <p className="text-red-600" hidden={!msgError}>
+                {msgError}
+              </p>
+
               <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                 <input
                   name="name"
@@ -304,9 +331,10 @@ export function Navigation() {
 
                 <button
                   type="submit"
+                  disabled={sendingMsg}
                   className="bg-[--pink] text-white p-3 rounded-full hover:scale-105 transition"
                 >
-                  Send Message
+                  {sendingMsg ? "Sending Message..." : "Send Message"}
                 </button>
               </form>
             </motion.div>
