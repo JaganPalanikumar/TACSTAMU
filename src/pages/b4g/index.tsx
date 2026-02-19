@@ -70,22 +70,28 @@ const logos = [
     height: 70.53,
   },
   {
+    title: "Hudson River Trading",
+    image: "/b4g/HRT_Logo.svg",
+    width: 208,
+    height: 208,
+  },
+  {
     title: "Figma",
     image: "/b4g/Figma_Logo.svg",
     width: 248.45,
     height: 137.59,
   },
   {
-    title: "Jane Street",
-    image: "/b4g/Jane_Street_Capital_Logo.svg",
-    width: 104,
-    height: 41,
-  },
-  {
     title: "Aggie X",
     image: "/b4g/AggieX_Logo.svg",
     width: 610,
     height: 145,
+  },
+  {
+    title: "Jane Street",
+    image: "/b4g/Jane_Street_Capital_Logo.svg",
+    width: 104,
+    height: 41,
   },
   {
     title: "Good Bull Fund",
