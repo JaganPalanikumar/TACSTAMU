@@ -84,7 +84,7 @@ const logos = [
   {
     title: "Aggie X",
     image: "/b4g/AggieX_Logo.svg",
-    width: 610,
+    width: 405,
     height: 145,
   },
   {
@@ -96,13 +96,19 @@ const logos = [
   {
     title: "Good Bull Fund",
     image: "/b4g/Good_Bull_Fund_Logo.svg",
-    width: 305.14,
+    width: 200,
     height: 55.18,
+  },
+  {
+    title: "NRG Energy",
+    image: "/b4g/NRG_Energy_Logo.svg",
+    width: 50,
+    height: 500,
   },
   {
     title: "Mai Shan Yun",
     image: "b4g//Mai_Shan_Yun.svg",
-    width: 200,
+    width: 100,
     height: 200,
   },
 ];
