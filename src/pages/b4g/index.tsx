@@ -60,57 +60,63 @@ const logos = [
   {
     title: "Cheveron",
     image: "/b4g/Chevron_Logo.svg",
-    width: 200,
+    width: 50,
     height: 200,
   },
   {
     title: "TAMUIDS",
     image: "/b4g/TAMUIDS_Logo.svg",
-    width: 151.98,
+    width: 50,
     height: 70.53,
   },
   {
     title: "Hudson River Trading",
     image: "/b4g/HRT_Logo.svg",
-    width: 208,
+    width: 50,
     height: 208,
   },
   {
     title: "Figma",
     image: "/b4g/Figma_Logo.svg",
-    width: 248.45,
+    width: 50,
     height: 137.59,
   },
   {
     title: "Aggie X",
     image: "/b4g/AggieX_Logo.svg",
-    width: 405,
+    width: 50,
     height: 145,
   },
   {
     title: "Jane Street",
     image: "/b4g/Jane_Street_Capital_Logo.svg",
-    width: 104,
-    height: 41,
+    width: 50,
+    height: 200,
   },
   {
     title: "Good Bull Fund",
     image: "/b4g/Good_Bull_Fund_Logo.svg",
-    width: 200,
+    width: 50,
     height: 55.18,
   },
   {
     title: "NRG Energy",
     image: "/b4g/NRG_Energy_Logo.svg",
     width: 50,
-    height: 500,
+    height: 800,
   },
   {
     title: "Mai Shan Yun",
     image: "b4g//Mai_Shan_Yun.svg",
-    width: 100,
+    width: 50,
     height: 200,
   },
+  {
+    title: "Flerish Hydration",
+    image: "b4g/Flerish_Hydration_Logo.svg",
+    width: 50,
+    height: 100,
+  }
 ];
 
 export default function Landing() {
