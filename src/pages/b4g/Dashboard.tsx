@@ -3,6 +3,8 @@ import { useAuth } from "@/b4g/context/authContext";
 import { useRouter } from "next/router";
 import { supabase } from "@/utils/supabase";
 import Link from "next/link";
+import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
+import { AccessAlarmRounded, LocationOnRounded } from "@mui/icons-material";
 
 export default function Dashboard() {
   const { user, profile, isLoading, reloadSession } = useAuth();
@@ -74,10 +76,24 @@ export default function Dashboard() {
             )}
           </div>
 
-          <div className="flex justify-center gap-10 text-gray-600 text-lg pt-4">
-            <div>📅 March 28–29, 2026</div>
-            <div>📍 Innovative Learning Classroom Building (ILCB)</div>
-            <div>⏰ Check-in: 9:00 AM</div>
+          <div className="flex justify-center gap-10 text-[--pink] text-lg pt-4">
+            <div className="flex gap-1">
+              <CalendarMonthRoundedIcon className="my-auto" />{" "}
+              <p>March 28–29, 2026</p>
+            </div>
+            <div className="flex gap-1 hover:scale-105 duration-300">
+              <LocationOnRounded className="my-auto" />{" "}
+              <a
+                href="https://maps.app.goo.gl/cinzFi6V5J7yagip9"
+                className="underline my-auto"
+              >
+                Innovative Learning Classroom Building (ILCB)
+              </a>
+            </div>
+            <div className="flex gap-1">
+              <AccessAlarmRounded className="my-auto" />{" "}
+              <p className="my-auto">Check-in: 9:00 AM</p>
+            </div>
           </div>
         </div>
 

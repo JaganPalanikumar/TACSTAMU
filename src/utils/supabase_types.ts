@@ -156,6 +156,7 @@ export type Database = {
         Row: {
           leader_first_name: string | null
           leader_last_name: string | null
+          max_members: number | null
           member_count: number | null
           team_id: string | null
           team_leader: string | null

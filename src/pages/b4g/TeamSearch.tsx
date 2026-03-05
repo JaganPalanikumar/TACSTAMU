@@ -7,12 +7,19 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import { useAuth } from "@/b4g/context/authContext";
 import { useRouter } from "next/router";
 import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded";
+import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 
 export default function TeamSearch() {
   const { profile, isLoading } = useAuth();
   const [team, setTeam] = useState<string>("");
   const [teams, setTeams] = useState<TeamType[]>([]);
   const router = useRouter();
+  const [filterOpen, setFilterOpen] = useState(false);
+
+  // filter teams that still have space
+  const filteredTeams = filterOpen
+    ? teams.filter((t) => (t.member_count ?? 0) < (t.max_members ?? 4))
+    : teams;
 
   async function handleSubmit(searchTerm?: string) {
     const term = searchTerm ?? team ?? "";
@@ -27,6 +34,7 @@ export default function TeamSearch() {
     team_leader,
     leader_first_name,
     leader_last_name,
+    max_members,
     member_count
   `,
         )
@@ -44,7 +52,7 @@ export default function TeamSearch() {
 
       const formattedTeams = data.map((team) => ({
         ...team,
-        members: [], // load lazily if TeamsTable needs to expand a row
+        members: [],
       }));
 
       setTeams(formattedTeams);
@@ -103,10 +111,29 @@ export default function TeamSearch() {
           type="submit"
         >
           <SearchRoundedIcon className="my-auto" />
-          <span className="my-auto">Search</span>
         </button>
       </form>
-      <TeamsTable teams={teams} />
+      <div className="flex">
+        <h2 className="text-3xl my-auto">Results</h2>
+        <div className="flex-grow justify-end flex flex-row gap-5 w-fit">
+          <h2 className="text-3xl my-auto">Filter by</h2>
+          <button
+            onClick={() => setFilterOpen(!filterOpen)}
+            className={`flex flex-row gap-3 px-6 py-4 rounded-2xl duration-300 hover:scale-105 transition-transform text-white text-xl ${
+              filterOpen ? "outline outline-2 outline-[--pink]" : ""
+            }`}
+          >
+            <span className="my-auto">Needs Members</span>
+            <div
+              className={`border-[--gray] border-2 rounded-xl aspect-square ${filterOpen && "border-transparent bg-[--pink]"}`}
+            >
+              {<CheckRoundedIcon className={`${!filterOpen && "invisible"}`} />}
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <TeamsTable teams={filteredTeams} />
     </div>
   );
 }

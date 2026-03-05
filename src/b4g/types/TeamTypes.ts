@@ -14,6 +14,7 @@ export interface TeamType {
   member_count: number | null;
   team_leader: string | null;
   team_name: string | null;
+  max_members: number | null;
   members: TeamMember[] | null
 }
 

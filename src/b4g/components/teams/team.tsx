@@ -16,8 +16,10 @@ export function Team({ team }: TeamProps) {
     });
   }
 
+  if (!team.max_members || !team.member_count) return;
+
   return (
-    <div className="flex flex-col justify-between bg-[--container-background] rounded-2xl p-6">
+    <div className="flex flex-col justify-between bg-[--container-background] rounded-3xl p-6">
       <div>
         <h1 className="text-[--pink] text-2xl font-semibold">
           {team.team_name}
@@ -30,15 +32,20 @@ export function Team({ team }: TeamProps) {
           </div>
           <div className="w-fit text-[--gray]">
             <h2>{team.leader_first_name + " " + team.leader_last_name}</h2>
-            <p>{team.member_count}</p>
+            <p>
+              {team.member_count} out of {team.max_members}{" "}
+              {team.max_members <= team.member_count && "(Full)"}
+            </p>
           </div>
         </div>
       </div>
+
       <button
-        className="ml-auto border-4 border-30 border-[--pink] rounded-full px-6 py-3 text-[--pink]"
+        className="ml-auto border-4 border-30 border-[--pink] rounded-full px-6 py-3 text-[--pink] disabled:border-[--gray] disabled:text-[--gray]"
         onClick={() => {
           onJoin(team.team_name, team.team_id);
         }}
+        disabled={team.max_members <= team.member_count}
       >
         Join Team
       </button>
