@@ -76,8 +76,7 @@ export function Navigation() {
           className="h-14 w-auto"
         />
       </Link>
-      {/* TODO Change max-w to 1000 when Tracks are added */}
-      <div className="hidden max-w-[800] flex-1 xl:flex justify-end">
+      <div className="hidden max-w-[1000] flex-1 xl:flex justify-end">
         <div className="flex gap-5 text-2xl items-center justify-between p-3 px-6 rounded-full bg-white text-center">
           {/* XXX Remove track atm
           <Link className="p-2 hover:scale-110 my-auto" href="/b4g/Tracks">
@@ -91,6 +90,23 @@ export function Navigation() {
           >
             FAQ
           </Link>
+
+          {profile &&
+            (profile.team_id ? (
+              <Link
+                className="p-2 hover:scale-110 my-auto transition-transform duration-300"
+                href="/b4g/TeamDashboard"
+              >
+                Team Dashboard
+              </Link>
+            ) : (
+              <Link
+                className="p-2 hover:scale-110 my-auto transition-transform duration-300"
+                href="/b4g/TeamSearch"
+              >
+                Team Search
+              </Link>
+            ))}
 
           <button
             onClick={() => setContactOpen(true)}
@@ -181,7 +197,7 @@ export function Navigation() {
                 {profile?.id && (
                   <Link
                     href="/b4g/Dashboard"
-                    className="flex flex-row w-fit p-2 gap-3 px-5 hover:scale-110 text-black my-auto"
+                    className="flex flex-row w-fit p-2 gap-3 px-5 hover:scale-110 duration-300 text-black my-auto"
                   >
                     <Image
                       src="/b4g/bunny icon.svg"
@@ -205,18 +221,35 @@ export function Navigation() {
                  */}
 
                 <Link
-                  className="p-2 hover:scale-105 w-fit my-auto"
+                  className="p-2 hover:scale-105 w-fit my-auto duration-300"
                   href="/b4g/FAQ"
                 >
                   FAQ
                 </Link>
+
+                {profile &&
+                  (profile.team_id ? (
+                    <Link
+                      className="p-2 hover:scale-105 w-fit my-auto duration-300"
+                      href="/b4g/TeamDashboard"
+                    >
+                      Team Dashboard
+                    </Link>
+                  ) : (
+                    <Link
+                      className="p-2 hover:scale-105 w-fit my-auto duration-300"
+                      href="/b4g/TeamSearch"
+                    >
+                      Team Search
+                    </Link>
+                  ))}
 
                 <button
                   onClick={() => {
                     setMenuOpen(false);
                     setContactOpen(true);
                   }}
-                  className="p-2 hover:scale-105 w-fit my-auto text-left"
+                  className="p-2 hover:scale-105 duration-300 w-fit my-auto text-left"
                 >
                   Contact
                 </button>
@@ -224,21 +257,21 @@ export function Navigation() {
                 {profile?.id ? (
                   <button
                     onClick={logout}
-                    className="p-2 px-5 hover:scale-105 w-fit bg-[--pink] text-white rounded-full my-auto min-w-0 truncate"
+                    className="p-2 px-5 hover:scale-105 duration-300 w-fit bg-[--pink] text-white rounded-full my-auto min-w-0 truncate"
                   >
                     Logout
                   </button>
                 ) : (
                   <Link
                     href="/b4g/Auth"
-                    className="p-2 px-5 hover:scale-105 w-fit bg-[--pink] text-white rounded-full my-auto"
+                    className="p-2 px-5 hover:scale-105 duration-300 w-fit bg-[--pink] text-white rounded-full my-auto"
                   >
                     Login
                   </Link>
                 )}
 
                 <Link
-                  className="flex gap-5 p-2 px-5 hover:scale-105 w-fit border-[--pink] text-[--pink] border-4 rounded-full my-auto"
+                  className="flex gap-5 p-2 px-5 hover:scale-105 duration-300 w-fit border-[--pink] text-[--pink] border-4 rounded-full my-auto"
                   href="https://discord.gg/CBWn8mKFvx"
                 >
                   <svg

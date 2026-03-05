@@ -70,7 +70,7 @@ export type Database = {
         Row: {
           created_at: string
           diet_restrictions: Json | null
-          first_hackathon: boolean | null
+          first_hackathon: boolean
           first_name: string
           grad_year: number
           has_eaten: boolean
@@ -85,7 +85,7 @@ export type Database = {
         Insert: {
           created_at?: string
           diet_restrictions?: Json | null
-          first_hackathon?: boolean | null
+          first_hackathon?: boolean
           first_name: string
           grad_year: number
           has_eaten?: boolean
@@ -100,7 +100,7 @@ export type Database = {
         Update: {
           created_at?: string
           diet_restrictions?: Json | null
-          first_hackathon?: boolean | null
+          first_hackathon?: boolean
           first_name?: string
           grad_year?: number
           has_eaten?: boolean
@@ -165,7 +165,13 @@ export type Database = {
       }
     }
     Functions: {
-      [_ in never]: never
+      get_team_emails: {
+        Args: { p_team_id: string }
+        Returns: {
+          email: string
+          id: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never

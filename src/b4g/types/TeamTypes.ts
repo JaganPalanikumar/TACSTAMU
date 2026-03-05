@@ -3,6 +3,8 @@ export interface TeamMember {
   first_name: string;
   last_name: string;
   grad_year: number;
+  first_hackathon: boolean;
+  email:string | null;
 }
 
 export interface TeamType {
