@@ -4,7 +4,7 @@ export interface TeamMember {
   last_name: string;
   grad_year: number;
   first_hackathon: boolean;
-  email:string | null;
+  email?:string;
 }
 
 export interface TeamType {

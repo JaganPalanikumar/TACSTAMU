@@ -7,7 +7,7 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import Link from "next/link";
 
 export default function TeamDashboard() {
-  const { profile, user } = useAuth();
+  const { profile, isLoading, reloadSession } = useAuth();
   const router = useRouter();
   const [team, setTeam] = useState<TeamType>();
   const [loading, setLoading] = useState<boolean>(true);
@@ -28,9 +28,10 @@ export default function TeamDashboard() {
         .from("team")
         .update({ team_leader: memberId })
         .eq("team_id", profile.team_id)
-        .eq("team_leader", profile.id); // only current leader can do this
+        .eq("team_leader", profile.id);
 
       if (error) throw error;
+      await reloadSession();
       await loadTeam();
     } catch (error) {
       console.log(error);
@@ -57,10 +58,9 @@ export default function TeamDashboard() {
   }
 
   useEffect(() => {
-    if (profile && !profile.team_id) {
-      router.push("/b4g");
-    }
-  }, [profile, user]);
+    if (isLoading) return;
+    if (!profile?.team_id) router.push("/b4g");
+  }, [profile, isLoading]);
 
   async function loadTeam() {
     if (!profile?.team_id) return;
@@ -110,7 +110,7 @@ export default function TeamDashboard() {
 
   useEffect(() => {
     loadTeam();
-  }, [profile, router]);
+  }, [profile]);
 
   return (
     <div className="flex flex-col gap-3 p-3">
@@ -129,7 +129,7 @@ export default function TeamDashboard() {
           <div className="gap-3 grid grid-flow-row lg:grid-cols-2">
             {team?.members?.map((member) => (
               <div
-                className="flex flex-col p-3 gap-3 rounded-2xl bg-[--container-background]"
+                className="flex flex-col p-5 gap-3 rounded-3xl bg-[--container-background]"
                 key={member.id}
               >
                 <h2 className="text-2xl text-[--pink] font-medium">
@@ -175,9 +175,7 @@ export default function TeamDashboard() {
                       {kickingId === member.id ? "Kicking..." : "Kick Member"}
                     </button>
                   </div>
-                ) : (
-                  <h1></h1>
-                )}
+                ) : null}
               </div>
             ))}
           </div>
