@@ -99,7 +99,7 @@ export default function TeamSearch() {
           id="teamSearch"
           type="text"
           placeholder="Search for a team"
-          className="bg-transparent px-4"
+          className="bg-transparent px-4 flex-1 w-full min-w-0 outline-none"
           value={team}
           onChange={(e) => {
             setTeam(e.target.value);
@@ -133,7 +133,13 @@ export default function TeamSearch() {
         </div>
       </div>
 
-      <TeamsTable teams={filteredTeams} />
+      {filteredTeams.length === 0 ? (
+        <div className="w-full flex justify-center items-center">
+        <p className="text-3xl font-semibold text-center">No Results</p>
+        </div>) 
+        : (
+        <TeamsTable teams={filteredTeams} />
+      )}
     </div>
   );
 }
