@@ -77,7 +77,7 @@ export function Navigation() {
         />
       </Link>
       <div className="hidden max-w-[1000] flex-1 xl:flex justify-end">
-        <div className="flex gap-5 text-2xl items-center justify-between p-3 px-6 rounded-full bg-white text-center">
+        <div className="flex gap-5 text-xl items-center justify-between p-3 px-6 rounded-full bg-white text-center">
           {/* XXX Remove track atm
           <Link className="p-2 hover:scale-110 my-auto" href="/b4g/Tracks">
             Tracks

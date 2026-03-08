@@ -76,7 +76,7 @@ export default function TeamSearch() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center gap-4 py-20 px-6">
+    <div className="flex flex-col justify-center gap-4 max-w-5xl mx-auto py-20 px-6">
       <div className="flex flex-col gap-5 mx-auto">
         <h1 className="text-6xl font-semibold mx-auto">Team Search</h1>
         <Link
@@ -135,9 +135,9 @@ export default function TeamSearch() {
 
       {filteredTeams.length === 0 ? (
         <div className="w-full flex justify-center items-center">
-        <p className="text-3xl font-semibold text-center">No Results</p>
-        </div>) 
-        : (
+          <p className="text-3xl font-semibold text-center">No Results</p>
+        </div>
+      ) : (
         <TeamsTable teams={filteredTeams} />
       )}
     </div>
