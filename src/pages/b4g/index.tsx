@@ -112,6 +112,12 @@ const logos = [
     height: 200,
   },
   {
+    title: "Amazon Web Services",
+    image: "b4g/Amazon_Web_Services_Logo.svg",
+    width: 50,
+    height: 100,
+  },
+  {
     title: "Flerish Hydration",
     image: "b4g/Flerish_Hydration_Logo.svg",
     width: 50,
