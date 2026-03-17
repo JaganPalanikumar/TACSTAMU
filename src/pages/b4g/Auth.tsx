@@ -17,10 +17,13 @@ const Auth = () => {
       : "/b4g/Dashboard";
 
   const [isSignup, setIsSignup] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [shirtOpen, setShirtOpen] = useState(false);
+  const [gradYearOpen, setGradYearOpen] = useState(false);
 
   const currentYear = new Date().getFullYear();
-  const gradYears = Array.from({ length: 10 }, (_, i) => currentYear + i - 2);
+  const gradYears = Array.from({ length: 8 }, (_, i) =>
+    (currentYear + i - 2).toString(),
+  );
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -278,22 +281,47 @@ const Auth = () => {
               <div className={errorWrap}>
                 <h2 className={formText}>Graduation Year *</h2>
 
-                <select
-                  ref={gradYearRef}
-                  value={gradYear}
-                  onChange={(e) => setGradYear(e.target.value)}
-                  className={`${dropDownBubble} ${gradYear === "" ? "text-white/50" : "text-white"} ${
-                    submitAttempted && fieldErrors.gradYear ? errorBubble : ""
-                  }`}
-                  // remove required if using form noValidate + validate()
-                >
-                  <option value="">Select graduation year</option>
-                  {gradYears.map((year) => (
-                    <option key={year} value={year}>
-                      {year}
-                    </option>
-                  ))}
-                </select>
+                <div className="relative w-full">
+                  <button
+                    type="button"
+                    onClick={() => setGradYearOpen(!gradYearOpen)}
+                    className={`${dropDownBubble} flex justify-between w-full items-center ${
+                      gradYear === "" ? "text-white/50" : "text-white"
+                    } ${submitAttempted && fieldErrors.gradYear ? errorBubble : ""}`}
+                  >
+                    {gradYear || "Select graduation year"}
+                    <span
+                      className={`transition ${gradYearOpen ? "rotate-180" : ""}`}
+                    >
+                      <ExpandMoreRoundedIcon className="-translate-y-0.5 text-white" />
+                    </span>
+                  </button>
+
+                  <AnimatePresence>
+                    {gradYearOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -5 }}
+                        className="absolute z-50 mt-2 w-full bg-[#24272D] outline outline-[2.5px] outline-offset-[-2.5px] outline-[--pink] rounded-[1.5rem] shadow-xl p-3"
+                      >
+                        {gradYears.map((year) => (
+                          <button
+                            key={year}
+                            type="button"
+                            onClick={() => {
+                              setGradYear(year);
+                              setGradYearOpen(false);
+                            }}
+                            className="w-full text-left p-3 rounded-[1.125rem] text-white hover:bg-white/20 active:scale-95 transition"
+                          >
+                            {year}
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
                 {submitAttempted && fieldErrors.gradYear && (
                   <div className={errorText}>{fieldErrors.gradYear}</div>
@@ -470,7 +498,7 @@ const Auth = () => {
                 <div className="relative w-full">
                   <button
                     type="button"
-                    onClick={() => setOpen(!open)}
+                    onClick={() => setShirtOpen(!shirtOpen)}
                     className={`${dropDownBubble} flex justify-between w-full items-center  ${
                       shirtSize === "" ? "text-white/50" : "text-white"
                     } ${
@@ -480,13 +508,15 @@ const Auth = () => {
                     }`}
                   >
                     {shirtSize || "Select size"}
-                    <span className={`transition ${open ? "rotate-180" : ""}`}>
+                    <span
+                      className={`transition ${shirtOpen ? "rotate-180" : ""}`}
+                    >
                       <ExpandMoreRoundedIcon className="-translate-y-0.5 text-white" />
                     </span>
                   </button>
 
                   <AnimatePresence>
-                    {open && (
+                    {shirtOpen && (
                       <motion.div
                         initial={{ opacity: 0, y: -5 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -499,9 +529,9 @@ const Auth = () => {
                             type="button"
                             onClick={() => {
                               setShirtSize(size);
-                              setOpen(false);
+                              setShirtOpen(false);
                             }}
-                            className="w-full text-left p-3 rounded-[1.125rem] text-white hover:bg-white/20 hover:scale-[1.02] transition"
+                            className="w-full text-left p-3 rounded-[1.125rem] text-white hover:bg-white/20 active:scale-95 transition"
                           >
                             {size}
                           </button>

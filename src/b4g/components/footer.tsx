@@ -8,7 +8,7 @@ export function Footer() {
           href="https://discord.gg/CBWn8mKFvx"
           target="_blank"
           className="w-fit h-fit my-auto p-3 bg-white rounded-full cursor-pointer
-             hover:scale-110
+             hover:scale-105 active:scale-95
              transition-transform
              duration-300 ease-in-out"
         >
@@ -27,7 +27,7 @@ export function Footer() {
           href="https://www.instagram.com/tacstamu/"
           target="_blank"
           className="w-fit h-fit my-auto p-3 bg-white rounded-full cursor-pointer
-             hover:scale-110
+             hover:scale-105 active:scale-95
              transition-transform
              duration-300 ease-in-out"
         >
@@ -47,7 +47,7 @@ export function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           className="w-fit h-fit my-auto p-3 bg-white rounded-full cursor-pointer
-             hover:scale-110
+             hover:scale-105 active:scale-95
              transition-transform
              duration-300 ease-in-out"
         >
@@ -67,7 +67,7 @@ export function Footer() {
           href="/TACS"
           className="rounded-full cursor-pointer
           bg-white p-3
-             hover:scale-110
+             hover:scale-105
              transition-translation
              duration-300 ease-in-out"
         >
@@ -76,7 +76,7 @@ export function Footer() {
       </div>
       <Link
         href="/TACS"
-        className="font-light hover:scale-110 hover:text-[--pink]"
+        className="font-light hover:scale-105 active:scale-95 hover:text-[--pink]"
       >
         Texas A&amp;M Computing Society © 2026
       </Link>

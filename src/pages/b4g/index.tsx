@@ -122,7 +122,7 @@ const logos = [
     image: "b4g/Flerish_Hydration_Logo.svg",
     width: 50,
     height: 100,
-  }
+  },
 ];
 
 export default function Landing() {
@@ -211,7 +211,7 @@ export default function Landing() {
               BUILD4GOOD 2026
               <Link
                 href="/b4g/Auth"
-                className="p-2 px-5 hover:scale-110 bg-[--pink] text-3xl w-fit text-white font-bold rounded-full mx-auto transition-transform duration-300"
+                className="p-2 px-5 hover:scale-105 active:scale-95 bg-[--pink] text-3xl w-fit text-white font-bold rounded-full mx-auto transition-transform duration-300"
               >
                 Register Now
               </Link>
@@ -230,7 +230,7 @@ export default function Landing() {
             <div className="mt-5 w-fit text-center m-auto text-3xl flex flex-col gap-4">
               <Link
                 href="/b4g/Auth"
-                className="p-2 px-5 hover:scale-110 bg-[--pink] text-3xl w-fit text-white font-bold rounded-full mx-auto transition-transform duration-300"
+                className="p-2 px-5 hover:scale-105 active:scale-95 bg-[--pink] text-3xl w-fit text-white font-bold rounded-full mx-auto transition-transform duration-300"
               >
                 Register Now
               </Link>
