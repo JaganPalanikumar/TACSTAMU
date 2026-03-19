@@ -15,17 +15,22 @@ export default function FAQ() {
     {
       question: "Will there be food?",
       answer:
-        "Absolutely, we will be serving food throughout the hackathon including Lunch and snacks. Make sure you check in on arrival to ensure you get food.",
+        "Absolutely, we will be serving food throughout the hackathon including lunch and snacks. Make sure you check in on arrival to ensure you get food.",
     },
     {
       question: "Can I still come if I miss the opening ceremony?",
       answer:
-        "Yes! You can join at anytime, but. just make sure to check in with an officer so you can get food and a shirt!",
+        "Yes! You can join at anytime, but just make sure to check in with an officer so you can get food and a shirt!",
     },
     {
       question: "What should I bring with me?",
       answer:
         "You will definitely want to bring your laptop and probably a charger.",
+    },
+    {
+      question: "I have a time conflict in the morning, can I still come?",
+      answer:
+        "Yes! Just check in with an officer for free food and a shirt. Note that hacking begins at 11:30!",
     },
   ];
 
@@ -41,6 +46,7 @@ export default function FAQ() {
           ))}
         </ul>
       </div>
+      
     </div>
   );
 }
