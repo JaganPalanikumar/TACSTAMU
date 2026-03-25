@@ -68,6 +68,7 @@ export type Database = {
       }
       profile: {
         Row: {
+          checked_in: boolean
           created_at: string
           diet_restrictions: Json | null
           first_hackathon: boolean
@@ -83,6 +84,7 @@ export type Database = {
           team_id: string | null
         }
         Insert: {
+          checked_in?: boolean
           created_at?: string
           diet_restrictions?: Json | null
           first_hackathon?: boolean
@@ -98,6 +100,7 @@ export type Database = {
           team_id?: string | null
         }
         Update: {
+          checked_in?: boolean
           created_at?: string
           diet_restrictions?: Json | null
           first_hackathon?: boolean
