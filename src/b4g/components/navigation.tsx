@@ -77,15 +77,14 @@ export function Navigation() {
       </Link>
       <div className="hidden max-w-[1500] flex-1 xl:flex justify-end">
         <div className="flex gap-5 text-lg items-center justify-between p-3 px-6 rounded-full bg-white text-center">
-          {Date.now() > new Date("2026-03-28T11:30:00-06:00").getTime() &&
-            profile?.id && (
-              <Link
-                className="p-2 hover:scale-105 active:scale-95 my-auto transition-transform duration-300"
-                href="/b4g/Challenges"
-              >
-                Challenges
-              </Link>
-            )}
+          {profile?.id && (
+            <Link
+              className="p-2 hover:scale-105 active:scale-95 my-auto transition-transform duration-300"
+              href="/b4g/Challenges"
+            >
+              Challenges
+            </Link>
+          )}
 
           <Link
             className="p-2 hover:scale-105 active:scale-95 my-auto transition-transform duration-300"
