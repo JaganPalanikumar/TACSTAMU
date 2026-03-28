@@ -178,7 +178,7 @@ export default function Dashboard() {
             </p>
             <QRCode
               value={profile?.id}
-              className="mx-auto p-6 bg-[--container-background] rounded-xl h-96 w-auto"
+              className="mx-auto p-6 bg-[--container-background] rounded-xl w-full aspect-square"
             />
           </div>
         )}
