@@ -342,6 +342,18 @@ function Figma({ hidden }: { hidden: boolean }) {
     <div className="flex flex-col">
       <Card>
         <CardTitle>Figma UX Challenge — Design for an Astronaut</CardTitle>
+
+        <p className="text-[--gray] text-sm">
+          In partnership with the{" "}
+          <a
+            href="https://www.figma.com/education/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white font-medium hover:text-[--pink] transition"
+          >
+            Figma Education Program
+          </a>
+        </p>
         <p className="text-lg text-[--gray]">
           Design a mobile or tablet app experience that helps astronauts manage
           the psychological and behavioral effects of long-duration isolation
@@ -360,17 +372,6 @@ function Figma({ hidden }: { hidden: boolean }) {
             ),
           )}
         </div>
-        <p className="text-[--gray] text-sm">
-          In partnership with the{" "}
-          <a
-            href="https://www.figma.com/education/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white font-medium hover:text-[--pink] transition"
-          >
-            Figma Education Program
-          </a>
-        </p>
       </Card>
 
       <Card>
@@ -389,7 +390,9 @@ function Figma({ hidden }: { hidden: boolean }) {
           ]}
         />
         <Link
-          href="/b4g/Figma"
+          href="/b4g/Figma UX Challenge Description.pdf"
+          download="/b4g/Figma UX Challenge Description.pdf"
+          target="_blank"
           className="w-fit mt-2 px-8 py-3 rounded-full bg-[--pink] text-white hover:scale-105 transition text-sm font-medium"
         >
           View Full Challenge Brief →
