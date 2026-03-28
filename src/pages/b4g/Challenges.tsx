@@ -86,6 +86,28 @@ export default function Challenges() {
         <Figma hidden={tab !== "figma"} />
         <AggieX hidden={tab !== "aggiex"} />
         <SpaceData hidden={tab !== "space-data"} />
+
+        {/* ================= SUBMISSION ================= */}
+        {tab != "poker-bot" && (
+          <div className="p-12 flex flex-col gap-6 text-center">
+            <h2 className="text-3xl font-semibold text-[--pink]">
+              Submit Your Project
+            </h2>
+            <p className="text-lg text-[--gray]">
+              All projects must be submitted on Devpost before the deadline.
+              Make sure your submission includes a project description, demo
+              video, and links to your code or prototype.
+            </p>
+            <a
+              href="https://build4good-2026.devpost.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mx-auto mt-2 px-8 py-3 rounded-full bg-[--pink] text-white hover:scale-105 active:scale-95 transition text-sm font-medium"
+            >
+              Submit on Devpost →
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -454,11 +476,105 @@ function SpaceData({ hidden }: { hidden: boolean }) {
   if (hidden) return null;
   return (
     <div className="flex flex-col gap-6">
+      {/* ── Overview ── */}
       <Card>
         <CardTitle>Space Data Visualization</CardTitle>
-        <div className="flex items-center justify-center border border-dashed border-white/10 rounded-2xl py-16 text-[--gray] text-sm tracking-widest">
-          COMING SOON
+        <p className="text-lg text-[--gray]">
+          NASA has spent decades collecting data on everything from distant
+          galaxies to Earth's own atmosphere — and most of it is freely
+          available to the public. Your challenge is to take one of these real
+          datasets and turn it into something{" "}
+          <span className="text-white font-medium">
+            people haven't seen before
+          </span>
+          .
+        </p>
+        <p className="text-lg text-[--gray]">
+          Don't just display the data — tell a story with it. Find a pattern,
+          draw a conclusion, or reframe something complex so that someone
+          completely new to space can understand and appreciate it.
+        </p>
+        <a
+          href="https://data.nasa.gov/dataset"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-fit px-6 py-2 rounded-full border border-[--pink] hover:scale-105 active:scale-95 text-[--pink] text-sm hover:bg-[--pink]/10 transition"
+        >
+          Browse NASA Datasets →
+        </a>
+      </Card>
+
+      {/* ── What to do ── */}
+      <Card>
+        <CardTitle>The Challenge</CardTitle>
+        <BulletList
+          items={[
+            "Choose any dataset from NASA's open data portal",
+            "Analyze it — find something interesting, unexpected, or underreported",
+            "Build a visual representation that communicates your finding clearly",
+            "Make it accessible to someone with no background in space or science",
+            "Your output can be a web app, interactive chart, animation, dashboard, or anything else — if it shows the data compellingly, it counts",
+          ]}
+        />
+      </Card>
+
+      {/* ── Dataset ideas ── */}
+      <Card>
+        <CardTitle>Dataset Ideas to Get You Started</CardTitle>
+        <p className="text-lg text-[--gray]">
+          Not sure where to begin? These are just starting points — you're free
+          to use any dataset on the portal.
+        </p>
+        <div className="grid md:grid-cols-2 gap-4 pt-2">
+          {[
+            {
+              title: "Exoplanet Archive",
+              desc: "Thousands of confirmed planets outside our solar system. Visualize habitability, size comparisons, or discovery trends over time.",
+            },
+            {
+              title: "Meteorite Landings",
+              desc: "Every recorded meteorite fall on Earth. Map them geographically or analyze mass distribution and frequency by region.",
+            },
+            {
+              title: "Near-Earth Objects",
+              desc: "Asteroids and comets that pass close to Earth. Show proximity, size, and risk in a way that's intuitive rather than alarming.",
+            },
+            {
+              title: "NASA Astronaut Records",
+              desc: "Biographical and mission data for every NASA astronaut. Find patterns in backgrounds, mission duration, or demographic shifts over the decades.",
+            },
+            {
+              title: "Earth Surface Temperature",
+              desc: "Long-term climate data from NASA's GISS. Reframe the numbers at a human scale — what does a 1.2°C rise actually mean?",
+            },
+            {
+              title: "Space Mission Archives",
+              desc: "Launch history, mission types, and outcomes across decades of exploration. Visualize humanity's journey outward over time.",
+            },
+          ].map((d) => (
+            <div
+              key={d.title}
+              className="border border-white/10 rounded-2xl p-5 flex flex-col gap-2"
+            >
+              <p className="text-white font-medium">{d.title}</p>
+              <p className="text-[--gray] text-sm leading-relaxed">{d.desc}</p>
+            </div>
+          ))}
         </div>
+      </Card>
+
+      {/* ── Judging ── */}
+      <Card>
+        <CardTitle>Judging Criteria</CardTitle>
+        <BulletList
+          items={[
+            "Insight — did you find something genuinely interesting or surprising in the data?",
+            "Clarity — can someone with no space background understand your visualization?",
+            "Creativity — does your approach feel fresh and unexpected?",
+            "Execution — is the visual polished, functional, and well-presented?",
+            "Storytelling — does it feel like a discovery, not just a chart?",
+          ]}
+        />
       </Card>
 
       <PrizesCard prizes={[{ place: "1st Place", items: ["AirPods"] }]} />
@@ -467,4 +583,3 @@ function SpaceData({ hidden }: { hidden: boolean }) {
 }
 
 // TODO Add devpost and prizes sections
-// FIXME Make all of this for mobile as well Especially fix the Brand Images
