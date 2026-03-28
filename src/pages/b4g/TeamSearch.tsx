@@ -25,32 +25,13 @@ export default function TeamSearch() {
     const term = searchTerm ?? team ?? "";
 
     try {
-      const { data, error } = await supabase
-        .from("team_summary")
-        .select(
-          `
-    team_id,
-    team_name,
-    team_leader,
-    leader_first_name,
-    leader_last_name,
-    max_members,
-    member_count
-  `,
-        )
-        .ilike("team_name", `%${term}%`)
-        .limit(20);
+      const { data, error } = await supabase.rpc("search_teams", {
+        search_term: term,
+      });
 
-      if (error) {
-        throw error;
-      }
+      if (error) throw error;
 
-      if (!data) {
-        setTeams([]);
-        return;
-      }
-
-      const formattedTeams = data.map((team) => ({
+      const formattedTeams = (data ?? []).map((team) => ({
         ...team,
         members: [],
       }));

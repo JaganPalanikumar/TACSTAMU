@@ -132,21 +132,15 @@ export default function TeamDashboard() {
   async function loadTeam() {
     if (!profile?.team_id) return;
     try {
-      const { data: team, error: teamError } = await supabase
-        .from("team_summary")
-        .select()
-        .eq("team_id", profile.team_id)
-        .maybeSingle();
-
+      const { data: teamData, error: teamError } = await supabase.rpc(
+        "get_my_team_summary",
+      );
       if (teamError) throw teamError;
+      const team = teamData?.[0]; // ← grab first row
 
-      const { data: users, error: userError } = await supabase
-        .from("profile")
-        .select(
-          `id, first_name, last_name, grad_year, team_id, first_hackathon`,
-        )
-        .eq("team_id", profile.team_id);
-
+      const { data: users, error: userError } = await supabase.rpc(
+        "get_my_team_members",
+      );
       if (userError) throw userError;
 
       const { data: emails } = await supabase.rpc("get_team_emails", {

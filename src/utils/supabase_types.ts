@@ -169,11 +169,51 @@ export type Database = {
       }
     }
     Functions: {
+      admin_check_in: {
+        Args: { ate: boolean; checked: boolean; target_id: string }
+        Returns: undefined
+      }
+      get_my_team_id: { Args: never; Returns: string }
+      get_my_team_members: {
+        Args: never
+        Returns: {
+          first_hackathon: boolean
+          first_name: string
+          grad_year: number
+          id: string
+          last_name: string
+          team_id: string
+        }[]
+      }
+      get_my_team_summary: {
+        Args: never
+        Returns: {
+          leader_first_name: string
+          leader_last_name: string
+          max_members: number
+          member_count: number
+          team_id: string
+          team_leader: string
+          team_name: string
+        }[]
+      }
       get_team_emails: {
         Args: { p_team_id: string }
         Returns: {
           email: string
           id: string
+        }[]
+      }
+      search_teams: {
+        Args: { search_term: string }
+        Returns: {
+          leader_first_name: string
+          leader_last_name: string
+          max_members: number
+          member_count: number
+          team_id: string
+          team_leader: string
+          team_name: string
         }[]
       }
     }
