@@ -305,6 +305,16 @@ function PokerBot({ hidden }: { hidden: boolean }) {
       </Card>
 
       <Card>
+        <CardTitle>Github Repo</CardTitle>
+        <a
+          href="https://github.com/MontgomeryBohde/TACS-PokerBots-2026"
+          target="_blank"
+        >
+          https://github.com/MontgomeryBohde/TACS-PokerBots-2026
+        </a>
+      </Card>
+
+      <Card>
         <CardTitle>What to Expect</CardTitle>
         <BulletList
           items={[

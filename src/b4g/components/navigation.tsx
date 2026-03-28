@@ -214,15 +214,14 @@ export function Navigation() {
                   </Link>
                 )}
 
-                {Date.now() > new Date("2026-03-28T11:30:00-06:00").getTime() &&
-                  profile?.id && (
-                    <Link
-                      className="p-2 hover:scale-105 active:scale-95 w-fit my-auto duration-300"
-                      href="/b4g/Challenges"
-                    >
-                      Challenges
-                    </Link>
-                  )}
+                {profile?.id && (
+                  <Link
+                    className="p-2 hover:scale-105 active:scale-95 w-fit my-auto duration-300"
+                    href="/b4g/Challenges"
+                  >
+                    Challenges
+                  </Link>
+                )}
 
                 <Link
                   className="p-2 hover:scale-105 active:scale-95 w-fit my-auto duration-300"
