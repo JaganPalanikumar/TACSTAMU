@@ -24,10 +24,7 @@ export default function Dashboard() {
     setError(null);
 
     try {
-      const { error: postError } = await supabase
-        .from("profile")
-        .update({ participating: !profile.participating })
-        .eq("id", profile.id);
+      const { error: postError } = await supabase.rpc("toggle_participation");
       if (postError) throw postError;
       reloadSession();
     } catch (err) {
@@ -40,6 +37,13 @@ export default function Dashboard() {
       setUpdating(false);
     }
   }
+
+  const dietList = (() => {
+    const d = profile?.diet_restrictions;
+    if (!d) return "None";
+    const arr = Array.isArray(d) ? d : JSON.parse(d as string);
+    return arr.join(", ") || "None";
+  })();
 
   return (
     <div className="min-h-screen px-6 py-20 flex justify-center">
@@ -126,7 +130,7 @@ export default function Dashboard() {
             </div>
             <div>
               <span className="font-medium">Dietary Restrictions:</span>{" "}
-              {profile?.diet_restrictions.join(", ") || "None"}
+              {dietList}
             </div>
           </div>
         </div>

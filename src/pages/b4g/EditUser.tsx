@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 
 export default function EditUser() {
-  const { user, profile } = useAuth();
+  const { user, profile, isLoading } = useAuth();
   const router = useRouter();
 
   const currentYear = new Date().getFullYear();
@@ -74,7 +74,7 @@ export default function EditUser() {
         p_first_name: first_name,
         p_last_name: last_name,
         p_grad_year: grad_year === "" ? undefined : Number(grad_year),
-        p_diet_restrictions: finalDietary,
+        p_diet_restrictions: JSON.stringify(finalDietary), // ← stringify to jsonb
         p_shirt_size: shirtSize,
       });
 
@@ -89,6 +89,7 @@ export default function EditUser() {
   };
 
   useEffect(() => {
+    if (isLoading) return;
     if (!user || !profile) {
       router.push("/b4g");
       return;
@@ -101,37 +102,39 @@ export default function EditUser() {
       setEmail(user.email);
       setShirtSize(profile.shirt_size ?? "");
 
-      // ✅ Autofill dietary restrictions
-      if (Array.isArray(profile.diet_restrictions)) {
-        setDietRestrictions(profile.diet_restrictions);
+      // Normalize diet_restrictions — handles both array and JSON string
+      const raw = profile.diet_restrictions;
+      const restrictions: string[] = Array.isArray(raw)
+        ? raw
+        : typeof raw === "string"
+          ? JSON.parse(raw)
+          : typeof raw === "object" && raw !== null
+            ? Object.values(raw)
+            : [];
 
-        // If they previously entered a custom value (not in predefined list)
-        const predefined = [
-          "Vegetarian",
-          "Vegan",
-          "Gluten-Free",
-          "Dairy-Free",
-          "Nut-Free",
-          "Halal",
-          "Kosher",
-          "No beef",
-          "No pork",
-          "Only chicken",
-        ];
+      const predefined = [
+        "Vegetarian",
+        "Vegan",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Nut-Free",
+        "Halal",
+        "Kosher",
+        "No beef",
+        "No pork",
+        "Only chicken",
+      ];
 
-        const custom = profile.diet_restrictions.find(
-          (item: string) => !predefined.includes(item),
-        );
+      const custom = restrictions.find((item) => !predefined.includes(item));
 
-        if (custom) {
-          setDietRestrictions([
-            ...profile.diet_restrictions.filter((d: string) =>
-              predefined.includes(d),
-            ),
-            "Other",
-          ]);
-          setCustomDiet(custom);
-        }
+      if (custom) {
+        setDietRestrictions([
+          ...restrictions.filter((d) => predefined.includes(d)),
+          "Other",
+        ]);
+        setCustomDiet(custom);
+      } else {
+        setDietRestrictions(restrictions);
       }
     }
   }, [user, profile, router]);

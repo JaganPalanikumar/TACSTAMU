@@ -207,13 +207,14 @@ export type Database = {
           team_name: string
         }[]
       }
+      toggle_participation: { Args: never; Returns: undefined }
       transfer_team_leadership: {
         Args: { target_id: string }
         Returns: undefined
       }
       update_my_profile: {
         Args: {
-          p_diet_restrictions?: string[]
+          p_diet_restrictions?: Json
           p_first_hackathon?: boolean
           p_first_name?: string
           p_grad_year?: number
