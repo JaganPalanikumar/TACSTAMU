@@ -78,6 +78,7 @@ export type Database = {
           heard_about: string | null
           helpful_links: string | null
           id: string
+          is_admin: boolean
           last_name: string
           participating: boolean
           shirt_size: string | null
@@ -94,6 +95,7 @@ export type Database = {
           heard_about?: string | null
           helpful_links?: string | null
           id: string
+          is_admin?: boolean
           last_name: string
           participating?: boolean
           shirt_size?: string | null
@@ -110,6 +112,7 @@ export type Database = {
           heard_about?: string | null
           helpful_links?: string | null
           id?: string
+          is_admin?: boolean
           last_name?: string
           participating?: boolean
           shirt_size?: string | null
@@ -151,10 +154,8 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      admin_check_in: {
-        Args: { ate: boolean; checked: boolean; target_id: string }
-        Returns: undefined
-      }
+      admin_check_in_user: { Args: { target_id: string }; Returns: Json }
+      admin_mark_eaten: { Args: { target_id: string }; Returns: Json }
       create_team: {
         Args: { p_max_members: number; p_team_name: string }
         Returns: undefined
