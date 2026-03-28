@@ -309,6 +309,8 @@ function PokerBot({ hidden }: { hidden: boolean }) {
         <a
           href="https://github.com/MontgomeryBohde/TACS-PokerBots-2026"
           target="_blank"
+          rel="noopener noreferrer"
+          className="text-[--pink] font-medium hover:underline transition"
         >
           https://github.com/MontgomeryBohde/TACS-PokerBots-2026
         </a>

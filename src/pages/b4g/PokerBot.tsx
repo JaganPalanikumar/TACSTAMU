@@ -65,6 +65,17 @@ export default function PokerBot() {
           />
         </Section>
 
+        <Section title="Github Repo">
+          <a
+            href="https://github.com/MontgomeryBohde/TACS-PokerBots-2026"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-[--pink] hover:underline transition"
+          >
+            https://github.com/MontgomeryBohde/TACS-PokerBots-2026
+          </a>
+        </Section>
+
         {/* ── Game Rules ── */}
         <Section title="Game Rules — Hold'em + Redraw">
           <P>
