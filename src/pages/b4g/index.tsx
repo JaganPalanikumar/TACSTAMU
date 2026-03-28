@@ -373,7 +373,7 @@ export default function Landing() {
           </ul>
         </div>
       </section>
-      {/* TODO Add sponsors page */}
+
       <section id="Sponsors" className="flex flex-col gap-20 w-dvw h-fit">
         <SectionHeader>
           <span className="break-words">

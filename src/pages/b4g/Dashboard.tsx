@@ -5,6 +5,7 @@ import { supabase } from "@/utils/supabase";
 import Link from "next/link";
 import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
 import { AccessAlarmRounded, LocationOnRounded } from "@mui/icons-material";
+import QRCode from "react-qr-code";
 
 export default function Dashboard() {
   const { user, profile, isLoading, reloadSession } = useAuth();
@@ -13,7 +14,7 @@ export default function Dashboard() {
   const [updating, setUpdating] = useState(false);
 
   useEffect(() => {
-    if (!profile) {
+    if (!isLoading && !profile) {
       router.push("/b4g");
     }
   }, [isLoading, profile, router]);
@@ -57,7 +58,7 @@ export default function Dashboard() {
         </div>
 
         {/* ================= REGISTRATION STATUS ================= */}
-        <div className="bg-[--container-background] rounded-[3rem] p-12 shadow-xl flex flex-col gap-6 text-center">
+        <div className="p-12 flex flex-col gap-6 text-center">
           <h2 className="text-3xl font-semibold text-[--pink]">
             {profile?.participating
               ? "You're Registered 🎉"
@@ -102,7 +103,7 @@ export default function Dashboard() {
         </div>
 
         {/* ================= PROFILE SUMMARY ================= */}
-        <div className="bg-[--container-background] rounded-[3rem] p-12 shadow-xl flex flex-col gap-8 text-[--gray]">
+        <div className="p-12 flex flex-col gap-8 text-[--gray]">
           <div className="flex justify-between items-center">
             <h2 className="text-3xl font-semibold text-[--pink]">
               Profile Information
@@ -135,59 +136,26 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* ================= TEAM SECTION ================= */}
-        {/* <div className="bg-(--container-background) rounded-[3rem] p-12 shadow-xl flex flex-col gap-8">
-          <h2 className="text-3xl font-semibold text-center">Team</h2>
-
-          {!team ? (
-            <div className="flex flex-col items-center gap-6 text-center">
-              <p className="text-lg text-gray-600">
-                You are not on a team yet.
-              </p>
-
-              <div className="flex gap-6">
-                <button className="px-8 py-3 rounded-full bg-[--pink] text-white hover:scale-105 transition">
-                  Create Team
-                </button>
-                <button className="px-8 py-3 rounded-full border border-[--pink] text-[--pink] hover:bg-[--pink]/10 transition">
-                  Join Team
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div className="flex flex-col gap-6">
-              <div className="text-center text-2xl font-medium">
-                {team.name}
-              </div>
-
-              <div className="flex flex-col gap-2 text-gray-700">
-                {team.members.map((member: any) => (
-                  <div key={member.id} className="text-center">
-                    {member.name}
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex justify-center gap-6 pt-4">
-                <button className="px-6 py-2 rounded-full border border-red-400 text-red-500 hover:bg-red-50 transition">
-                  Leave Team
-                </button>
-              </div>
-            </div>
-          )}
-        </div> */}
-
         {/* ================= EVENT INFO ================= */}
-        <div className="bg-[--container-background] rounded-[3rem] p-12 shadow-xl flex flex-col gap-6 text-center">
+        <div className="p-12 flex flex-col gap-6 text-center">
           <h2 className="text-3xl font-semibold text-[--pink]">
             Event Information
           </h2>
 
           <div className="flex flex-col gap-3 text-lg text-[--gray]">
-            <p>💬 Join our Discord for updates</p>
-            <p>🍕 Meals and snacks provided</p>
-            <p>🎒 Bring your laptop & charger</p>
-            <p>🏆 Prizes for top teams</p>
+            <p>
+              <span className="text-white">💬</span> Join our Discord for
+              updates
+            </p>
+            <p>
+              <span className="text-white">🍕</span> Meals and snacks provided
+            </p>
+            <p>
+              <span className="text-white">🎒</span> Bring your laptop & charger
+            </p>
+            <p>
+              <span className="text-white">🏆</span> Prizes for top teams
+            </p>
           </div>
 
           <Link
@@ -198,8 +166,25 @@ export default function Dashboard() {
           </Link>
         </div>
 
+        {/* ================= Check in QRCode ================= */}
+        {profile && (
+          <div className="p-12 flex flex-col gap-6 text-center">
+            <h2 className="text-3xl font-semibold text-[--pink]">
+              {profile.checked_in ? "Food" : "Check in QR code"}
+            </h2>
+            <p className="text-lg text-[--gray]">
+              Show this to an officer to get checked in, get food, and get a
+              t-shirt
+            </p>
+            <QRCode
+              value={profile?.id}
+              className="mx-auto p-6 bg-[--container-background] rounded-xl h-96 w-auto"
+            />
+          </div>
+        )}
+
         {/* ================= CANCEL REGISTRATION ================= */}
-        <div className="bg-[--container-background] rounded-[3rem] p-12 shadow-xl flex flex-col gap-6 text-center">
+        <div className="p-12 flex flex-col gap-6 text-center">
           <h2
             className={`text-3xl font-semibold ${
               profile?.participating ? "text-red-500" : "text-green-600"

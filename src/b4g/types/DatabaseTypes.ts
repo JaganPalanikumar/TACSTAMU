@@ -1,4 +1,5 @@
 export type Profile = {
+  checked_in: boolean;
   created_at: string;
   diet_restrictions: string[];
   first_hackathon: boolean | null;

@@ -75,13 +75,17 @@ export function Navigation() {
           className="h-14 w-auto"
         />
       </Link>
-      <div className="hidden max-w-[1000] flex-1 xl:flex justify-end">
-        <div className="flex gap-5 text-xl items-center justify-between p-3 px-6 rounded-full bg-white text-center">
-          {/* XXX Remove track atm
-          <Link className="p-2  my-auto" href="/b4g/Tracks">
-            Tracks
-          </Link>
-          */}
+      <div className="hidden max-w-[1500] flex-1 xl:flex justify-end">
+        <div className="flex gap-5 text-lg items-center justify-between p-3 px-6 rounded-full bg-white text-center">
+          {Date.now() > new Date("2026-03-28T11:30:00-06:00").getTime() &&
+            profile?.id && (
+              <Link
+                className="p-2 hover:scale-105 active:scale-95 my-auto transition-transform duration-300"
+                href="/b4g/Challenges"
+              >
+                Challenges
+              </Link>
+            )}
 
           <Link
             className="p-2 hover:scale-105 active:scale-95 my-auto transition-transform duration-300"
@@ -100,7 +104,7 @@ export function Navigation() {
               </Link>
             ) : (
               <Link
-                className="p-2 hover:scale-105 active:scale-95 my-auto transition-transform duration-300"
+                className="min-w-0 truncate p-2 hover:scale-105 active:scale-95 my-auto transition-transform duration-300"
                 href="/b4g/TeamSearch"
               >
                 Team Search
@@ -211,14 +215,15 @@ export function Navigation() {
                   </Link>
                 )}
 
-                {/* XXX Remove tracks atm
-                <Link
-                  className="p-2 hover:scale-105 active:scale-95 w-fit my-auto"
-                  href="/b4g/Tracks"
-                >
-                  Tracks
-                </Link>
-                 */}
+                {Date.now() > new Date("2026-03-28T11:30:00-06:00").getTime() &&
+                  profile?.id && (
+                    <Link
+                      className="p-2 hover:scale-105 active:scale-95 w-fit my-auto duration-300"
+                      href="/b4g/Challenges"
+                    >
+                      Challenges
+                    </Link>
+                  )}
 
                 <Link
                   className="p-2 hover:scale-105 active:scale-95 w-fit my-auto duration-300"
