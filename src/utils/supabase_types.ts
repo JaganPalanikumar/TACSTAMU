@@ -123,13 +123,6 @@ export type Database = {
             referencedRelation: "team"
             referencedColumns: ["team_id"]
           },
-          {
-            foreignKeyName: "profile_team_id_fkey"
-            columns: ["team_id"]
-            isOneToOne: false
-            referencedRelation: "team_summary"
-            referencedColumns: ["team_id"]
-          },
         ]
       }
       team: {
@@ -155,24 +148,15 @@ export type Database = {
       }
     }
     Views: {
-      team_summary: {
-        Row: {
-          leader_first_name: string | null
-          leader_last_name: string | null
-          max_members: number | null
-          member_count: number | null
-          team_id: string | null
-          team_leader: string | null
-          team_name: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
       admin_check_in: {
         Args: { ate: boolean; checked: boolean; target_id: string }
         Returns: undefined
       }
+      get_my_checked_in: { Args: never; Returns: boolean }
+      get_my_has_eaten: { Args: never; Returns: boolean }
       get_my_team_id: { Args: never; Returns: string }
       get_my_team_members: {
         Args: never
@@ -204,6 +188,7 @@ export type Database = {
           id: string
         }[]
       }
+      kick_team_member: { Args: { target_id: string }; Returns: undefined }
       search_teams: {
         Args: { search_term: string }
         Returns: {
@@ -215,6 +200,25 @@ export type Database = {
           team_leader: string
           team_name: string
         }[]
+      }
+      transfer_team_leadership: {
+        Args: { target_id: string }
+        Returns: undefined
+      }
+      update_my_profile: {
+        Args: {
+          p_diet_restrictions?: string[]
+          p_first_hackathon?: boolean
+          p_first_name?: string
+          p_grad_year?: number
+          p_last_name?: string
+          p_shirt_size?: string
+        }
+        Returns: undefined
+      }
+      update_my_team: {
+        Args: { p_max_members: number; p_team_name: string }
+        Returns: undefined
       }
     }
     Enums: {

@@ -60,14 +60,10 @@ export default function TeamDashboard() {
     setSaving(true);
     setEditError(null);
     try {
-      const { error } = await supabase
-        .from("team")
-        .update({
-          team_name: editName.trim(),
-          max_members: editMaxMembers,
-        })
-        .eq("team_id", profile.team_id)
-        .eq("team_leader", profile.id);
+      const { error } = await supabase.rpc("update_my_team", {
+        p_team_name: editName.trim(),
+        p_max_members: editMaxMembers,
+      });
 
       if (error) {
         if (error.code === "23505") {
@@ -91,12 +87,9 @@ export default function TeamDashboard() {
   async function transferLeadership(memberId: string) {
     if (!profile?.team_id) return;
     try {
-      const { error } = await supabase
-        .from("team")
-        .update({ team_leader: memberId })
-        .eq("team_id", profile.team_id)
-        .eq("team_leader", profile.id);
-
+      const { error } = await supabase.rpc("transfer_team_leadership", {
+        target_id: memberId,
+      });
       if (error) throw error;
       await reloadSession();
       await loadTeam();
@@ -104,17 +97,13 @@ export default function TeamDashboard() {
       console.log(error);
     }
   }
-
   async function kickMember(memberId: string) {
     if (!profile?.team_id) return;
     setKickingId(memberId);
     try {
-      const { error } = await supabase
-        .from("profile")
-        .update({ team_id: null })
-        .eq("id", memberId)
-        .eq("team_id", profile.team_id);
-
+      const { error } = await supabase.rpc("kick_team_member", {
+        target_id: memberId,
+      });
       if (error) throw error;
       await loadTeam();
     } catch (error) {

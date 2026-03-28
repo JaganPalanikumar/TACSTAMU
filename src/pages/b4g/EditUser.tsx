@@ -70,16 +70,13 @@ export default function EditUser() {
         ? [...diet_restrictions.filter((d) => d !== "Other"), customDiet]
         : diet_restrictions.filter((d) => d !== "Other");
 
-      const { error: profileError } = await supabase
-        .from("profile")
-        .update({
-          first_name,
-          last_name,
-          grad_year: grad_year === "" ? undefined : Number(grad_year),
-          diet_restrictions: finalDietary,
-          shirt_size: shirtSize,
-        })
-        .eq("id", user.id);
+      const { error: profileError } = await supabase.rpc("update_my_profile", {
+        p_first_name: first_name,
+        p_last_name: last_name,
+        p_grad_year: grad_year === "" ? undefined : Number(grad_year),
+        p_diet_restrictions: finalDietary,
+        p_shirt_size: shirtSize,
+      });
 
       if (profileError) throw profileError;
 
