@@ -88,7 +88,44 @@ export default function Challenges() {
         <SpaceData hidden={tab !== "space-data"} />
 
         {/* ================= SUBMISSION ================= */}
-        {tab != "poker-bot" && (
+        {tab === "poker-bot" ? (
+          <div className="p-12 flex flex-col gap-6 text-center">
+            <h2 className="text-3xl font-semibold text-[--pink]">
+              Submit Your Bot
+            </h2>
+            <p className="text-lg text-[--gray]">
+              Poker Bot submissions are collected via Google Forms. Upload your{" "}
+              <code className="text-white font-mono text-sm">.zip</code> file of
+              the{" "}
+              <code className="text-white font-mono text-sm">
+                python_skeleton/
+              </code>{" "}
+              folder and fill in your team member names.
+            </p>
+            <div className="flex flex-col gap-2 text-[--gray] text-sm">
+              {[
+                "Team Name",
+                "Team Member 1 (required)",
+                "Team Member 2",
+                "Team Member 3",
+                "Team Member 4",
+              ].map((field) => (
+                <div key={field} className="flex items-center gap-2 mx-auto">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[--pink] shrink-0" />
+                  <span>{field}</span>
+                </div>
+              ))}
+            </div>
+            <a
+              href="https://forms.gle/hUxpKj1M5EEBK6Rv8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mx-auto mt-2 px-8 py-3 rounded-full bg-[--pink] text-white hover:scale-105 active:scale-95 transition text-sm font-medium"
+            >
+              Submit Bot via Google Forms →
+            </a>
+          </div>
+        ) : (
           <div className="p-12 flex flex-col gap-6 text-center">
             <h2 className="text-3xl font-semibold text-[--pink]">
               Submit Your Project
