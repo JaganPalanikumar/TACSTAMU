@@ -18,15 +18,18 @@ export default function UpdateUserTeam() {
     if (!joining && profile?.team_id === null) return; // already not on a team
 
     const joinOrLeave = async () => {
-      if (!profile) return;
+      if (!profile || !teamID) return;
 
       try {
-        const { error } = await supabase
-          .from("profile")
-          .update({ team_id: joining ? teamID : null })
-          .eq("id", profile.id);
-
-        if (error) throw error;
+        if (joining) {
+          const { error } = await supabase.rpc("join_team", {
+            p_team_id: teamID,
+          });
+          if (error) throw error;
+        } else {
+          const { error } = await supabase.rpc("leave_team");
+          if (error) throw error;
+        }
 
         await reloadSession();
         router.push(joining ? "/b4g/TeamDashboard" : "/b4g");

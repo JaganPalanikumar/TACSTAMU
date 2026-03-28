@@ -24,33 +24,19 @@ export default function CreateTeam() {
     setError(null);
 
     try {
-      // Create the team
-      const { data: team, error: teamError } = await supabase
-        .from("team")
-        .insert({
-          team_name: teamName.trim(),
-          team_leader: profile.id,
-          max_members: maxMembers,
-        })
-        .select()
-        .single();
+      const { error } = await supabase.rpc("create_team", {
+        p_team_name: teamName.trim(),
+        p_max_members: maxMembers,
+      });
 
-      if (teamError) {
-        if (teamError.code === "23505") {
+      if (error) {
+        if (error.code === "23505") {
           setError("A team with that name already exists. Try another name.");
         } else {
-          throw teamError;
+          throw error;
         }
         return;
       }
-
-      // Assign the creator to the team
-      const { error: profileError } = await supabase
-        .from("profile")
-        .update({ team_id: team.team_id })
-        .eq("id", profile.id);
-
-      if (profileError) throw profileError;
 
       await reloadSession();
       router.push("/b4g/TeamDashboard");

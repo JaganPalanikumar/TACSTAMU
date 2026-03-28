@@ -84,7 +84,7 @@ export default function TeamSearch() {
           value={team}
           onChange={(e) => {
             setTeam(e.target.value);
-            if (e.target.value === "") handleSubmit("");
+            handleSubmit(e.target.value); // ← search on every keystroke
           }}
         />
         <button

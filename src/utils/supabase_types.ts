@@ -155,6 +155,10 @@ export type Database = {
         Args: { ate: boolean; checked: boolean; target_id: string }
         Returns: undefined
       }
+      create_team: {
+        Args: { p_max_members: number; p_team_name: string }
+        Returns: undefined
+      }
       get_my_checked_in: { Args: never; Returns: boolean }
       get_my_has_eaten: { Args: never; Returns: boolean }
       get_my_team_id: { Args: never; Returns: string }
@@ -188,7 +192,9 @@ export type Database = {
           id: string
         }[]
       }
+      join_team: { Args: { p_team_id: string }; Returns: undefined }
       kick_team_member: { Args: { target_id: string }; Returns: undefined }
+      leave_team: { Args: never; Returns: undefined }
       search_teams: {
         Args: { search_term: string }
         Returns: {
