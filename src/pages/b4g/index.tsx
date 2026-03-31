@@ -368,7 +368,8 @@ export default function Landing() {
               Wednesday, April 1st
             </h1>
             <li className="flex flex-row w-full justify-between text-[--gray]">
-              <h2 className="text-white">Prize Distribution</h2> <p>6:30 PM</p>
+              <h2 className="text-white">Prize Distribution</h2>{" "}
+              <p>6:30 PM - 8:00 PM</p>
             </li>
           </ul>
         </div>
